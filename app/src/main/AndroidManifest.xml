@@ -16,6 +16,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".UserActivity" />
+        <activity android:name=".FlightActivity" />
+        <activity android:name=".SegmentActivity"></activity>
     </application>
 
 </manifest>
