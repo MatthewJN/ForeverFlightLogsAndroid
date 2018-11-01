@@ -18,7 +18,10 @@
         </activity>
         <activity android:name=".UserActivity" />
         <activity android:name=".FlightActivity" />
-        <activity android:name=".SegmentActivity"></activity>
+        <activity android:name=".SegmentActivity" />
+        <activity android:name=".ListSegmentActivity" />
+        <activity android:name=".EditSegmentActivity" />
+        <activity android:name=".FinalizeFlightActivity"></activity>
     </application>
 
 </manifest>

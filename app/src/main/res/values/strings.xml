@@ -9,4 +9,7 @@
     <string name="button_start_segment">Start Segment</string>
     <string name="button_end_segment">End Segment</string>
     <string name="button_end_flight">End Flight</string>
+    <string name="button_add_remarks">Add Remarks</string>
+    <string name="button_save">Save</string>
+    <string name="button_save_log">Save Log</string>
 </resources>
