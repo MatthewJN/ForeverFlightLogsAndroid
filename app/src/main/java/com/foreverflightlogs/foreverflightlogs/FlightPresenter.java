@@ -4,6 +4,10 @@ import java.util.Date;
 
 public class FlightPresenter implements Syncable {
 
+    // Used for testing
+    public Date startDate;
+
+
     /**
      * The flightID of the current flight.
      */
@@ -12,7 +16,7 @@ public class FlightPresenter implements Syncable {
     /**
      * The duration of the flight, in seconds.
      */
-    private int flightDuration;
+    private long flightDuration;
 
     /**
      * Default Constructor:
@@ -40,6 +44,8 @@ public class FlightPresenter implements Syncable {
     public FlightPresenter(String origin, String aircraft, Date startDate) {
         // Create a new model representing this flight
         // Get an ID and set the private flightID.
+        flightID = 0;
+        this.startDate = startDate;
     }
 
     /**
@@ -51,7 +57,7 @@ public class FlightPresenter implements Syncable {
     }
 
     public int getFlightID() {
-        return 0;
+        return flightID;
     }
 
     /**
@@ -60,8 +66,8 @@ public class FlightPresenter implements Syncable {
      * it returns the current duration at the moment the request was made.
      * @return The flight duration in seconds.
      */
-    public int getFlightDuration() {
-        return flightDuration;
+    public long getFlightDuration() {
+        return new Date().getTime() - startDate.getTime();
     }
 
     /**
