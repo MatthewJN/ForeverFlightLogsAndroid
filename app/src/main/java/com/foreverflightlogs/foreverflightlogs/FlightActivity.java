@@ -12,12 +12,18 @@ public class FlightActivity extends AppCompatActivity {
         setContentView(R.layout.activity_flight);
     }
 
+    /**
+     * startFlight:
+     * Called when the start flight button is clicked.
+     * @param view the Buttons view.
+     */
     public void startFlight(View view) {
         // Call default contsructor of FlightManager
 
         // Call startFlight() and pass in the origin, aircraft, and current date/time.
 
-        // Push to Segment Activity - including the flightID as the intent.
+        // Push to Segment Activity - including the flightID as the intent (fetch ID from the
+        // current flight presenter.
 
     }
 }
