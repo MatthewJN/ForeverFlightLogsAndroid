@@ -79,6 +79,40 @@ public class FlightPresenter implements Syncable {
     }
 
     /**
+     * Store whether it is a cross country flight
+     * API requires 1 if true, 0 if false
+     * @param crossCountry boolean
+     *    to verify only 1 or 0, boolean param will be taken and then correct value stored
+     * @author: Sheri
+     */
+    public void setIsCrossCountry(boolean crossCountry ) {
+        if (crossCountry){
+            //set value for cross country as 1
+        }
+        else {
+            //set value for cross country to 0
+        }
+        return;
+    }
+
+    /**
+     * Store whether it is a solo flight
+     * API requires 1 if true, 0 if false
+     * @param solo boolean
+     *    to verify only 1 or 0, boolean param will be taken and then correct value stored
+     * @author: Sheri
+     */
+    public void setIsSolo(boolean solo ) {
+        if (solo){
+            //set value for cross country as 1
+        }
+        else {
+            //set value for cross country to 0
+        }
+        return;
+    }
+
+    /**
      * syncData
      * Synchronises the data with the ForeverFlightLog server.
      * Typically called when a flight ends, but left public in case that fails and
