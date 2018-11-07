@@ -50,6 +50,10 @@ public class FlightPresenter implements Syncable {
         syncData();
     }
 
+    public int getFlightID() {
+        return 0;
+    }
+
     /**
      * getFlightDuration
      * Provides the duration of the flight. If flight was not ended or has not finished
