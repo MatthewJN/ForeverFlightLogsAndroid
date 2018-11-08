@@ -13,13 +13,14 @@ public class FlightDbHelper extends SQLiteOpenHelper {
                     FlightContract.FlightEntry.COLUMN_NAME_DESTINATION + " TEXT, " +
                     FlightContract.FlightEntry.COLUMN_NAME_STARTDATE + " DATE, " +
                     FlightContract.FlightEntry.COLUMN_NAME_ENDDATE + " DATE, " +
-                    FlightContract.FlightEntry.COLUMN_NAME_AIRCRAFT + " TEXT)";
+                    FlightContract.FlightEntry.COLUMN_NAME_AIRCRAFT + " TEXT," +
+                    FlightContract.FlightEntry.COLUMN_NAME_HASSYNCED + " BOOLEAN)";
 
     private static final String SQL_DELETE_ENTRIES =
             "DROP TABLE IF EXISTS " + FlightContract.FlightEntry.TABLE_NAME;
 
     // If you change the database schema, you must increment the database version.
-    public static final int DATABASE_VERSION = 1;
+    public static final int DATABASE_VERSION = 2;
     public static final String DATABASE_NAME = "Flight.db";
 
     public FlightDbHelper(Context context) {
