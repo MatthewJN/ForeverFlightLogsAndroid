@@ -6,13 +6,13 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class FlightDbHelper extends SQLiteOpenHelper {
 
-    private static final String SQL_CREATE_ENTRIES =
+    public static final String SQL_CREATE_ENTRIES =
             "CREATE TABLE " + FlightContract.FlightEntry.TABLE_NAME + " (" +
-                    FlightContract.FlightEntry._ID + " INTEGER PRIMARY KEY," +
-                    FlightContract.FlightEntry.COLUMN_NAME_ORIGIN + " TEXT," +
-                    FlightContract.FlightEntry.COLUMN_NAME_DESTINATION + " TEXT)" +
-                    FlightContract.FlightEntry.COLUMN_NAME_STARTDATE + " TEXT)" +
-                    FlightContract.FlightEntry.COLUMN_NAME_ENDDATE + " TEXT)" +
+                    FlightContract.FlightEntry._ID + " INTEGER PRIMARY KEY, " +
+                    FlightContract.FlightEntry.COLUMN_NAME_ORIGIN + " TEXT, " +
+                    FlightContract.FlightEntry.COLUMN_NAME_DESTINATION + " TEXT, " +
+                    FlightContract.FlightEntry.COLUMN_NAME_STARTDATE + " DATE, " +
+                    FlightContract.FlightEntry.COLUMN_NAME_ENDDATE + " DATE, " +
                     FlightContract.FlightEntry.COLUMN_NAME_AIRCRAFT + " TEXT)";
 
     private static final String SQL_DELETE_ENTRIES =

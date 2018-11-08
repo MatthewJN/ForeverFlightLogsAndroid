@@ -2,8 +2,16 @@ package com.foreverflightlogs.foreverflightlogs;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.Debug;
+import android.provider.BaseColumns;
+import android.util.Log;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class FlightPresenter implements Syncable {
 
@@ -54,12 +62,49 @@ public class FlightPresenter implements Syncable {
         flightID = 0;
         this.startDate = startDate;
 
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String date = sdf.format(startDate);
+
         SQLiteDatabase db = mDbHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(FlightContract.FlightEntry.COLUMN_NAME_STARTDATE, "Date");
+        values.put(FlightContract.FlightEntry.COLUMN_NAME_STARTDATE, date);
+        values.put(FlightContract.FlightEntry.COLUMN_NAME_AIRCRAFT, "G-BOAG");
+        values.put(FlightContract.FlightEntry.COLUMN_NAME_ORIGIN, "SLC");
         long newRowID = db.insert(FlightContract.FlightEntry.TABLE_NAME, null, values);
 
+        Log.d("SQLTest", mDbHelper.SQL_CREATE_ENTRIES);
+//        System.out.println(mDbHelper.SQL_CREATE_ENTRIES);
 
+        db = mDbHelper.getReadableDatabase();
+        String[] projection = {
+                BaseColumns._ID,
+                FlightContract.FlightEntry.COLUMN_NAME_STARTDATE,
+        };
+
+
+        String selection = FlightContract.FlightEntry._ID;
+        String[] selectionArgs = { "Date" };
+
+        String sortOrder =
+                FlightContract.FlightEntry.COLUMN_NAME_STARTDATE + " DESC";
+
+        Cursor cursor = db.query(
+                        FlightContract.FlightEntry.TABLE_NAME,   // The table to query
+                projection,             // The array of columns to return (pass null to get all)
+                selection,              // The columns for the WHERE clause
+                selectionArgs,          // The values for the WHERE clause
+                null,                   // don't group the rows
+                null,                   // don't filter by row groups
+                sortOrder               // The sort order
+        );
+
+        List itemIds = new ArrayList<>();
+        while(cursor.moveToNext()) {
+            long itemId = cursor.getLong(
+                    cursor.getColumnIndexOrThrow(FlightContract.FlightEntry._ID));
+            itemIds.add(itemId);
+        }
+        cursor.close();
 
     }
 
