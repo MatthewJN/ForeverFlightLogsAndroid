@@ -70,6 +70,7 @@ public class FlightPresenter implements Syncable {
         values.put(FlightContract.FlightEntry.COLUMN_NAME_STARTDATE, date);
         values.put(FlightContract.FlightEntry.COLUMN_NAME_AIRCRAFT, "G-BOAG");
         values.put(FlightContract.FlightEntry.COLUMN_NAME_ORIGIN, "SLC");
+        values.put(FlightContract.FlightEntry.COLUMN_NAME_HASSYNCED, false);
         long newRowID = db.insert(FlightContract.FlightEntry.TABLE_NAME, null, values);
 
         Log.d("SQLTest", mDbHelper.SQL_CREATE_ENTRIES);
@@ -79,17 +80,17 @@ public class FlightPresenter implements Syncable {
         String[] projection = {
                 BaseColumns._ID,
                 FlightContract.FlightEntry.COLUMN_NAME_STARTDATE,
+                FlightContract.FlightEntry.COLUMN_NAME_ORIGIN,
+                FlightContract.FlightEntry.COLUMN_NAME_AIRCRAFT
         };
 
+        String selection = FlightContract.FlightEntry.COLUMN_NAME_AIRCRAFT + " = ?";
+        String[] selectionArgs = { "G-BOAG" };
 
-        String selection = FlightContract.FlightEntry._ID;
-        String[] selectionArgs = { "Date" };
-
-        String sortOrder =
-                FlightContract.FlightEntry.COLUMN_NAME_STARTDATE + " DESC";
+        String sortOrder = FlightContract.FlightEntry._ID + " DESC";
 
         Cursor cursor = db.query(
-                        FlightContract.FlightEntry.TABLE_NAME,   // The table to query
+                FlightContract.FlightEntry.TABLE_NAME,   // The table to query
                 projection,             // The array of columns to return (pass null to get all)
                 selection,              // The columns for the WHERE clause
                 selectionArgs,          // The values for the WHERE clause
@@ -100,9 +101,11 @@ public class FlightPresenter implements Syncable {
 
         List itemIds = new ArrayList<>();
         while(cursor.moveToNext()) {
+            Log.d("SQLOutput", cursor.getString(cursor.getColumnIndex(FlightContract.FlightEntry.COLUMN_NAME_AIRCRAFT)));
             long itemId = cursor.getLong(
                     cursor.getColumnIndexOrThrow(FlightContract.FlightEntry._ID));
             itemIds.add(itemId);
+            Log.d("NewItem", String.valueOf(itemId));
         }
         cursor.close();
 
