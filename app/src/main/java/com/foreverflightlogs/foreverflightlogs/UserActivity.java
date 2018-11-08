@@ -9,9 +9,9 @@ public class UserActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user);
+    }
 
-
-
-        // commit test
+    public boolean loginUser(String phoneNumber, String password) {
+        return false;
     }
 }
