@@ -13,5 +13,8 @@ public final class FlightContract {
         public static final String COLUMN_NAME_ENDDATE = "endDate";
         public static final String COLUMN_NAME_AIRCRAFT = "aircraft";
         public static final String COLUMN_NAME_HASSYNCED = "hasSynced";
+        public static final String COLUMN_NAME_CROSSCOUNTRY = "crossCountry";
+        public static final String COLUMN_NAME_SOLO = "solo";
+        public static final String COLUMN_NAME_REMARKS = "remarks";
     }
 }
