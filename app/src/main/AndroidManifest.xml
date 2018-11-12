@@ -24,4 +24,6 @@
         <activity android:name=".FinalizeFlightActivity"></activity>
     </application>
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
 </manifest>
