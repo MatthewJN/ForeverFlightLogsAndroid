@@ -73,7 +73,7 @@ public class FlightPresenter implements Syncable {
         values.put(FlightContract.FlightEntry.COLUMN_NAME_HASSYNCED, false);
         long newRowID = db.insert(FlightContract.FlightEntry.TABLE_NAME, null, values);
 
-        Log.d("SQLTest", mDbHelper.SQL_CREATE_ENTRIES);
+        //Log.d("SQLTest", mDbHelper.SQL_CREATE_ENTRIES);
 //        System.out.println(mDbHelper.SQL_CREATE_ENTRIES);
 
         db = mDbHelper.getReadableDatabase();

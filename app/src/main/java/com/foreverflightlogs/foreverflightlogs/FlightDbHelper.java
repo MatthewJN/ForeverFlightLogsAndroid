@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class FlightDbHelper extends SQLiteOpenHelper {
 
-    public static final String SQL_CREATE_ENTRIES =
+    private static final String SQL_CREATE_ENTRIES =
             "CREATE TABLE " + FlightContract.FlightEntry.TABLE_NAME + " (" +
                     FlightContract.FlightEntry._ID + " INTEGER PRIMARY KEY, " +
                     FlightContract.FlightEntry.COLUMN_NAME_ORIGIN + " TEXT, " +
