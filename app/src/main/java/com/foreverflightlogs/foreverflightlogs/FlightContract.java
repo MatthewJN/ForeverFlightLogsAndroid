@@ -1,6 +1,6 @@
 package com.foreverflightlogs.foreverflightlogs;
 
-import android.provider.BaseColumns;
+        import android.provider.BaseColumns;
 
 public final class FlightContract {
     private FlightContract() {}

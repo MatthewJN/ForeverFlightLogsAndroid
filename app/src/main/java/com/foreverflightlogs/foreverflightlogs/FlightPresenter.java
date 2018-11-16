@@ -1,27 +1,23 @@
 package com.foreverflightlogs.foreverflightlogs;
 
-import android.content.ContentValues;
+
 import android.content.Context;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.os.Debug;
-import android.provider.BaseColumns;
 import android.util.Log;
 
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
+
 
 public class FlightPresenter implements Syncable {
 
     // Used for testing
     public Date startDate;
 
+    private FlightContract.FlightEntry flightEntry;
+
     /**
      * The flightID of the current flight.
      */
-    private int flightID;
+    private long flightID;
 
     /**
      * The duration of the flight, in seconds.
@@ -39,8 +35,9 @@ public class FlightPresenter implements Syncable {
      * Pass in a flightID to instantiate the FlightPresenter with the flight desired.
      * @param flightID The flightID assigned by the model.
      */
-    public FlightPresenter(int flightID, Context context) {
-
+    public FlightPresenter(long flightID, Context context) {
+        FlightDbHelper flightDbHelper = new FlightDbHelper(context);
+        flightEntry = flightDbHelper.getFlight(flightID);
     }
 
     /**
@@ -52,63 +49,8 @@ public class FlightPresenter implements Syncable {
      * @param startDate The start date (usually the exact time the start button was pressed).
      */
     public FlightPresenter(String origin, String aircraft, Date startDate, Context context) {
-
-        // Create a new model representing this flight
-        // Get an ID and set the private flightID.
-
-        FlightDbHelper mDbHelper = new FlightDbHelper(context);
-
-
-        flightID = 0;
-        this.startDate = startDate;
-
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String date = sdf.format(startDate);
-
-        SQLiteDatabase db = mDbHelper.getWritableDatabase();
-        ContentValues values = new ContentValues();
-        values.put(FlightContract.FlightEntry.COLUMN_NAME_STARTDATE, date);
-        values.put(FlightContract.FlightEntry.COLUMN_NAME_AIRCRAFT, "G-BOAG");
-        values.put(FlightContract.FlightEntry.COLUMN_NAME_ORIGIN, "SLC");
-        values.put(FlightContract.FlightEntry.COLUMN_NAME_HASSYNCED, false);
-        long newRowID = db.insert(FlightContract.FlightEntry.TABLE_NAME, null, values);
-
-        //Log.d("SQLTest", mDbHelper.SQL_CREATE_ENTRIES);
-//        System.out.println(mDbHelper.SQL_CREATE_ENTRIES);
-
-        db = mDbHelper.getReadableDatabase();
-        String[] projection = {
-                BaseColumns._ID,
-                FlightContract.FlightEntry.COLUMN_NAME_STARTDATE,
-                FlightContract.FlightEntry.COLUMN_NAME_ORIGIN,
-                FlightContract.FlightEntry.COLUMN_NAME_AIRCRAFT
-        };
-
-        String selection = FlightContract.FlightEntry.COLUMN_NAME_AIRCRAFT + " = ?";
-        String[] selectionArgs = { "G-BOAG" };
-
-        String sortOrder = FlightContract.FlightEntry._ID + " DESC";
-
-        Cursor cursor = db.query(
-                FlightContract.FlightEntry.TABLE_NAME,   // The table to query
-                projection,             // The array of columns to return (pass null to get all)
-                selection,              // The columns for the WHERE clause
-                selectionArgs,          // The values for the WHERE clause
-                null,                   // don't group the rows
-                null,                   // don't filter by row groups
-                sortOrder               // The sort order
-        );
-
-        List itemIds = new ArrayList<>();
-        while(cursor.moveToNext()) {
-            Log.d("SQLOutput", cursor.getString(cursor.getColumnIndex(FlightContract.FlightEntry.COLUMN_NAME_AIRCRAFT)));
-            long itemId = cursor.getLong(
-                    cursor.getColumnIndexOrThrow(FlightContract.FlightEntry._ID));
-            itemIds.add(itemId);
-            Log.d("NewItem", String.valueOf(itemId));
-        }
-        cursor.close();
-
+        FlightDbHelper flightDbHelper = new FlightDbHelper(context);
+        flightID = flightDbHelper.insertNewFlight(origin, aircraft, startDate);
     }
 
     /**
@@ -119,7 +61,7 @@ public class FlightPresenter implements Syncable {
         syncData();
     }
 
-    public int getFlightID() {
+    public long getFlightID() {
         return flightID;
     }
 
