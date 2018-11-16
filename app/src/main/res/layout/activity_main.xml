@@ -11,6 +11,7 @@
         android:layout_width="221dp"
         android:layout_height="81dp"
         android:layout_marginTop="128dp"
+        android:onClick="createNewFlight"
         android:text="@string/create_new_flight"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
