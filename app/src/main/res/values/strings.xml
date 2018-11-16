@@ -12,4 +12,13 @@
     <string name="button_add_remarks">Add Remarks</string>
     <string name="button_save">Save</string>
     <string name="button_save_log">Save Log</string>
+    <string name="start">Start</string>
+    <string name="stop">Stop</string>
+    <string name="reset">Reset</string>
+    <string name="label_PilotInCommand">Pilot In Command</string>
+    <string name="label_dualHours">Dual Hours</string>
+    <string name="label_simInstruments">Simulated Instruments</string>
+    <string name="label_visualFlight">Visual Flight</string>
+    <string name="label_instrumentFlight">Instrument Flight</string>
+    <string name="label_night">Night</string>
 </resources>
