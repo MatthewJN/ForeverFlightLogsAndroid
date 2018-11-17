@@ -20,7 +20,7 @@ import java.net.URL;
 
 public class UserManager {
 
-    public void authWithAPI(String phoneNumber, String password, Context context) {
+    public void authWithAPI(final String phoneNumber, final String password, Context context) {
 
         final Context thisContext = context;
         Thread thread = new Thread(new Runnable() {
@@ -37,8 +37,8 @@ public class UserManager {
                     conn.setDoInput(true);
 
                     JSONObject jsonParam = new JSONObject();
-                    jsonParam.put("phone", "5552000000");
-                    jsonParam.put("password", "test");
+                    jsonParam.put("phone", phoneNumber);
+                    jsonParam.put("password", password);
 
                     Log.i("JSON", jsonParam.toString());
                     DataOutputStream os = new DataOutputStream(conn.getOutputStream());
