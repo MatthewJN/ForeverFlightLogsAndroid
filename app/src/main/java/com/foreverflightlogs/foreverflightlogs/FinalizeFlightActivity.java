@@ -2,6 +2,7 @@ package com.foreverflightlogs.foreverflightlogs;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 
 public class FinalizeFlightActivity extends AppCompatActivity {
 
@@ -19,5 +20,9 @@ public class FinalizeFlightActivity extends AppCompatActivity {
         // 3. update flight with solo flight - flight.setSoloFlight(true)
         // 3. store in local db
         return;
+    }
+
+    public void saveLogEntry(View view) {
+
     }
 }
