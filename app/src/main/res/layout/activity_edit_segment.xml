@@ -7,157 +7,159 @@
     tools:context=".EditSegmentActivity">
 
     <TextView
-        android:id="@+id/textView15"
+        android:id="@+id/lable_Night"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="48dp"
         android:layout_marginLeft="48dp"
         android:layout_marginTop="16dp"
-        android:text="Night"
+        android:text="@string/label_night"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView18" />
+        app:layout_constraintTop_toBottomOf="@+id/label_instrumentFlight" />
 
     <Switch
-        android:id="@+id/switch7"
+        android:id="@+id/switch_visualFlight"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="96dp"
         android:layout_marginRight="96dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/switch12" />
+        app:layout_constraintTop_toBottomOf="@+id/switch_simInstruments" />
 
     <TextView
-        android:id="@+id/textView16"
+        android:id="@+id/label_PilotInCommand"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="48dp"
         android:layout_marginLeft="48dp"
         android:layout_marginTop="32dp"
-        android:text="Pilot In Command"
+        android:text="@string/label_PilotInCommand"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView14" />
 
     <TextView
-        android:id="@+id/textView17"
+        android:id="@+id/label_dualHours"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="48dp"
         android:layout_marginLeft="48dp"
         android:layout_marginTop="16dp"
-        android:text="Dual Hours"
+        android:text="@string/label_dualHours"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView16" />
+        app:layout_constraintTop_toBottomOf="@+id/label_PilotInCommand" />
 
     <TextView
-        android:id="@+id/textView18"
+        android:id="@+id/label_instrumentFlight"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="48dp"
         android:layout_marginLeft="48dp"
         android:layout_marginTop="16dp"
-        android:text="Instrumental Flight"
+        android:text="@string/label_instrumentFlight"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView19" />
+        app:layout_constraintTop_toBottomOf="@+id/label_visualFlight" />
 
     <TextView
-        android:id="@+id/textView19"
+        android:id="@+id/label_visualFlight"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="48dp"
         android:layout_marginLeft="48dp"
         android:layout_marginTop="16dp"
-        android:text="Visual Flight"
+        android:text="@string/label_visualFlight"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView20" />
+        app:layout_constraintTop_toBottomOf="@+id/label_simInstruments" />
 
     <Switch
-        android:id="@+id/switch8"
+        android:id="@+id/switch_dualHours"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="96dp"
         android:layout_marginRight="96dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/switch11" />
+        app:layout_constraintTop_toBottomOf="@+id/switch_PIC" />
 
     <Switch
-        android:id="@+id/switch9"
+        android:id="@+id/switch_Night"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="96dp"
         android:layout_marginRight="96dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/switch10" />
+        app:layout_constraintTop_toBottomOf="@+id/switch_instrFlight" />
 
     <TextView
-        android:id="@+id/textView20"
+        android:id="@+id/label_simInstruments"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="48dp"
         android:layout_marginLeft="48dp"
         android:layout_marginTop="16dp"
-        android:text="Simulated Instruments"
+        android:text="@string/label_simInstruments"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView17" />
+        app:layout_constraintTop_toBottomOf="@+id/label_dualHours" />
 
     <Switch
-        android:id="@+id/switch10"
+        android:id="@+id/switch_instrFlight"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="96dp"
         android:layout_marginRight="96dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/switch7" />
+        app:layout_constraintTop_toBottomOf="@+id/switch_visualFlight" />
 
     <Switch
-        android:id="@+id/switch11"
+        android:id="@+id/switch_PIC"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="96dp"
         android:layout_marginRight="96dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText8" />
+        app:layout_constraintTop_toBottomOf="@+id/endTime" />
 
     <Switch
-        android:id="@+id/switch12"
+        android:id="@+id/switch_simInstruments"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="96dp"
         android:layout_marginRight="96dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/switch8" />
+        app:layout_constraintTop_toBottomOf="@+id/switch_dualHours" />
 
     <EditText
-        android:id="@+id/editText8"
+        android:id="@+id/endTime"
+        android:layout_width="202dp"
+        android:layout_height="47dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="26dp"
+        android:layout_marginRight="26dp"
+        android:ems="10"
+        android:hint="@string/endTime"
+        android:inputType="textPersonName|datetime"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/startTime" />
+
+    <EditText
+        android:id="@+id/startTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:ems="10"
-        android:inputType="textPersonName"
+        android:hint="@string/startTime"
+        android:inputType="textPersonName|datetime"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText5" />
-
-    <EditText
-        android:id="@+id/editText5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText3" />
+        app:layout_constraintTop_toBottomOf="@+id/duration" />
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/closeActivity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -176,7 +178,7 @@
         android:layout_marginTop="16dp"
         android:text="Duration"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+        app:layout_constraintTop_toBottomOf="@+id/closeActivity" />
 
     <TextView
         android:id="@+id/textView13"
@@ -201,23 +203,24 @@
         app:layout_constraintTop_toBottomOf="@+id/textView13" />
 
     <EditText
-        android:id="@+id/editText3"
+        android:id="@+id/duration"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:ems="10"
-        android:inputType="textPersonName"
+        android:hint="@string/duration"
+        android:inputType="textPersonName|numberDecimal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button9"
+        android:id="@+id/button_saveSegment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
-        android:text="Button"
+        android:text="@string/button_save"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

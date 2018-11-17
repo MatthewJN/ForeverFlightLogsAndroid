@@ -22,4 +22,11 @@
     <string name="label_instrumentFlight">Instrument Flight</string>
     <string name="label_night">Night</string>
     <string name="segmentList">Segment List</string>
+    <string name="duration">00.00</string>
+    <string name="startTime">2017-04-12 16:21:03</string>
+    <string name="endTime">2017-04-12 17:21:03</string>
+    <string name="label_crossCountry">Cross Country</string>
+    <string name="label_solo">Solo</string>
+    <string name="label_remarks">Remarks:</string>
+
 </resources>
