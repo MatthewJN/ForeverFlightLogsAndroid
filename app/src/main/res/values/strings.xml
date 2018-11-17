@@ -21,4 +21,5 @@
     <string name="label_visualFlight">Visual Flight</string>
     <string name="label_instrumentFlight">Instrument Flight</string>
     <string name="label_night">Night</string>
+    <string name="segmentList">Segment List</string>
 </resources>
