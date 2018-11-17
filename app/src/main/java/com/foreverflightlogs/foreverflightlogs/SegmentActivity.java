@@ -127,8 +127,8 @@ public class SegmentActivity extends AppCompatActivity implements CompoundButton
         //call segmentPresenter.endSegment()
 
         //flightManager.endFlight()
-//        Intent intent = new Intent(this, ListSegmentActivity.class);
-//        startActivity(intent);
+        Intent intent = new Intent(this, ListSegmentActivity.class);
+        startActivity(intent);
         Toast.makeText(this, "onclickEndFlight opens ListSegmentActivity", Toast.LENGTH_SHORT).show();
     }
 
