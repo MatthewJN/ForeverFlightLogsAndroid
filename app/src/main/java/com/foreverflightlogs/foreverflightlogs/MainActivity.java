@@ -1,7 +1,9 @@
 package com.foreverflightlogs.foreverflightlogs;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -10,11 +12,16 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        new UserManager().authWithAPI("", "", getApplicationContext());
+        //new UserManager().authWithAPI("", "", getApplicationContext());
     }
 
-    public void createNewFlight() { }
+    public void createNewFlight(View view) {
+        Intent myIntent = new Intent(MainActivity.this, FlightActivity.class);
+        MainActivity.this.startActivity(myIntent);
+    }
 
-    public void showAllFlights() { }
+    public void showAllFlights() {
+
+    }
 
 }
