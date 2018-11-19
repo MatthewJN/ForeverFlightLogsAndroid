@@ -12,7 +12,7 @@ public class FlightPresenter implements Syncable {
     // Used for testing
     public Date startDate;
 
-    private FlightContract.FlightEntry flightEntry;
+    private Flight flight;
 
     /**
      * The flightID of the current flight.
@@ -37,7 +37,8 @@ public class FlightPresenter implements Syncable {
      */
     public FlightPresenter(long flightID, Context context) {
         FlightDbHelper flightDbHelper = new FlightDbHelper(context);
-        flightEntry = flightDbHelper.getFlight(flightID);
+        flight = flightDbHelper.getFlight(flightID, context);
+        this.flightID = flight.getFlightID();
     }
 
     /**
@@ -50,7 +51,9 @@ public class FlightPresenter implements Syncable {
      */
     public FlightPresenter(String origin, String aircraft, Date startDate, Context context) {
         FlightDbHelper flightDbHelper = new FlightDbHelper(context);
-        flightID = flightDbHelper.insertNewFlight(origin, aircraft, startDate);
+        flight = flightDbHelper.insertNewFlight(origin, aircraft, startDate, context);
+        flightID = flight.getFlightID();
+        Log.i("ORIGINTEST", flight.getOrigin());
     }
 
     /**

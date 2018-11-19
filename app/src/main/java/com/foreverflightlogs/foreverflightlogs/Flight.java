@@ -1,5 +1,7 @@
 package com.foreverflightlogs.foreverflightlogs;
 
+import android.content.Context;
+
 import java.util.Date;
 
 public class Flight {
@@ -13,6 +15,11 @@ public class Flight {
     private boolean crosscountry;
     private boolean solo;
     private String remarks;
+    private Context context;
+
+    public Flight(Context context) {
+        this.context = context;
+    }
 
     // Getters
     public long getFlightID() {
@@ -56,7 +63,13 @@ public class Flight {
     }
 
     // Setters
+    public void setFlightID(long flightID) {
+        this.flightID = flightID;
+    }
+
     public void setOrigin(String origin) {
+        FlightDbHelper dbHelper = new FlightDbHelper(context);
+        dbHelper.updateFlight(this, context);
         this.origin = origin;
     }
 

@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteDatabaseLockedException;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.provider.BaseColumns;
 import android.util.Log;
@@ -12,6 +13,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class FlightDbHelper extends SQLiteOpenHelper {
 
@@ -56,9 +58,9 @@ public class FlightDbHelper extends SQLiteOpenHelper {
      * @param origin The origin of the flight (the 3 digit airport code)
      * @param aircraft The N number of the plane
      * @param date The start time of the flight
-     * @return Returns the ID of the entry in the DB.
+     * @return Returns the Flight object.
      */
-    public long insertNewFlight(String origin, String aircraft, Date startDate) {
+    public Flight insertNewFlight(String origin, String aircraft, Date startDate, Context context) {
         // Makes a compatible date for SQL.
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String date = sdf.format(startDate);
@@ -74,10 +76,10 @@ public class FlightDbHelper extends SQLiteOpenHelper {
         values.put(FlightContract.FlightEntry.COLUMN_NAME_HASSYNCED, false);
         long newRowID = db.insert(FlightContract.FlightEntry.TABLE_NAME, null, values);
 
-        return newRowID;
+        return getFlight(newRowID, context);
     }
 
-    public FlightContract.FlightEntry getFlight(long flightId) {
+    public Flight getFlight(long flightId, Context context) {
         SQLiteDatabase db = getReadableDatabase();
         String[] projection = {
                 BaseColumns._ID,
@@ -107,41 +109,91 @@ public class FlightDbHelper extends SQLiteOpenHelper {
         );
 
         List itemIds = new ArrayList<>();
-        FlightContract.FlightEntry flightEntry;
+        Flight flight = new Flight(context);
 
         while (cursor.moveToNext()) {
-            
-            Log.i("ZTHEFLIGHTID", cursor.getString(cursor.getColumnIndex(FlightContract.FlightEntry._ID)));
-            Log.i("ZTHEORIGIN", cursor.getString(cursor.getColumnIndex(FlightContract.FlightEntry.COLUMN_NAME_ORIGIN)));
 
-            if (!cursor.isNull(cursor.getColumnIndex(FlightContract.FlightEntry.COLUMN_NAME_DESTINATION))) {
-                Log.i("ZTHEDESTINATION", cursor.getString(cursor.getColumnIndex(FlightContract.FlightEntry.COLUMN_NAME_DESTINATION)));
+            if (!cursor.isNull(cursor.getColumnIndex(FlightContract.FlightEntry._ID))) {
+                flight.setFlightID(cursor.getColumnIndex(FlightContract.FlightEntry._ID));
             }
 
-            //Log.i("ZTHEDESTINATION", cursor.getString(cursor.getColumnIndex(FlightContract.FlightEntry.COLUMN_NAME_DESTINATION)));
+            if (!cursor.isNull(cursor.getColumnIndex(FlightContract.FlightEntry.COLUMN_NAME_ORIGIN))) {
+                flight.setOrigin(cursor.getString(cursor.getColumnIndex(FlightContract.FlightEntry.COLUMN_NAME_ORIGIN)));
+            }
 
+            if (!cursor.isNull(cursor.getColumnIndex(FlightContract.FlightEntry.COLUMN_NAME_DESTINATION))) {
+                flight.setDestination(cursor.getString(cursor.getColumnIndex(FlightContract.FlightEntry.COLUMN_NAME_DESTINATION)));
+            }
 
+            if (!cursor.isNull(cursor.getColumnIndex(FlightContract.FlightEntry.COLUMN_NAME_STARTDATE))) {
+                // TODO: 20/11/2018 Get the date
+            }
 
+            if (!cursor.isNull(cursor.getColumnIndex(FlightContract.FlightEntry.COLUMN_NAME_ENDDATE))) {
+                // TODO: 20/11/2018 Get the date
+            }
+
+            if (!cursor.isNull(cursor.getColumnIndex(FlightContract.FlightEntry.COLUMN_NAME_AIRCRAFT))) {
+                flight.setAircraft(cursor.getString(cursor.getColumnIndex(FlightContract.FlightEntry.COLUMN_NAME_AIRCRAFT)));
+            }
+
+            if (!cursor.isNull(cursor.getColumnIndex(FlightContract.FlightEntry.COLUMN_NAME_HASSYNCED))) {
+                flight.setHasSynced(cursor.getInt(cursor.getColumnIndex(FlightContract.FlightEntry.COLUMN_NAME_HASSYNCED)) > 0);
+            }
+
+            if (!cursor.isNull(cursor.getColumnIndex(FlightContract.FlightEntry.COLUMN_NAME_CROSSCOUNTRY))) {
+                flight.setCrosscountry(cursor.getInt(cursor.getColumnIndex(FlightContract.FlightEntry.COLUMN_NAME_CROSSCOUNTRY)) > 0);
+            }
+
+            if (!cursor.isNull(cursor.getColumnIndex(FlightContract.FlightEntry.COLUMN_NAME_SOLO))) {
+                flight.setSolo(cursor.getInt(cursor.getColumnIndex(FlightContract.FlightEntry.COLUMN_NAME_SOLO)) > 0);
+            }
+
+            if (!cursor.isNull(cursor.getColumnIndex(FlightContract.FlightEntry.COLUMN_NAME_REMARKS))) {
+                flight.setAircraft(cursor.getString(cursor.getColumnIndex(FlightContract.FlightEntry.COLUMN_NAME_REMARKS)));
+            }
             //Log.i("ZTHESTARTDATE", cursor.getString(cursor.getColumnIndex(FlightContract.FlightEntry.COLUMN_NAME_STARTDATE)));
-            Log.i("ZTHEAIRCRAFT", cursor.getString(cursor.getColumnIndex(FlightContract.FlightEntry.COLUMN_NAME_AIRCRAFT)));
             //Log.i("ZTHEENGDATE", cursor.getString(cursor.getColumnIndex(FlightContract.FlightEntry.COLUMN_NAME_ENDDATE)));
-
-            //Log.i("ZTHEHASSYNCED", cursor.getInt(FlightContract.FlightEntry.COLUMN_NAME_HASSYNCED);
-
-
-            //Log.i("ZTHEHASSYNCED", cursor.getString(cursor.getColumnIndex(FlightContract.FlightEntry.COLUMN_NAME_HASSYNCED)));
-            //Log.i("ZTHESOLO", cursor.getString(cursor.getColumnIndex(FlightContract.FlightEntry.COLUMN_NAME_SOLO)));
-            //Log.i("ZTHECROSSCOUNTRY", cursor.getString(cursor.getColumnIndex(FlightContract.FlightEntry.COLUMN_NAME_CROSSCOUNTRY)));
-            //Log.i("ZTHEREMARKS", cursor.getString(cursor.getColumnIndex(FlightContract.FlightEntry.COLUMN_NAME_REMARKS)));
         }
 
         cursor.close();
+        return flight;
+    }
 
-        return null;
+    public void updateFlight(Flight flight, Context context) {
+        SQLiteDatabase db = getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(FlightContract.FlightEntry.COLUMN_NAME_ORIGIN, flight.getOrigin());
+        values.put(FlightContract.FlightEntry.COLUMN_NAME_DESTINATION, flight.getDestination());
+        //values.put(FlightContract.FlightEntry.COLUMN_NAME_STARTDATE, flight.getStartDate());
+        //values.put(FlightContract.FlightEntry.COLUMN_NAME_ENDDATE, flight.getEndDate());
+        values.put(FlightContract.FlightEntry.COLUMN_NAME_AIRCRAFT, flight.getAircraft());
+        values.put(FlightContract.FlightEntry.COLUMN_NAME_HASSYNCED, flight.getHasSynced());
+        values.put(FlightContract.FlightEntry.COLUMN_NAME_CROSSCOUNTRY, flight.getCrosscountry());
+        values.put(FlightContract.FlightEntry.COLUMN_NAME_SOLO, flight.getSolo());
+        values.put(FlightContract.FlightEntry.COLUMN_NAME_REMARKS, flight.getRemarks());
+
+        String selection = FlightContract.FlightEntry._ID + " = ?";
+        String[] selectionArgs = { String.format("%d", flight.getFlightID()) };
+
+        db.update(FlightContract.FlightEntry.TABLE_NAME,
+                values,
+                selection,
+                selectionArgs);
+    }
+
+    public void deleteFlight(Flight flight, Context context) {
+        SQLiteDatabase db = getWritableDatabase();
+
+        String selection = FlightContract.FlightEntry._ID + " = ?";
+        String[] selectionArgs = { String.format("%d", flight.getFlightID()) };
+
+        db.delete(FlightContract.FlightEntry.TABLE_NAME,
+                selection,
+                selectionArgs);
     }
 }
-
-
 
 /**
 
