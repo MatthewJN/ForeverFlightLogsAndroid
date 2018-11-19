@@ -68,40 +68,52 @@ public class Flight {
     }
 
     public void setOrigin(String origin) {
-        FlightDbHelper dbHelper = new FlightDbHelper(context);
-        dbHelper.updateFlight(this, context);
         this.origin = origin;
+        updateDatabase();
     }
 
     public void setDestination(String destination) {
         this.destination = destination;
+        updateDatabase();
     }
 
     public void setStartDate(Date startDate) {
         this.startDate = startDate;
+        updateDatabase();
     }
 
     public void setEndDate(Date endDate) {
         this.endDate = endDate;
+        updateDatabase();
     }
 
     public void setAircraft(String aircraft) {
         this.aircraft = aircraft;
+        updateDatabase();
     }
 
     public void setHasSynced(boolean hasSynced) {
         this.hasSynced = hasSynced;
+        updateDatabase();
     }
 
     public void setCrosscountry(boolean crosscountry) {
         this.crosscountry = crosscountry;
+        updateDatabase();
     }
 
     public void setSolo(boolean solo) {
         this.solo = solo;
+        updateDatabase();
     }
 
     public void setRemarks(String remarks) {
         this.remarks = remarks;
+        updateDatabase();
+    }
+
+    private void updateDatabase() {
+        FlightDbHelper dbHelper = new FlightDbHelper(context);
+        dbHelper.updateFlight(this, context);
     }
 }
