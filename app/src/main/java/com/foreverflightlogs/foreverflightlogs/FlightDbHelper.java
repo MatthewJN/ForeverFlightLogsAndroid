@@ -160,6 +160,84 @@ public class FlightDbHelper extends SQLiteOpenHelper {
         return flight;
     }
 
+    public List<Flight> getAllFlights() {
+        List<Flight> flights = new ArrayList<Flight>();
+
+        SQLiteDatabase db = getReadableDatabase();
+        String[] projection = {
+                BaseColumns._ID,
+                FlightContract.FlightEntry.COLUMN_NAME_ORIGIN,
+                FlightContract.FlightEntry.COLUMN_NAME_DESTINATION,
+                FlightContract.FlightEntry.COLUMN_NAME_STARTDATE,
+                FlightContract.FlightEntry.COLUMN_NAME_ENDDATE,
+                FlightContract.FlightEntry.COLUMN_NAME_AIRCRAFT,
+                FlightContract.FlightEntry.COLUMN_NAME_HASSYNCED,
+                FlightContract.FlightEntry.COLUMN_NAME_CROSSCOUNTRY,
+                FlightContract.FlightEntry.COLUMN_NAME_SOLO,
+                FlightContract.FlightEntry.COLUMN_NAME_REMARKS
+        };
+
+        String selection = "SELECT * FROM " + FlightContract.FlightEntry.TABLE_NAME + " WHERE " + FlightContract.FlightEntry.COLUMN_NAME_HASSYNCED + "= \"?\"";
+        String[] selectionArgs = { String.format("0") };
+        String sortOrder = FlightContract.FlightEntry._ID + " DESC";
+
+        Cursor cursor = db.query(
+                FlightContract.FlightEntry.TABLE_NAME,
+                projection,
+                selection,
+                selectionArgs,
+                null,
+                null,
+                sortOrder
+        );
+
+        while (cursor.moveToNext()) {
+            Flight flight = new Flight();
+            if (!cursor.isNull(cursor.getColumnIndex(FlightContract.FlightEntry._ID))) {
+                flight.setFlightID(cursor.getColumnIndex(FlightContract.FlightEntry._ID));
+            }
+
+            if (!cursor.isNull(cursor.getColumnIndex(FlightContract.FlightEntry.COLUMN_NAME_ORIGIN))) {
+                flight.setOrigin(cursor.getString(cursor.getColumnIndex(FlightContract.FlightEntry.COLUMN_NAME_ORIGIN)));
+            }
+
+            if (!cursor.isNull(cursor.getColumnIndex(FlightContract.FlightEntry.COLUMN_NAME_DESTINATION))) {
+                flight.setDestination(cursor.getString(cursor.getColumnIndex(FlightContract.FlightEntry.COLUMN_NAME_DESTINATION)));
+            }
+
+            if (!cursor.isNull(cursor.getColumnIndex(FlightContract.FlightEntry.COLUMN_NAME_STARTDATE))) {
+                // TODO: 20/11/2018 Get the date
+            }
+
+            if (!cursor.isNull(cursor.getColumnIndex(FlightContract.FlightEntry.COLUMN_NAME_ENDDATE))) {
+                // TODO: 20/11/2018 Get the date
+            }
+
+            if (!cursor.isNull(cursor.getColumnIndex(FlightContract.FlightEntry.COLUMN_NAME_AIRCRAFT))) {
+                flight.setAircraft(cursor.getString(cursor.getColumnIndex(FlightContract.FlightEntry.COLUMN_NAME_AIRCRAFT)));
+            }
+
+            if (!cursor.isNull(cursor.getColumnIndex(FlightContract.FlightEntry.COLUMN_NAME_HASSYNCED))) {
+                flight.setHasSynced(cursor.getInt(cursor.getColumnIndex(FlightContract.FlightEntry.COLUMN_NAME_HASSYNCED)) > 0);
+            }
+
+            if (!cursor.isNull(cursor.getColumnIndex(FlightContract.FlightEntry.COLUMN_NAME_CROSSCOUNTRY))) {
+                flight.setCrosscountry(cursor.getInt(cursor.getColumnIndex(FlightContract.FlightEntry.COLUMN_NAME_CROSSCOUNTRY)) > 0);
+            }
+
+            if (!cursor.isNull(cursor.getColumnIndex(FlightContract.FlightEntry.COLUMN_NAME_SOLO))) {
+                flight.setSolo(cursor.getInt(cursor.getColumnIndex(FlightContract.FlightEntry.COLUMN_NAME_SOLO)) > 0);
+            }
+
+            if (!cursor.isNull(cursor.getColumnIndex(FlightContract.FlightEntry.COLUMN_NAME_REMARKS))) {
+                flight.setAircraft(cursor.getString(cursor.getColumnIndex(FlightContract.FlightEntry.COLUMN_NAME_REMARKS)));
+            }
+            flights.add(flight);
+        }
+
+        return flights;
+    }
+
     public void updateFlight(Flight flight, Context context) {
         SQLiteDatabase db = getWritableDatabase();
 
