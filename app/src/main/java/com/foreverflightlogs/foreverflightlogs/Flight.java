@@ -21,6 +21,30 @@ public class Flight {
         this.context = context;
     }
 
+    public Flight(long flightID,
+                  String origin,
+                  String destination,
+                  Date startDate,
+                  Date endDate,
+                  String aircraft,
+                  boolean hasSynced,
+                  boolean crosscountry,
+                  boolean solo,
+                  String remarks,
+                  Context context) {
+        this.flightID = flightID;
+        this.origin = origin;
+        this.destination = destination;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.aircraft = aircraft;
+        this.hasSynced = hasSynced;
+        this.crosscountry = crosscountry;
+        this.solo = solo;
+        this.remarks = remarks;
+        this.context = context;
+    }
+
     // Getters
     public long getFlightID() {
         return flightID;

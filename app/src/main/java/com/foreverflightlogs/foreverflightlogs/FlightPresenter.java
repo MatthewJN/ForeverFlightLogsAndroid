@@ -53,6 +53,8 @@ public class FlightPresenter implements Syncable {
         FlightDbHelper flightDbHelper = new FlightDbHelper(context);
         flight = flightDbHelper.insertNewFlight(origin, aircraft, startDate, context);
         flightID = flight.getFlightID();
+        flight.setSolo(true);
+        flight.setDestination("LBA");
         Log.i("ORIGINTEST", flight.getOrigin());
     }
 
