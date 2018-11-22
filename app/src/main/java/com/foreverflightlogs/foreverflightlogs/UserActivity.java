@@ -15,7 +15,6 @@ public class UserActivity extends AppCompatActivity {
         setContentView(R.layout.activity_user);
     }
 
-    // quick test comment to push
     public boolean loginUser(String phoneNumber, String password) {
 
 
@@ -30,13 +29,26 @@ public class UserActivity extends AppCompatActivity {
         String username = editText.getText().toString();
         String password = editText2.getText().toString();
 
+        /** This was for testing purposes for the InternetConnection class: */
+        // InternetConnection connection = new InternetConnection();
+        // connection.isInternetOn(this);
+
+        // only allow logging in and progressing to next screen if connected to internet
+        // if (connection.getConnection() == true) {
+        //     new UserManager().authWithAPI(username, password, getApplicationContext());
+        //     Intent intent = new Intent(this, MainActivity.class);
+        //     Toast.makeText(this, "Logging in...", Toast.LENGTH_SHORT).show();
+        //     startActivity(intent);
+        // } else {
+        //     Toast.makeText(this, "Unable to connect", Toast.LENGTH_SHORT).show();
+        // } */
+
         new UserManager().authWithAPI(username, password, getApplicationContext());
-
         Intent intent = new Intent(this, MainActivity.class);
-
         Toast.makeText(this, "Logging in...", Toast.LENGTH_SHORT).show();
-
         startActivity(intent);
+
+
     }
 
 }
