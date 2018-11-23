@@ -4,6 +4,8 @@ import android.widget.Toast;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 
 import java.util.Date;
 
@@ -16,7 +18,7 @@ public class SegmentPresenterUnitTest {
 
 
 
-        //@Mock
+        @Mock
         private SegmentPresenter sPresenter;
         private Date date;
         private Date startDate;
@@ -25,7 +27,7 @@ public class SegmentPresenterUnitTest {
 
         @Before
         public void setUp() throws Exception {
-            //MockitoAnnotations.initMocks(this);
+            MockitoAnnotations.initMocks(this);
             sPresenter = new SegmentPresenter();
         }
 
