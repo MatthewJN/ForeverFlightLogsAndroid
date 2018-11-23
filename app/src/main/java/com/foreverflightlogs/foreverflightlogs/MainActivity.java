@@ -11,8 +11,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        //new UserManager().authWithAPI("", "", getApplicationContext());
     }
 
     public void createNewFlight(View view) {
@@ -20,14 +18,7 @@ public class MainActivity extends AppCompatActivity {
         MainActivity.this.startActivity(myIntent);
     }
 
-<<<<<<< HEAD
-    public void showAllFlights() {
-=======
-    public void createNewFlight(View view) {
-        Intent myIntent = new Intent(MainActivity.this, FlightActivity.class);
-        MainActivity.this.startActivity(myIntent);
-    }
->>>>>>> SQL
+    public void showAllFlights(View view) {
 
     }
 

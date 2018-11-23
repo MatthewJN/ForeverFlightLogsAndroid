@@ -33,19 +33,13 @@ public class FlightActivity extends AppCompatActivity {
         String aircraft = editAircraftText.getText().toString();
 
         // Create a new flight
-<<<<<<< HEAD
-        //FlightPresenter flightPresenter = new FlightPresenter(origin, aircraft, new Date(), getApplicationContext());
-
-        // Pass the new flightID as an intent.
-        Intent intent = new Intent(this, SegmentActivity.class);
-        //intent.putExtra(FLIGHTID, flightPresenter.getFlightID());
-=======
         FlightPresenter flightPresenter = new FlightPresenter(origin, aircraft, new Date(), getApplicationContext());
 
+        
         // Pass the new flightID as an intent.
         Intent intent = new Intent(this, SegmentActivity.class);
         intent.putExtra(FLIGHTID, flightPresenter.getFlightID());
->>>>>>> SQL
+
         startActivity(intent);
     }
 }
