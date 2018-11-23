@@ -57,7 +57,7 @@ public class FlightDbHelper extends SQLiteOpenHelper {
      * Inserts a new flight in to the DB.
      * @param origin The origin of the flight (the 3 digit airport code)
      * @param aircraft The N number of the plane
-     * @param date The start time of the flight
+     * @param startDate The start time of the flight
      * @return Returns the Flight object.
      */
     public Flight insertNewFlight(String origin, String aircraft, Date startDate, Context context) {
