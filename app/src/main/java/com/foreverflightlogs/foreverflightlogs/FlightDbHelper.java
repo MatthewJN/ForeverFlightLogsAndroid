@@ -61,9 +61,7 @@ public class FlightDbHelper extends SQLiteOpenHelper {
      * @return Returns the Flight object.
      */
     public Flight insertNewFlight(String origin, String aircraft, Date startDate, Context context) {
-        // Makes a compatible date for SQL.
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String date = sdf.format(startDate);
+        String date = DateFormatter.getStringFromDate(startDate);
 
         // Get the database and create content values
         SQLiteDatabase db = getWritableDatabase();
@@ -137,11 +135,11 @@ public class FlightDbHelper extends SQLiteOpenHelper {
             }
 
             if (!cursor.isNull(cursor.getColumnIndex(FlightContract.FlightEntry.COLUMN_NAME_STARTDATE))) {
-                // TODO: 20/11/2018 Get the date
+                startDate = DateFormatter.getDateFromString(cursor.getString(cursor.getColumnIndex(FlightContract.FlightEntry.COLUMN_NAME_STARTDATE)));
             }
 
             if (!cursor.isNull(cursor.getColumnIndex(FlightContract.FlightEntry.COLUMN_NAME_ENDDATE))) {
-                // TODO: 20/11/2018 Get the date
+                endDate = DateFormatter.getDateFromString(cursor.getString(cursor.getColumnIndex(FlightContract.FlightEntry.COLUMN_NAME_ENDDATE)));
             }
 
             if (!cursor.isNull(cursor.getColumnIndex(FlightContract.FlightEntry.COLUMN_NAME_AIRCRAFT))) {
@@ -163,8 +161,6 @@ public class FlightDbHelper extends SQLiteOpenHelper {
             if (!cursor.isNull(cursor.getColumnIndex(FlightContract.FlightEntry.COLUMN_NAME_REMARKS))) {
                 remarks = cursor.getString(cursor.getColumnIndex(FlightContract.FlightEntry.COLUMN_NAME_REMARKS));
             }
-            //Log.i("ZTHESTARTDATE", cursor.getString(cursor.getColumnIndex(FlightContract.FlightEntry.COLUMN_NAME_STARTDATE)));
-            //Log.i("ZTHEENGDATE", cursor.getString(cursor.getColumnIndex(FlightContract.FlightEntry.COLUMN_NAME_ENDDATE)));
         }
 
         Flight flight = new Flight(id,
@@ -239,11 +235,11 @@ public class FlightDbHelper extends SQLiteOpenHelper {
             }
 
             if (!cursor.isNull(cursor.getColumnIndex(FlightContract.FlightEntry.COLUMN_NAME_STARTDATE))) {
-                // TODO: 20/11/2018 Get the date
+                startDate = DateFormatter.getDateFromString(cursor.getString(cursor.getColumnIndex(FlightContract.FlightEntry.COLUMN_NAME_STARTDATE)));
             }
 
             if (!cursor.isNull(cursor.getColumnIndex(FlightContract.FlightEntry.COLUMN_NAME_ENDDATE))) {
-                // TODO: 20/11/2018 Get the date
+                endDate = DateFormatter.getDateFromString(cursor.getString(cursor.getColumnIndex(FlightContract.FlightEntry.COLUMN_NAME_ENDDATE)));
             }
 
             if (!cursor.isNull(cursor.getColumnIndex(FlightContract.FlightEntry.COLUMN_NAME_AIRCRAFT))) {
@@ -292,8 +288,8 @@ public class FlightDbHelper extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put(FlightContract.FlightEntry.COLUMN_NAME_ORIGIN, flight.getOrigin());
         values.put(FlightContract.FlightEntry.COLUMN_NAME_DESTINATION, flight.getDestination());
-        //values.put(FlightContract.FlightEntry.COLUMN_NAME_STARTDATE, flight.getStartDate());
-        //values.put(FlightContract.FlightEntry.COLUMN_NAME_ENDDATE, flight.getEndDate());
+        values.put(FlightContract.FlightEntry.COLUMN_NAME_STARTDATE, DateFormatter.getStringFromDate(flight.getStartDate()));
+        values.put(FlightContract.FlightEntry.COLUMN_NAME_ENDDATE, DateFormatter.getStringFromDate(flight.getEndDate()));
         values.put(FlightContract.FlightEntry.COLUMN_NAME_AIRCRAFT, flight.getAircraft());
         values.put(FlightContract.FlightEntry.COLUMN_NAME_HASSYNCED, flight.getHasSynced());
         values.put(FlightContract.FlightEntry.COLUMN_NAME_CROSSCOUNTRY, flight.getCrosscountry());

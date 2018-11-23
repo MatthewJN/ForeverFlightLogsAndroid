@@ -3,6 +3,8 @@ package com.foreverflightlogs.foreverflightlogs;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import java.util.Date;
+
 public class FinalizeFlightActivity extends AppCompatActivity {
 
     @Override
@@ -18,6 +20,7 @@ public class FinalizeFlightActivity extends AppCompatActivity {
         // 2. update flight with cross country - flight.setCrossCountry(true)
         // 3. update flight with solo flight - flight.setSoloFlight(true)
         // 3. store in local db
-        return;
+        FlightPresenter flightPresenter = new FlightPresenter(2, getApplicationContext());
+        flightPresenter.flight.setEndDate(new Date());
     }
 }

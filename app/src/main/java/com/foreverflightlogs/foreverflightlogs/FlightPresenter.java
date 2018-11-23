@@ -32,7 +32,7 @@ public class FlightPresenter implements Syncable {
 
     /**
      * Non-Default Constructor:
-     * 
+     *
      * Called when a new flight is starting. Pass in the origin, aircraft, and date.
      *
      * @param origin The 3 character airport code.
@@ -61,6 +61,9 @@ public class FlightPresenter implements Syncable {
      */
     @Override
     public boolean syncData() {
+        // Needs to be handed out to a sync class I believe.
+        // That would be responsible for packaging up the data and if succeful, it can return true
+        // and then return true back to the user, if they are interested in knowing.
         return false;
     }
 
@@ -81,77 +84,5 @@ public class FlightPresenter implements Syncable {
             return new Date().getTime() - flight.getStartDate().getTime();
         }
     }
-
-//    public String getOrigin() {
-//        return flight.getOrigin();
-//    }
-//
-//    public String getDestination() {
-//        return flight.getDestination();
-//    }
-//
-//    public Date getStartDate() {
-//        return flight.getStartDate();
-//    }
-//
-//    public Date getEndDate() {
-//        return flight.getEndDate();
-//    }
-//
-//    public String getAircraft() {
-//        return flight.getAircraft();
-//    }
-//
-//    public boolean getHasSynced() {
-//        return flight.getHasSynced();
-//    }
-//
-//    public boolean getCrosscountry() {
-//        return flight.getCrosscountry();
-//    }
-//
-//    public boolean getSolo() {
-//        return flight.getSolo();
-//    }
-//
-//    public String getRemarks() {
-//        return flight.getRemarks();
-//    }
-//
-//    public void setOrigin(String origin) {
-//        flight.setOrigin(origin);
-//    }
-//
-//    public void setDestination(String destination) {
-//        flight.setDestination(destination);
-//    }
-//
-//    public void setStartDate(Date startDate) {
-//        flight.setStartDate(startDate);
-//    }
-//
-//    public void setEndDate(Date endDate) {
-//        flight.setEndDate(endDate);
-//    }
-//
-//    public void setAircraft(String aircraft) {
-//        flight.setAircraft(aircraft);
-//    }
-//
-//    public void setHasSynced(boolean hasSynced) {
-//        flight.setHasSynced(hasSynced);
-//    }
-//
-//    public void setCrosscountry(boolean crosscountry) {
-//        flight.setCrosscountry(crosscountry);
-//    }
-//
-//    public void setSolo(boolean solo) {
-//        flight.setSolo(solo);
-//    }
-//
-//    public void setRemarks(String remarks) {
-//        flight.setRemarks(remarks);
-//    }
 
 }
