@@ -2,27 +2,16 @@ package com.foreverflightlogs.foreverflightlogs;
 
 
 import android.content.Context;
-import android.util.Log;
-
 import java.util.Date;
 
 
 public class FlightPresenter implements Syncable {
 
-    // Used for testing
-    public Date startDate;
-
-    private Flight flight;
 
     /**
-     * The flightID of the current flight.
+     * The current flight.
      */
-    private long flightID;
-
-    /**
-     * The duration of the flight, in seconds.
-     */
-    private long flightDuration;
+    public Flight flight;
 
     /**
      * Default Constructor:
@@ -32,17 +21,18 @@ public class FlightPresenter implements Syncable {
 
     /**
      * Non-Default Constructor:
+     *
      * Pass in a flightID to instantiate the FlightPresenter with the flight desired.
      * @param flightID The flightID assigned by the model.
      */
     public FlightPresenter(long flightID, Context context) {
         FlightDbHelper flightDbHelper = new FlightDbHelper(context);
         flight = flightDbHelper.getFlight(flightID, context);
-        this.flightID = flight.getFlightID();
     }
 
     /**
-     * Non-Default Constructor
+     * Non-Default Constructor:
+     * 
      * Called when a new flight is starting. Pass in the origin, aircraft, and date.
      *
      * @param origin The 3 character airport code.
@@ -52,10 +42,6 @@ public class FlightPresenter implements Syncable {
     public FlightPresenter(String origin, String aircraft, Date startDate, Context context) {
         FlightDbHelper flightDbHelper = new FlightDbHelper(context);
         flight = flightDbHelper.insertNewFlight(origin, aircraft, startDate, context);
-        flightID = flight.getFlightID();
-        flight.setSolo(true);
-        flight.setDestination("LBA");
-        Log.i("ORIGINTEST", flight.getOrigin());
     }
 
     /**
@@ -64,62 +50,6 @@ public class FlightPresenter implements Syncable {
      */
     public void endFlight() {
         syncData();
-    }
-
-    public long getFlightID() {
-        return flightID;
-    }
-
-    /**
-     * getFlightDuration
-     * Provides the duration of the flight. If flight was not ended or has not finished
-     * it returns the current duration at the moment the request was made.
-     * @return The flight duration in seconds.
-     */
-    public long getFlightDuration() {
-        return new Date().getTime() - startDate.getTime();
-    }
-
-    /**
-     * The remarks that can be added to the end of a flight log.
-     * @param remarksText The text of the remarks.
-     */
-    public void addRemarks(String remarksText) {
-
-    }
-
-    /**
-     * Store whether it is a cross country flight
-     * API requires 1 if true, 0 if false
-     * @param crossCountry boolean
-     *    to verify only 1 or 0, boolean param will be taken and then correct value stored
-     * @author: Sheri
-     */
-    public void setIsCrossCountry(boolean crossCountry ) {
-        if (crossCountry){
-            //set value for cross country as 1
-        }
-        else {
-            //set value for cross country to 0
-        }
-        return;
-    }
-
-    /**
-     * Store whether it is a solo flight
-     * API requires 1 if true, 0 if false
-     * @param solo boolean
-     *    to verify only 1 or 0, boolean param will be taken and then correct value stored
-     * @author: Sheri
-     */
-    public void setIsSolo(boolean solo ) {
-        if (solo){
-            //set value for cross country as 1
-        }
-        else {
-            //set value for cross country to 0
-        }
-        return;
     }
 
     /**
@@ -133,4 +63,95 @@ public class FlightPresenter implements Syncable {
     public boolean syncData() {
         return false;
     }
+
+    public long getFlightID() {
+        return flight.getFlightID();
+    }
+
+    /**
+     * getFlightDuration
+     * Provides the duration of the flight. If flight was not ended or has not finished
+     * it returns the current duration at the moment the request was made.
+     * @return The flight duration in seconds.
+     */
+    public long getFlightDuration() {
+        if (flight.getEndDate() == null) {
+            return flight.getEndDate().getTime() - flight.getStartDate().getTime();
+        } else {
+            return new Date().getTime() - flight.getStartDate().getTime();
+        }
+    }
+
+//    public String getOrigin() {
+//        return flight.getOrigin();
+//    }
+//
+//    public String getDestination() {
+//        return flight.getDestination();
+//    }
+//
+//    public Date getStartDate() {
+//        return flight.getStartDate();
+//    }
+//
+//    public Date getEndDate() {
+//        return flight.getEndDate();
+//    }
+//
+//    public String getAircraft() {
+//        return flight.getAircraft();
+//    }
+//
+//    public boolean getHasSynced() {
+//        return flight.getHasSynced();
+//    }
+//
+//    public boolean getCrosscountry() {
+//        return flight.getCrosscountry();
+//    }
+//
+//    public boolean getSolo() {
+//        return flight.getSolo();
+//    }
+//
+//    public String getRemarks() {
+//        return flight.getRemarks();
+//    }
+//
+//    public void setOrigin(String origin) {
+//        flight.setOrigin(origin);
+//    }
+//
+//    public void setDestination(String destination) {
+//        flight.setDestination(destination);
+//    }
+//
+//    public void setStartDate(Date startDate) {
+//        flight.setStartDate(startDate);
+//    }
+//
+//    public void setEndDate(Date endDate) {
+//        flight.setEndDate(endDate);
+//    }
+//
+//    public void setAircraft(String aircraft) {
+//        flight.setAircraft(aircraft);
+//    }
+//
+//    public void setHasSynced(boolean hasSynced) {
+//        flight.setHasSynced(hasSynced);
+//    }
+//
+//    public void setCrosscountry(boolean crosscountry) {
+//        flight.setCrosscountry(crosscountry);
+//    }
+//
+//    public void setSolo(boolean solo) {
+//        flight.setSolo(solo);
+//    }
+//
+//    public void setRemarks(String remarks) {
+//        flight.setRemarks(remarks);
+//    }
+
 }
