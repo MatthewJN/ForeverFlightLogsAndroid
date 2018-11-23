@@ -20,7 +20,14 @@ public class MainActivity extends AppCompatActivity {
         MainActivity.this.startActivity(myIntent);
     }
 
+<<<<<<< HEAD
     public void showAllFlights() {
+=======
+    public void createNewFlight(View view) {
+        Intent myIntent = new Intent(MainActivity.this, FlightActivity.class);
+        MainActivity.this.startActivity(myIntent);
+    }
+>>>>>>> SQL
 
     }
 

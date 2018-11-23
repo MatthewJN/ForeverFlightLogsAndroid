@@ -1,22 +1,17 @@
 package com.foreverflightlogs.foreverflightlogs;
 
+
+import android.content.Context;
 import java.util.Date;
+
 
 public class FlightPresenter implements Syncable {
 
-    // Used for testing
-    public Date startDate;
-
 
     /**
-     * The flightID of the current flight.
+     * The current flight.
      */
-    private int flightID;
-
-    /**
-     * The duration of the flight, in seconds.
-     */
-    private long flightDuration;
+    public Flight flight;
 
     /**
      * Default Constructor:
@@ -26,26 +21,27 @@ public class FlightPresenter implements Syncable {
 
     /**
      * Non-Default Constructor:
+     *
      * Pass in a flightID to instantiate the FlightPresenter with the flight desired.
      * @param flightID The flightID assigned by the model.
      */
-    public FlightPresenter(int flightID) {
-
+    public FlightPresenter(long flightID, Context context) {
+        FlightDbHelper flightDbHelper = new FlightDbHelper(context);
+        flight = flightDbHelper.getFlight(flightID, context);
     }
 
     /**
-     * Non-Default Constructor
+     * Non-Default Constructor:
+     *
      * Called when a new flight is starting. Pass in the origin, aircraft, and date.
      *
      * @param origin The 3 character airport code.
      * @param aircraft The aircraft tail number.
      * @param startDate The start date (usually the exact time the start button was pressed).
      */
-    public FlightPresenter(String origin, String aircraft, Date startDate) {
-        // Create a new model representing this flight
-        // Get an ID and set the private flightID.
-        flightID = 0;
-        this.startDate = startDate;
+    public FlightPresenter(String origin, String aircraft, Date startDate, Context context) {
+        FlightDbHelper flightDbHelper = new FlightDbHelper(context);
+        flight = flightDbHelper.insertNewFlight(origin, aircraft, startDate, context);
     }
 
     /**
@@ -54,62 +50,6 @@ public class FlightPresenter implements Syncable {
      */
     public void endFlight() {
         syncData();
-    }
-
-    public int getFlightID() {
-        return flightID;
-    }
-
-    /**
-     * getFlightDuration
-     * Provides the duration of the flight. If flight was not ended or has not finished
-     * it returns the current duration at the moment the request was made.
-     * @return The flight duration in seconds.
-     */
-    public long getFlightDuration() {
-        return new Date().getTime() - startDate.getTime();
-    }
-
-    /**
-     * The remarks that can be added to the end of a flight log.
-     * @param remarksText The text of the remarks.
-     */
-    public void addRemarks(String remarksText) {
-
-    }
-
-    /**
-     * Store whether it is a cross country flight
-     * API requires 1 if true, 0 if false
-     * @param crossCountry boolean
-     *    to verify only 1 or 0, boolean param will be taken and then correct value stored
-     * @author: Sheri
-     */
-    public void setIsCrossCountry(boolean crossCountry ) {
-        if (crossCountry){
-            //set value for cross country as 1
-        }
-        else {
-            //set value for cross country to 0
-        }
-        return;
-    }
-
-    /**
-     * Store whether it is a solo flight
-     * API requires 1 if true, 0 if false
-     * @param solo boolean
-     *    to verify only 1 or 0, boolean param will be taken and then correct value stored
-     * @author: Sheri
-     */
-    public void setIsSolo(boolean solo ) {
-        if (solo){
-            //set value for cross country as 1
-        }
-        else {
-            //set value for cross country to 0
-        }
-        return;
     }
 
     /**
@@ -121,6 +61,28 @@ public class FlightPresenter implements Syncable {
      */
     @Override
     public boolean syncData() {
+        // Needs to be handed out to a sync class I believe.
+        // That would be responsible for packaging up the data and if succeful, it can return true
+        // and then return true back to the user, if they are interested in knowing.
         return false;
     }
+
+    public long getFlightID() {
+        return flight.getFlightID();
+    }
+
+    /**
+     * getFlightDuration
+     * Provides the duration of the flight. If flight was not ended or has not finished
+     * it returns the current duration at the moment the request was made.
+     * @return The flight duration in seconds.
+     */
+    public long getFlightDuration() {
+        if (flight.getEndDate() == null) {
+            return flight.getEndDate().getTime() - flight.getStartDate().getTime();
+        } else {
+            return new Date().getTime() - flight.getStartDate().getTime();
+        }
+    }
+
 }
