@@ -11,8 +11,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        //new UserManager().authWithAPI("", "", getApplicationContext());
     }
 
     public void createNewFlight(View view) {
@@ -20,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
         MainActivity.this.startActivity(myIntent);
     }
 
-    public void showAllFlights() {
+    public void showAllFlights(View view) {
 
     }
 
