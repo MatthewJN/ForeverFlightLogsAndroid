@@ -15,7 +15,7 @@ public final class SegmentContract {
         public static final String COLUMN_NAME_VISUALFLIGHT = "visualFlight";
         public static final String COLUMN_NAME_INSTRUMENTFLIGHT = "instrumentFlight";
         public static final String COLUMN_NAME_NIGHT = "night";
-        public static final String COLUMN_NAME_SEGMENTID = "segmentId";
+        public static final String COLUMN_NAME_FLIGHTID = "flightId";
     }
 
 }

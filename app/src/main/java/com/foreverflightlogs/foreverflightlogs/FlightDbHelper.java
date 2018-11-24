@@ -40,8 +40,8 @@ public class FlightDbHelper extends SQLiteOpenHelper {
                     SegmentContract.SegmentEntry.COLUMN_NAME_VISUALFLIGHT + " BOOLEAN," +
                     SegmentContract.SegmentEntry.COLUMN_NAME_INSTRUMENTFLIGHT + " BOOLEAN," +
                     SegmentContract.SegmentEntry.COLUMN_NAME_NIGHT + " BOOLEAN," +
-                    SegmentContract.SegmentEntry.COLUMN_NAME_SEGMENTID + " INTEGER," +
-                    " FOREIGN KEY(" + SegmentContract.SegmentEntry.COLUMN_NAME_SEGMENTID +
+                    SegmentContract.SegmentEntry.COLUMN_NAME_FLIGHTID + " INTEGER," +
+                    " FOREIGN KEY(" + SegmentContract.SegmentEntry.COLUMN_NAME_FLIGHTID +
                     ") REFERENCES " + FlightContract.FlightEntry.TABLE_NAME + "(" +
                     FlightContract.FlightEntry._ID + "))";
 
@@ -52,7 +52,7 @@ public class FlightDbHelper extends SQLiteOpenHelper {
             "DROP TABLE IF EXISTS " + SegmentContract.SegmentEntry.TABLE_NAME;
 
     // If you change the database schema, you must increment the database version.
-    public static final int DATABASE_VERSION = 5;
+    public static final int DATABASE_VERSION = 6;
     public static final String DATABASE_NAME = "Flight.db";
 
     public FlightDbHelper(Context context) {
@@ -125,9 +125,6 @@ public class FlightDbHelper extends SQLiteOpenHelper {
                 null,
                 sortOrder
         );
-
-        //List itemIds = new ArrayList<>();
-        //Flight flight = new Flight(context);
 
         long id = flightId;
         String origin = "";
@@ -341,7 +338,8 @@ public class FlightDbHelper extends SQLiteOpenHelper {
 
         // The content values to insert
         values.put(SegmentContract.SegmentEntry.COLUMN_NAME_STARTDATE, date);
-        values.put(SegmentContract.SegmentEntry.COLUMN_NAME_SEGMENTID, flightId);
+        values.put(SegmentContract.SegmentEntry.COLUMN_NAME_PILOTINCOMMAND, true);
+        values.put(SegmentContract.SegmentEntry.COLUMN_NAME_FLIGHTID, flightId);
         long newRowID = db.insert(SegmentContract.SegmentEntry.TABLE_NAME, null, values);
 
         return getSegment(newRowID, context);
@@ -453,7 +451,7 @@ public class FlightDbHelper extends SQLiteOpenHelper {
         };
 
         String selection = "SELECT * FROM " + SegmentContract.SegmentEntry.TABLE_NAME + " WHERE " +
-                SegmentContract.SegmentEntry.COLUMN_NAME_SEGMENTID + "= \"?\"";
+                SegmentContract.SegmentEntry.COLUMN_NAME_FLIGHTID + "= \"?\"";
         String[] selectionArgs = { String.format("%d", flightId) };
         String sortOrder = SegmentContract.SegmentEntry._ID + " DESC";
 
@@ -566,7 +564,11 @@ public class FlightDbHelper extends SQLiteOpenHelper {
 
     private String getStringFromDate(Date date) {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        return sdf.format(date);
+        if (date == null) {
+            return null;
+        } else {
+            return sdf.format(date);
+        }
     }
 
     private static Date getDateFromString(String date) {
