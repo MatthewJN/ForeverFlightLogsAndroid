@@ -329,15 +329,12 @@ public class FlightDbHelper extends SQLiteOpenHelper {
                 selectionArgs);
     }
 
-    public Segment insertNewSegment(Date startDate, long flightId, Context context) {
-        String date = getStringFromDate(startDate);
-
+    public Segment insertNewSegment(long flightId, Context context) {
         // Get the database and create content values
         SQLiteDatabase db = getWritableDatabase();
         ContentValues values = new ContentValues();
 
         // The content values to insert
-        values.put(SegmentContract.SegmentEntry.COLUMN_NAME_STARTDATE, date);
         values.put(SegmentContract.SegmentEntry.COLUMN_NAME_PILOTINCOMMAND, true);
         values.put(SegmentContract.SegmentEntry.COLUMN_NAME_FLIGHTID, flightId);
         long newRowID = db.insert(SegmentContract.SegmentEntry.TABLE_NAME, null, values);

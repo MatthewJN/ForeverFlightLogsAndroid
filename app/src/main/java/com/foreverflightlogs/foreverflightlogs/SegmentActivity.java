@@ -1,5 +1,6 @@
 package com.foreverflightlogs.foreverflightlogs;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -11,6 +12,9 @@ import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.Date;
+import java.util.List;
 
 /**
  * Segment Activity:
@@ -36,13 +40,17 @@ public class SegmentActivity extends AppCompatActivity implements CompoundButton
     Switch visualFlight;
     Switch instrFlight;
     Switch night;
-    private SegmentPresenter presenter = new SegmentPresenter(this); //@todo remove param just for testing and using Toasts
-
+    private SegmentPresenter segmentPresenter; // = new SegmentPresenter(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_segment);
+
+        Intent intent = getIntent();
+        long flightID = intent.getLongExtra(FlightActivity.FLIGHTID, -1);
+
+        segmentPresenter = new SegmentPresenter(flightID, getApplicationContext());
 
         pic = (Switch)findViewById(R.id.switch_PIC);
         dualHour = (Switch)findViewById(R.id.switch_dualHours);
@@ -85,9 +93,7 @@ public class SegmentActivity extends AppCompatActivity implements CompoundButton
         startBtn.setEnabled(false); //disable start button till stop is pushed
         onClickReset(view); //reset the clock
         startRun = true;
-        presenter.handleSegmentStart(); //move process handling to presenter
-
-
+        segmentPresenter.startSegment(new Date()); //move process handling to presenter
     }
 
     /**
@@ -102,7 +108,7 @@ public class SegmentActivity extends AppCompatActivity implements CompoundButton
         startRun = false;
 
         //handle segment logic
-        presenter.handleSegmentEnd();
+        segmentPresenter.endSegment(new Date());
 
     }
 
@@ -160,7 +166,6 @@ public class SegmentActivity extends AppCompatActivity implements CompoundButton
             }
         });
     }
-
 
     @Override
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
