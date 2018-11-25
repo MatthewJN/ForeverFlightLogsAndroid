@@ -1,4 +1,6 @@
 package com.foreverflightlogs.foreverflightlogs;
+
+import android.content.Context;
 import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
@@ -6,13 +8,15 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class SegmentPresenter {
-    //public int flightID; //for testing
+    public long flightID;
     public int segmentID;
     SegmentActivity sView;
     SegmentModel sModel;
     String testMsg;
-
+    Context context;
     public int segmentInProgressID; //get this from flightSegment model?
+    private String auth;
+
 
     /**
      * Default Constructor:
@@ -25,8 +29,10 @@ public class SegmentPresenter {
      * Pass in a view to instantiate the SegmentPresenter with the view desired.
      * @param view The segment activity view
      */
-    SegmentPresenter(SegmentActivity view) {
+    SegmentPresenter(SegmentActivity view, Context context) {
+
         sView = view;
+        this.context = context;
     }
 
     /**
@@ -127,5 +133,19 @@ public class SegmentPresenter {
         return currentTime;
     }
 
+    public String getAuth() {
+        return auth;
+    }
 
+    public void setAuth(String auth) {
+        this.auth = auth;
+    }
+
+    public long getFlightID() {
+        return flightID;
+    }
+
+    public void setFlightID(long flightID) {
+        this.flightID = flightID;
+    }
 }

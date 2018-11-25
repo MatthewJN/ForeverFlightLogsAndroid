@@ -1,8 +1,9 @@
 package com.foreverflightlogs.foreverflightlogs;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
@@ -39,7 +40,8 @@ public class FlightActivity extends AppCompatActivity {
         // Pass the new flightID as an intent.
         Intent intent = new Intent(this, SegmentActivity.class);
         intent.putExtra(FLIGHTID, flightPresenter.getFlightID());
-
+      //test
+        Log.i("FLIGHTID", Long.toString(flightPresenter.getFlightID()));
         startActivity(intent);
     }
 }

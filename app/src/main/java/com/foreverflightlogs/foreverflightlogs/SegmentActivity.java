@@ -1,6 +1,7 @@
 package com.foreverflightlogs.foreverflightlogs;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
@@ -36,8 +37,11 @@ public class SegmentActivity extends AppCompatActivity implements CompoundButton
     Switch visualFlight;
     Switch instrFlight;
     Switch night;
-    private SegmentPresenter presenter = new SegmentPresenter(this); //@todo remove param just for testing and using Toasts
+    private SegmentPresenter presenter;
 
+    long flightID = 14; //@todo getIntent extra is causing an app to shutdown.  Temp work with hard code
+
+    public static final String FLIGHTID = "com.foreverflightlogs.FLIGHTID";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +61,13 @@ public class SegmentActivity extends AppCompatActivity implements CompoundButton
         visualFlight.setOnCheckedChangeListener(this);
         instrFlight.setOnCheckedChangeListener(this);
         night.setOnCheckedChangeListener(this);
+
+        presenter = new SegmentPresenter(this, getApplicationContext()); //@todo remove param just for testing and using Toasts
+
+        //get flightID from intent.putExtra
+        Long flightID = getIntent().getLongExtra("com.foreverflightlogs.FLIGHTID",0);
+        presenter.setFlightID(flightID);
+        Log.i("FLIGHTID:S", "flightID:"+flightID);
 
         // get state of timer
         if(savedInstanceState != null) {
@@ -85,6 +96,8 @@ public class SegmentActivity extends AppCompatActivity implements CompoundButton
         startBtn.setEnabled(false); //disable start button till stop is pushed
         onClickReset(view); //reset the clock
         startRun = true;
+        storeAuth(); //getAuth code from preferences and store in presenter
+
         presenter.handleSegmentStart(); //move process handling to presenter
 
 
@@ -185,4 +198,19 @@ public class SegmentActivity extends AppCompatActivity implements CompoundButton
                 break;
         }
     }
+
+     /**
+      * * Store Auth
+      * Get the auth code from shared preferences
+      * and store it as a property in SegmentPresenter to use with API connection
+      */
+    private void storeAuth() {
+
+        SharedPreferences spref = getApplicationContext().getSharedPreferences("authPref",MODE_PRIVATE);
+        //SharedPreferences spref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        String auth = spref.getString("AuthCode", "");
+        Log.i("authCode SegPresenter", auth);
+        presenter.setAuth(auth);
+    }
+
 }
