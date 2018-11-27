@@ -336,6 +336,11 @@ public class FlightDbHelper extends SQLiteOpenHelper {
 
         // The content values to insert
         values.put(SegmentContract.SegmentEntry.COLUMN_NAME_PILOTINCOMMAND, true);
+        values.put(SegmentContract.SegmentEntry.COLUMN_NAME_DUALHOURS, false);
+        values.put(SegmentContract.SegmentEntry.COLUMN_NAME_SIMULATEDINSTRUMENTS, false);
+        values.put(SegmentContract.SegmentEntry.COLUMN_NAME_VISUALFLIGHT, false);
+        values.put(SegmentContract.SegmentEntry.COLUMN_NAME_INSTRUMENTFLIGHT, false);
+        values.put(SegmentContract.SegmentEntry.COLUMN_NAME_NIGHT, false);
         values.put(SegmentContract.SegmentEntry.COLUMN_NAME_FLIGHTID, flightId);
         long newRowID = db.insert(SegmentContract.SegmentEntry.TABLE_NAME, null, values);
 

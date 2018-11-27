@@ -66,12 +66,20 @@ public class SegmentActivity extends AppCompatActivity implements CompoundButton
         instrFlight.setOnCheckedChangeListener(this);
         night.setOnCheckedChangeListener(this);
 
+        // Sets the default button positions based on what is
+        // created in the FlightDbHelper class (all default to false except PIC).
+        pic.setChecked(segmentPresenter.segment.getPilotInCommand());
+        dualHour.setChecked(segmentPresenter.segment.getDualHours());
+        simInstruments.setChecked(segmentPresenter.segment.getSimulatedInstruments());
+        visualFlight.setChecked(segmentPresenter.segment.getVisualFlight());
+        instrFlight.setChecked(segmentPresenter.segment.getinstrumentFlight());
+        night.setChecked(segmentPresenter.segment.getNight());
+
         // get state of timer
         if(savedInstanceState != null) {
             seconds = savedInstanceState.getInt("seconds");
             startRun = savedInstanceState.getBoolean("startRun");
         }
-
         Timer(); //update timer value on screen
     }
 
@@ -172,21 +180,27 @@ public class SegmentActivity extends AppCompatActivity implements CompoundButton
         switch (buttonView.getId()) {
             case R.id.switch_PIC:
                 Toast.makeText(this, "pic has changed", Toast.LENGTH_SHORT).show();
+                segmentPresenter.segment.setPilotInCommand(isChecked);
                 break;
             case R.id.switch_dualHours:
                 Toast.makeText(this, "dualHours has changed", Toast.LENGTH_SHORT).show();
+                segmentPresenter.segment.setDualHours(isChecked);
                 break;
             case R.id.switch_SimInstruments:
                 Toast.makeText(this, "simInstruments has changed", Toast.LENGTH_SHORT).show();
+                segmentPresenter.segment.setSimulatedInstruments(isChecked);
                 break;
             case R.id.switch_VisualFlight:
                 Toast.makeText(this, "visualFlight has changed", Toast.LENGTH_SHORT).show();
+                segmentPresenter.segment.setVisualFlight(isChecked);
                 break;
             case R.id.switch_InstrFlight:
                 Toast.makeText(this, "instrFlight has changed", Toast.LENGTH_SHORT).show();
+                segmentPresenter.segment.setInstrumentFlight(isChecked);
                 break;
             case R.id.switch_Night:
                 Toast.makeText(this, "night has changed", Toast.LENGTH_SHORT).show();
+                segmentPresenter.segment.setNight(isChecked);
                 break;
         }
     }
