@@ -47,11 +47,14 @@ public class SegmentActivity extends AppCompatActivity implements CompoundButton
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_segment);
 
+        // Get the flight ID
         Intent intent = getIntent();
         long flightID = intent.getLongExtra(FlightActivity.FLIGHTID, -1);
 
+        // Create a new segment attached to the flightID passed in.
         segmentPresenter = new SegmentPresenter(flightID, getApplicationContext());
 
+        // Get all of the switches
         pic = (Switch)findViewById(R.id.switch_PIC);
         dualHour = (Switch)findViewById(R.id.switch_dualHours);
         simInstruments = (Switch)findViewById(R.id.switch_SimInstruments);
@@ -59,6 +62,7 @@ public class SegmentActivity extends AppCompatActivity implements CompoundButton
         instrFlight = (Switch)findViewById(R.id.switch_InstrFlight);
         night = (Switch)findViewById(R.id.switch_Night);
 
+        // Set the listeners.
         pic.setOnCheckedChangeListener(this);
         dualHour.setOnCheckedChangeListener(this);
         simInstruments.setOnCheckedChangeListener(this);
@@ -83,6 +87,10 @@ public class SegmentActivity extends AppCompatActivity implements CompoundButton
         Timer(); //update timer value on screen
     }
 
+    /**
+     * onSaveInstanceState:
+     * @param saveInstanceState
+     */
     //    @Override
     public void onSaveInstanceState(Bundle saveInstanceState) {
         super.onSaveInstanceState(saveInstanceState);
@@ -101,7 +109,9 @@ public class SegmentActivity extends AppCompatActivity implements CompoundButton
         startBtn.setEnabled(false); //disable start button till stop is pushed
         onClickReset(view); //reset the clock
         startRun = true;
-        segmentPresenter.startSegment(new Date()); //move process handling to presenter
+
+        // Pass in the current time to the segment.
+        segmentPresenter.segment.setStartDate(new Date());
     }
 
     /**
@@ -115,8 +125,8 @@ public class SegmentActivity extends AppCompatActivity implements CompoundButton
         startBtn.setEnabled(true);
         startRun = false;
 
-        //handle segment logic
-        segmentPresenter.endSegment(new Date());
+        //Pass in the current time to the segment.
+        segmentPresenter.segment.setEndDate(new Date());
 
     }
 
@@ -175,6 +185,12 @@ public class SegmentActivity extends AppCompatActivity implements CompoundButton
         });
     }
 
+    /**
+     * onCheckedChanged:
+     * Called when a switch changes on the activity.
+     * @param buttonView The switch that changed.
+     * @param isChecked The state of the switch that changed.
+     */
     @Override
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
         switch (buttonView.getId()) {

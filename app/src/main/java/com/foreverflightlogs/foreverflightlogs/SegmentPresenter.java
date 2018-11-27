@@ -16,7 +16,10 @@ public class SegmentPresenter {
 
 //    public int segmentInProgressID; //get this from flightSegment model?
 
+    // The segment that is currently instantiated.
     public Segment segment;
+
+    // All of the segments associated with the current flight.
     public List<Segment> segments;
 
     /**
@@ -25,41 +28,47 @@ public class SegmentPresenter {
      */
     private SegmentPresenter() { }
 
+    /**
+     * SegmentPresenter Non-Default Constructor
+     * Pass in the associated flightId and Context of the activity.
+     * @param flightID The current flight that the segment is associated with.
+     * @param context The context.
+     */
     SegmentPresenter(long flightID, Context context) {
         FlightDbHelper flightDbHelper = new FlightDbHelper(context);
         segment = flightDbHelper.insertNewSegment(flightID, context);
     }
 
-    /**
-     *
-     * Called when a new segment is starting.
-     * API requires auth & bool (isUserPilotInCommand = 1 or 0) params
-     * Required body for post:
-     *      accountID of user
-     *      flightID
-     *
-     *      segmentStartTime requires this format: 2017-04-12 16:21:03
-     * @param startTime
-     *
-     *
-     */
-    public void startSegment(Date startTime) {
-
-        segment.setStartDate(startTime);
-
-//        //@todo remove toast once SQL is hooked up
-//        Toast.makeText(sView, "startTime stored in segmentModel object", Toast.LENGTH_SHORT).show(); //@todo Toast remove for unitTest
-//        //connect to SQL & create segment
-//        //verify segment has been created and throw error if not
-//        //set segmentInProgress
+//    /**
+//     *
+//     * Called when a new segment is starting.
+//     * API requires auth & bool (isUserPilotInCommand = 1 or 0) params
+//     * Required body for post:
+//     *      accountID of user
+//     *      flightID
+//     *
+//     *      segmentStartTime requires this format: 2017-04-12 16:21:03
+//     * @param startTime
+//     *
+//     *
+//     */
+//    public void startSegment(Date startTime) {
 //
-//        int segmentID = -1;
-//        return segmentID;
-    }
+//        segment.setStartDate(startTime);
+//
+////        //@todo remove toast once SQL is hooked up
+////        Toast.makeText(sView, "startTime stored in segmentModel object", Toast.LENGTH_SHORT).show(); //@todo Toast remove for unitTest
+////        //connect to SQL & create segment
+////        //verify segment has been created and throw error if not
+////        //set segmentInProgress
+////
+////        int segmentID = -1;
+////        return segmentID;
+//    }
 
-    public void endSegment(Date endTime) {
-        segment.setEndDate(endTime);
-    }
+//    public void endSegment(Date endTime) {
+//        segment.setEndDate(endTime);
+//    }
     
     /**
      * Calculate Duration
@@ -72,7 +81,12 @@ public class SegmentPresenter {
         return segment.getEndDate().getTime() - segment.getStartDate().getTime(); //for testing, actual duration should be difference between 2 times.
     }
 
-    public  Date getCurrentTime() {
+    /**
+     * getCurrentTime:
+     * Returns the current time in the specified format.
+     * @return Returns a Date.
+     */
+    public Date getCurrentTime() {
         Date currentTime = Calendar.getInstance().getTime();
         /* Not sure format of currentTime*/
         SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss.SSS");
@@ -80,6 +94,8 @@ public class SegmentPresenter {
         return currentTime;
     }
 
+    // All segments associated with the currently flight ID will be
+    // set in the public property called "segments" as a list.
     private void getAllSegmentsForFlight(long flightId, Context context) {
         FlightDbHelper dbHelper = new FlightDbHelper(context);
         this.segments = dbHelper.getAllSegments(flightId, context);

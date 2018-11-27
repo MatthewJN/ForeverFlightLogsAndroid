@@ -70,6 +70,10 @@ public class FlightPresenter implements Syncable {
         return false;
     }
 
+    /**
+     * getFlightID:
+     * @return The current ID of the running flight.
+     */
     public long getFlightID() {
         return flight.getFlightID();
     }
