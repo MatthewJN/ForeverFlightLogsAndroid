@@ -111,7 +111,7 @@ public class FlightDbHelper extends SQLiteOpenHelper {
      * @param startDate The start time of the flight
      * @return Returns the Flight object.
      */
-    public Flight insertNewFlight(String origin, String aircraft, Date startDate, Context context) {
+    public Flight insertNewFlight(String origin, String destination, String aircraft, Date startDate, Context context) {
         String date = getStringFromDate(startDate);
 
         // Get the database and create content values
@@ -120,6 +120,7 @@ public class FlightDbHelper extends SQLiteOpenHelper {
 
         // The content values to insert
         values.put(FlightContract.FlightEntry.COLUMN_NAME_ORIGIN, origin);
+        values.put(FlightContract.FlightEntry.COLUMN_NAME_DESTINATION, destination);
         values.put(FlightContract.FlightEntry.COLUMN_NAME_AIRCRAFT, aircraft);
         values.put(FlightContract.FlightEntry.COLUMN_NAME_STARTDATE, date);
         values.put(FlightContract.FlightEntry.COLUMN_NAME_HASSYNCED, false);

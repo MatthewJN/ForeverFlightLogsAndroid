@@ -41,9 +41,9 @@ public class FlightPresenter implements Syncable {
      * @param aircraft The aircraft tail number.
      * @param startDate The start date (usually the exact time the start button was pressed).
      */
-    public FlightPresenter(String origin, String aircraft, Date startDate, Context context) {
+    public FlightPresenter(String origin, String destination, String aircraft, Date startDate, Context context) {
         FlightDbHelper flightDbHelper = new FlightDbHelper(context);
-        flight = flightDbHelper.insertNewFlight(origin, aircraft, startDate, context);
+        flight = flightDbHelper.insertNewFlight(origin, destination, aircraft, startDate, context);
         flights = flightDbHelper.getAllFlights(false, context);
     }
 
