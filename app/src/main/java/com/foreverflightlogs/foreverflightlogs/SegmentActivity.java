@@ -1,5 +1,6 @@
 package com.foreverflightlogs.foreverflightlogs;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -12,6 +13,9 @@ import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.Date;
+import java.util.List;
 
 /**
  * Segment Activity:
@@ -37,17 +41,29 @@ public class SegmentActivity extends AppCompatActivity implements CompoundButton
     Switch visualFlight;
     Switch instrFlight;
     Switch night;
+<<<<<<< HEAD
     private SegmentPresenter presenter;
 
     long flightID = 14; //@todo getIntent extra is causing an app to shutdown.  Temp work with hard code
 
     public static final String FLIGHTID = "com.foreverflightlogs.FLIGHTID";
+=======
+    private SegmentPresenter segmentPresenter; // = new SegmentPresenter(this);
+>>>>>>> origin/Segments
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_segment);
 
+        // Get the flight ID
+        Intent intent = getIntent();
+        long flightID = intent.getLongExtra(FlightActivity.FLIGHTID, -1);
+
+        // Create a new segment attached to the flightID passed in.
+        segmentPresenter = new SegmentPresenter(flightID, getApplicationContext());
+
+        // Get all of the switches
         pic = (Switch)findViewById(R.id.switch_PIC);
         dualHour = (Switch)findViewById(R.id.switch_dualHours);
         simInstruments = (Switch)findViewById(R.id.switch_SimInstruments);
@@ -55,6 +71,7 @@ public class SegmentActivity extends AppCompatActivity implements CompoundButton
         instrFlight = (Switch)findViewById(R.id.switch_InstrFlight);
         night = (Switch)findViewById(R.id.switch_Night);
 
+        // Set the listeners.
         pic.setOnCheckedChangeListener(this);
         dualHour.setOnCheckedChangeListener(this);
         simInstruments.setOnCheckedChangeListener(this);
@@ -62,22 +79,37 @@ public class SegmentActivity extends AppCompatActivity implements CompoundButton
         instrFlight.setOnCheckedChangeListener(this);
         night.setOnCheckedChangeListener(this);
 
+<<<<<<< HEAD
         presenter = new SegmentPresenter(this, getApplicationContext()); //@todo remove param just for testing and using Toasts
 
         //get flightID from intent.putExtra
         Long flightID = getIntent().getLongExtra("com.foreverflightlogs.FLIGHTID",0);
         presenter.setFlightID(flightID);
         Log.i("FLIGHTID:S", "flightID:"+flightID);
+=======
+        // Sets the default button positions based on what is
+        // created in the FlightDbHelper class (all default to false except PIC).
+        pic.setChecked(segmentPresenter.segment.getPilotInCommand());
+        dualHour.setChecked(segmentPresenter.segment.getDualHours());
+        simInstruments.setChecked(segmentPresenter.segment.getSimulatedInstruments());
+        visualFlight.setChecked(segmentPresenter.segment.getVisualFlight());
+        instrFlight.setChecked(segmentPresenter.segment.getinstrumentFlight());
+        night.setChecked(segmentPresenter.segment.getNight());
+>>>>>>> origin/Segments
 
         // get state of timer
         if(savedInstanceState != null) {
             seconds = savedInstanceState.getInt("seconds");
             startRun = savedInstanceState.getBoolean("startRun");
         }
-
         Timer(); //update timer value on screen
+
     }
 
+    /**
+     * onSaveInstanceState:
+     * @param saveInstanceState
+     */
     //    @Override
     public void onSaveInstanceState(Bundle saveInstanceState) {
         super.onSaveInstanceState(saveInstanceState);
@@ -96,11 +128,16 @@ public class SegmentActivity extends AppCompatActivity implements CompoundButton
         startBtn.setEnabled(false); //disable start button till stop is pushed
         onClickReset(view); //reset the clock
         startRun = true;
+<<<<<<< HEAD
         storeAuth(); //getAuth code from preferences and store in presenter
 
         presenter.handleSegmentStart(); //move process handling to presenter
 
+=======
+>>>>>>> origin/Segments
 
+        // Pass in the current time to the segment.
+        segmentPresenter.segment.setStartDate(new Date());
     }
 
     /**
@@ -114,8 +151,8 @@ public class SegmentActivity extends AppCompatActivity implements CompoundButton
         startBtn.setEnabled(true);
         startRun = false;
 
-        //handle segment logic
-        presenter.handleSegmentEnd();
+        //Pass in the current time to the segment.
+        segmentPresenter.segment.setEndDate(new Date());
 
     }
 
@@ -174,27 +211,38 @@ public class SegmentActivity extends AppCompatActivity implements CompoundButton
         });
     }
 
-
+    /**
+     * onCheckedChanged:
+     * Called when a switch changes on the activity.
+     * @param buttonView The switch that changed.
+     * @param isChecked The state of the switch that changed.
+     */
     @Override
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
         switch (buttonView.getId()) {
             case R.id.switch_PIC:
                 Toast.makeText(this, "pic has changed", Toast.LENGTH_SHORT).show();
+                segmentPresenter.segment.setPilotInCommand(isChecked);
                 break;
             case R.id.switch_dualHours:
                 Toast.makeText(this, "dualHours has changed", Toast.LENGTH_SHORT).show();
+                segmentPresenter.segment.setDualHours(isChecked);
                 break;
             case R.id.switch_SimInstruments:
                 Toast.makeText(this, "simInstruments has changed", Toast.LENGTH_SHORT).show();
+                segmentPresenter.segment.setSimulatedInstruments(isChecked);
                 break;
             case R.id.switch_VisualFlight:
                 Toast.makeText(this, "visualFlight has changed", Toast.LENGTH_SHORT).show();
+                segmentPresenter.segment.setVisualFlight(isChecked);
                 break;
             case R.id.switch_InstrFlight:
                 Toast.makeText(this, "instrFlight has changed", Toast.LENGTH_SHORT).show();
+                segmentPresenter.segment.setInstrumentFlight(isChecked);
                 break;
             case R.id.switch_Night:
                 Toast.makeText(this, "night has changed", Toast.LENGTH_SHORT).show();
+                segmentPresenter.segment.setNight(isChecked);
                 break;
         }
     }

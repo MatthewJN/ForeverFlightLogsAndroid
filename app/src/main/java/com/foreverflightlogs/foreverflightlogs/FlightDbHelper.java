@@ -51,17 +51,40 @@ public class FlightDbHelper extends SQLiteOpenHelper {
     private static final String SQL_DELETE_SEGMENT_ENTRIES =
             "DROP TABLE IF EXISTS " + SegmentContract.SegmentEntry.TABLE_NAME;
 
-    // If you change the database schema, you must increment the database version.
+    /**
+     * The database version. Increment DB version when DB schema has changed.
+     */
     public static final int DATABASE_VERSION = 6;
+
+    /**
+     * The name of the database stored on the disk.
+     */
     public static final String DATABASE_NAME = "Flight.db";
 
+    /**
+     * Non-Default constructor that accepts a context.
+     * @param context
+     */
     public FlightDbHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
+
+    /**
+     * onCreate: Creates a new database by executing the SQL presented.
+     * @param db The name of the DB to update.
+     */
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(SQL_CREATE_FLIGHT_ENTRIES);
         db.execSQL(SQL_CREATE_SEGMENT_ENTRIES);
     }
+
+    /**
+     * onUpgrade:
+     * Used to upgrade the database.
+     * @param db The DB to be upgraded.
+     * @param oldVersion The version number of the old DB.
+     * @param newVersion The version number of the new DB.
+     */
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // This database is only a cache for online data, so its upgrade policy is
         // to simply to discard the data and start over
@@ -69,6 +92,14 @@ public class FlightDbHelper extends SQLiteOpenHelper {
         db.execSQL(SQL_DELETE_SEGMENT_ENTRIES);
         onCreate(db);
     }
+
+    /**
+     * onDowngrade:
+     * Used to downgrade the DB.
+     * @param db The DB to be downgraded.
+     * @param oldVersion The old version of the DB number.
+     * @param newVersion The new version of the DB number.
+     */
     public void onDowngrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         onUpgrade(db, oldVersion, newVersion);
     }
@@ -97,6 +128,13 @@ public class FlightDbHelper extends SQLiteOpenHelper {
         return getFlight(newRowID, context);
     }
 
+    /**
+     * getFlight:
+     * Gets a flight.
+     * @param flightId The flightID of the flight wanted.
+     * @param context The context
+     * @return A Flight class instantiated with all available columns.
+     */
     public Flight getFlight(long flightId, Context context) {
         SQLiteDatabase db = getReadableDatabase();
         String[] projection = {
@@ -192,7 +230,14 @@ public class FlightDbHelper extends SQLiteOpenHelper {
         return flight;
     }
 
-    public List<Flight> getAllFlights(boolean synced, Context context) {
+    /**
+     * getAllFlights:
+     * Gets all of the flights in the database filtered by the sync column.
+     * @param synced Listing flights that are synced or not. Pass "null" for all flights.
+     * @param context The context of the activity.
+     * @return A list of flights.
+     */
+    public List<Flight> getAllFlights(Boolean synced, Context context) {
         List<Flight> flights = new ArrayList<Flight>();
 
         SQLiteDatabase db = getReadableDatabase();
@@ -209,19 +254,14 @@ public class FlightDbHelper extends SQLiteOpenHelper {
                 FlightContract.FlightEntry.COLUMN_NAME_REMARKS
         };
 
-        String selection = "SELECT * FROM " + FlightContract.FlightEntry.TABLE_NAME + " WHERE " + FlightContract.FlightEntry.COLUMN_NAME_HASSYNCED + "= \"?\"";
-        String[] selectionArgs = { String.format("%d", synced) };
-        String sortOrder = FlightContract.FlightEntry._ID + " DESC";
+        String query;
+        if (synced == null) {
+            query = "SELECT * FROM " + FlightContract.FlightEntry.TABLE_NAME + " ORDER BY " + FlightContract.FlightEntry._ID + " DESC";
+        } else {
+            query = "SELECT * FROM " + FlightContract.FlightEntry.TABLE_NAME + " WHERE " + FlightContract.FlightEntry.COLUMN_NAME_HASSYNCED + " = " + (synced ? 1 : 0)  + " ORDER BY " + FlightContract.FlightEntry._ID + " DESC";
+        }
 
-        Cursor cursor = db.query(
-                FlightContract.FlightEntry.TABLE_NAME,
-                projection,
-                selection,
-                selectionArgs,
-                null,
-                null,
-                sortOrder
-        );
+        Cursor cursor = db.rawQuery(query, null);
 
         while (cursor.moveToNext()) {
             long id = -1;
@@ -293,6 +333,12 @@ public class FlightDbHelper extends SQLiteOpenHelper {
         return flights;
     }
 
+    /**
+     * updateFlight:
+     * Used for updating the flight table.
+     * @param flight The flight to be modified.
+     * @param context The context
+     */
     public void updateFlight(Flight flight, Context context) {
         Log.i("UPDATEDDEST", flight.getDestination());
 
@@ -318,6 +364,12 @@ public class FlightDbHelper extends SQLiteOpenHelper {
                 selectionArgs);
     }
 
+    /**
+     * deleteFlight:
+     * Used to delete a flight.
+     * @param flight The flight to be deleted.
+     * @param context The context.
+     */
     public void deleteFlight(Flight flight, Context context) {
         SQLiteDatabase db = getWritableDatabase();
 
@@ -329,22 +381,38 @@ public class FlightDbHelper extends SQLiteOpenHelper {
                 selectionArgs);
     }
 
-    public Segment insertNewSegment(Date startDate, long flightId, Context context) {
-        String date = getStringFromDate(startDate);
-
+    /**
+     * insertNewSegment:
+     * Add a segment to a flight.
+     * @param flightId The flightId to add the segment to.
+     * @param context The context
+     * @return A Segment object (instantiated).
+     */
+    public Segment insertNewSegment(long flightId, Context context) {
         // Get the database and create content values
         SQLiteDatabase db = getWritableDatabase();
         ContentValues values = new ContentValues();
 
         // The content values to insert
-        values.put(SegmentContract.SegmentEntry.COLUMN_NAME_STARTDATE, date);
         values.put(SegmentContract.SegmentEntry.COLUMN_NAME_PILOTINCOMMAND, true);
+        values.put(SegmentContract.SegmentEntry.COLUMN_NAME_DUALHOURS, false);
+        values.put(SegmentContract.SegmentEntry.COLUMN_NAME_SIMULATEDINSTRUMENTS, false);
+        values.put(SegmentContract.SegmentEntry.COLUMN_NAME_VISUALFLIGHT, false);
+        values.put(SegmentContract.SegmentEntry.COLUMN_NAME_INSTRUMENTFLIGHT, false);
+        values.put(SegmentContract.SegmentEntry.COLUMN_NAME_NIGHT, false);
         values.put(SegmentContract.SegmentEntry.COLUMN_NAME_FLIGHTID, flightId);
         long newRowID = db.insert(SegmentContract.SegmentEntry.TABLE_NAME, null, values);
 
         return getSegment(newRowID, context);
     }
 
+    /**
+     * getSegment:
+     * Gets the requested segment.
+     * @param segmentId The ID of the segment.
+     * @param context The context.
+     * @return An instantiated segment.
+     */
     public Segment getSegment(long segmentId, Context context) {
         SQLiteDatabase db = getReadableDatabase();
         String[] projection = {
@@ -434,6 +502,13 @@ public class FlightDbHelper extends SQLiteOpenHelper {
         return segment;
     }
 
+    /**
+     * getAllSegments:
+     * Gets a list of all segments associated to a flight.
+     * @param flightId The flight ID the segment(s) are attached to.
+     * @param context The context.
+     * @return A list of Segments.
+     */
     public List<Segment> getAllSegments(long flightId, Context context) {
         List<Segment> segments = new ArrayList<Segment>();
 
@@ -450,20 +525,9 @@ public class FlightDbHelper extends SQLiteOpenHelper {
                 SegmentContract.SegmentEntry.COLUMN_NAME_NIGHT
         };
 
-        String selection = "SELECT * FROM " + SegmentContract.SegmentEntry.TABLE_NAME + " WHERE " +
-                SegmentContract.SegmentEntry.COLUMN_NAME_FLIGHTID + "= \"?\"";
-        String[] selectionArgs = { String.format("%d", flightId) };
-        String sortOrder = SegmentContract.SegmentEntry._ID + " DESC";
+        String query = "SELECT * FROM " + SegmentContract.SegmentEntry.TABLE_NAME + " WHERE " + SegmentContract.SegmentEntry.COLUMN_NAME_FLIGHTID + " = " + flightId + " ORDER BY " + SegmentContract.SegmentEntry._ID + " DESC";
 
-        Cursor cursor = db.query(
-                SegmentContract.SegmentEntry.TABLE_NAME,
-                projection,
-                selection,
-                selectionArgs,
-                null,
-                null,
-                sortOrder
-        );
+        Cursor cursor = db.rawQuery(query, null);
 
         while (cursor.moveToNext()) {
             long id = -1;
@@ -529,6 +593,12 @@ public class FlightDbHelper extends SQLiteOpenHelper {
         return segments;
     }
 
+    /**
+     * updateSegment:
+     * Used for updating segments.
+     * @param segment The segment to be updated.
+     * @param context The context.
+     */
     public void updateSegment(Segment segment, Context context) {
         SQLiteDatabase db = getWritableDatabase();
 
@@ -551,6 +621,12 @@ public class FlightDbHelper extends SQLiteOpenHelper {
                 selectionArgs);
     }
 
+    /**
+     * deleteSegment:
+     * Used to delete a specific segment.
+     * @param segment The ID of the segment to be deleted.
+     * @param context The context.
+     */
     public void deleteSegment(Segment segment, Context context) {
         SQLiteDatabase db = getWritableDatabase();
 

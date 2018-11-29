@@ -3,6 +3,7 @@ package com.foreverflightlogs.foreverflightlogs;
 
 import android.content.Context;
 import java.util.Date;
+import java.util.List;
 
 
 public class FlightPresenter implements Syncable {
@@ -12,6 +13,7 @@ public class FlightPresenter implements Syncable {
      * The current flight.
      */
     public Flight flight;
+    public List<Flight> flights;
 
     /**
      * Default Constructor:
@@ -42,6 +44,7 @@ public class FlightPresenter implements Syncable {
     public FlightPresenter(String origin, String aircraft, Date startDate, Context context) {
         FlightDbHelper flightDbHelper = new FlightDbHelper(context);
         flight = flightDbHelper.insertNewFlight(origin, aircraft, startDate, context);
+        flights = flightDbHelper.getAllFlights(false, context);
     }
 
     /**
@@ -67,6 +70,10 @@ public class FlightPresenter implements Syncable {
         return false;
     }
 
+    /**
+     * getFlightID:
+     * @return The current ID of the running flight.
+     */
     public long getFlightID() {
         return flight.getFlightID();
     }
@@ -83,6 +90,11 @@ public class FlightPresenter implements Syncable {
         } else {
             return new Date().getTime() - flight.getStartDate().getTime();
         }
+    }
+
+    private void getAllFlights(boolean synced, Context context) {
+        FlightDbHelper dbHelper = new FlightDbHelper(context);
+        this.flights =  dbHelper.getAllFlights(synced, context);
     }
 
 }
