@@ -17,10 +17,28 @@ public class Flight {
     private String remarks;
     private Context context;
 
+    /**
+     * Non-Default constructor which creates the flight and stores a context locally.
+     * @param context The context which is stored local to the class.
+     */
     public Flight(Context context) {
         this.context = context;
     }
 
+    /**
+     * Non-Default constructor used for creating a new flight.
+     * @param flightID The ID of the flight.
+     * @param origin The origin of the flight (a 3 char airport code)
+     * @param destination The destination of the flight (a 3 char airport code)
+     * @param startDate The time that the flight started.
+     * @param endDate The time that the flight ended.
+     * @param aircraft The N number of the plane used.
+     * @param hasSynced Indicates if the flight has been succesfully sent to the server.
+     * @param crosscountry Was the flight cross-country?
+     * @param solo Was the pilot alone?
+     * @param remarks Comments about the flight.
+     * @param context The context of the activity.
+     */
     public Flight(long flightID,
                   String origin,
                   String destination,

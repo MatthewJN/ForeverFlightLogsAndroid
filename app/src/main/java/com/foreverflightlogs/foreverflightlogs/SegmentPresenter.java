@@ -37,6 +37,7 @@ public class SegmentPresenter {
     SegmentPresenter(long flightID, Context context) {
         FlightDbHelper flightDbHelper = new FlightDbHelper(context);
         segment = flightDbHelper.insertNewSegment(flightID, context);
+        segments = flightDbHelper.getAllSegments(flightID, context);
     }
 
 //    /**
