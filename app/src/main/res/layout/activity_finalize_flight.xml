@@ -92,6 +92,7 @@
         android:layout_height="225dp"
         android:layout_marginBottom="64dp"
         android:ems="10"
+        android:gravity="top"
         android:inputType="textMultiLine"
         app:layout_constraintBottom_toTopOf="@+id/button10"
         app:layout_constraintEnd_toEndOf="parent"
