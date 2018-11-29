@@ -83,7 +83,7 @@ public class Segment {
     }
 
     public void setStartDate(Date date) {
-        this.startDate = startDate;
+        this.startDate = date;
         updateDatabase();
     }
 

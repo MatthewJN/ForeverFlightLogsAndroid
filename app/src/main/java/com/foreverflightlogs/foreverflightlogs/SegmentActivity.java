@@ -39,6 +39,9 @@ public class SegmentActivity extends AppCompatActivity implements CompoundButton
     Switch instrFlight;
     Switch night;
     private SegmentPresenter segmentPresenter; // = new SegmentPresenter(this);
+    long flightID = -1; //set to -1 for ability to test for error
+
+    public static final String FLIGHTID = "com.foreverflightlogs.FLIGHTID";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +50,7 @@ public class SegmentActivity extends AppCompatActivity implements CompoundButton
 
         // Get the flight ID
         Intent intent = getIntent();
-        long flightID = intent.getLongExtra(FlightActivity.FLIGHTID, -1);
+        flightID = intent.getLongExtra(FlightActivity.FLIGHTID, -1);
 
         // Create a new segment attached to the flightID passed in.
         segmentPresenter = new SegmentPresenter(flightID, getApplicationContext());
@@ -111,6 +114,7 @@ public class SegmentActivity extends AppCompatActivity implements CompoundButton
 
         // Pass in the current time to the segment.
         segmentPresenter.segment.setStartDate(new Date());
+
     }
 
     /**
@@ -151,8 +155,11 @@ public class SegmentActivity extends AppCompatActivity implements CompoundButton
 
         //flightManager.endFlight()
         Intent intent = new Intent(this, ListSegmentActivity.class);
+        intent.putExtra(FLIGHTID, flightID);
         startActivity(intent);
         Toast.makeText(this, "onclickEndFlight opens ListSegmentActivity", Toast.LENGTH_SHORT).show();
+
+
     }
 
     /**

@@ -13,12 +13,19 @@ public class ListSegmentActivity extends AppCompatActivity {
 
     ListView listView;
     ArrayAdapter<String> adapter;
-    public final static String ID_EXTRA = "com.foreverflightlogs.ListSegmentActivity._ID"; //@todo testing this to pass segment variables to new intent on click
+    long flightID;
+    public final static String ID_EXTRA = "com.foreverflightlogs.ListSegmentActivity._ID";
+    public static final String FLIGHTID = "com.foreverflightlogs.FLIGHTID";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_segment);
+
+
+        // Get the flight ID
+        Intent intent = getIntent();
+        flightID = intent.getLongExtra(SegmentActivity.FLIGHTID, -1);
 
         //reference items on screen
         Button btnAddRemarks = (Button)findViewById(R.id.button_add_remarks);
@@ -27,8 +34,8 @@ public class ListSegmentActivity extends AppCompatActivity {
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1);
 
         listView.setAdapter(adapter);
-        final int segmentID = 1; //@todo remove this and pass it current segmentID
-        LoadSegmentItem load = new LoadSegmentItem(segmentID,ListSegmentActivity.this, adapter);
+
+        LoadSegmentItem load = new LoadSegmentItem(flightID,ListSegmentActivity.this, adapter);
         load.execute();
         //make each list item clickable and open editSegmentActivity
         listView.setOnItemClickListener(new android.widget.AdapterView.OnItemClickListener(){
@@ -44,6 +51,7 @@ public class ListSegmentActivity extends AppCompatActivity {
 
     public void addRemarksPressed(View view) {
         Intent intent = new Intent(this, FinalizeFlightActivity.class);
+        intent.putExtra(FLIGHTID, flightID);
         startActivity(intent);
     }
 }

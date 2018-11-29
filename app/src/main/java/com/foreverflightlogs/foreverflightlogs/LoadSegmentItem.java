@@ -2,25 +2,39 @@ package com.foreverflightlogs.foreverflightlogs;
 
 import android.content.Context;
 import android.os.AsyncTask;
+import android.util.Log;
 import android.widget.ArrayAdapter;
 
 public class LoadSegmentItem extends AsyncTask<Void, String, Void> {
-    int segmentID;
+    long flightID;
     Context currentContext;
     ArrayAdapter<String> adapter;
+    FlightDbHelper flightDbHelper;
 
-    LoadSegmentItem(int segmentID, Context currentContext, ArrayAdapter<String> adapter){
-        this.segmentID = segmentID;
+
+    LoadSegmentItem(long flightID, Context currentContext, ArrayAdapter<String> adapter){
+        this.flightID = flightID;
         this.currentContext = currentContext;
         this.adapter = adapter;
+        flightDbHelper = new FlightDbHelper(this.currentContext);
     }
 
     @Override
     protected Void doInBackground(Void... voids) {
+        Log.i("getAllSegments", "Test pre-sql call");
         //connect with db & loop over each segment and send to progressUpdate
-        String[] segments = { "segment 1 details", "segment 2 details", "segment 3 details", "segment 4 details"};
+        String[] segments = {"segment 1", "segment 2"};
+        //List<Segment> segments = flightDbHelper.getAllSegments(flightID, this.currentContext);
+   // Log.i("segmentsInBackground", "segmentID: " + segments.get(0).getSegmentID());
+
+
+//        for (Segment segment: segments) {
+//            String segmentTitle = Long.toString(segment.getSegmentID());
+//            publishProgress(segmentTitle);
+//        }
+
         for (String segment: segments) {
-            publishProgress(segment);
+                publishProgress(segment);
         }
 
         return null;

@@ -1,7 +1,6 @@
 package com.foreverflightlogs.foreverflightlogs;
 
 import android.content.Context;
-import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -9,6 +8,8 @@ import java.util.Date;
 import java.util.List;
 
 public class SegmentPresenter {
+
+    FlightDbHelper flightDbHelper;
 
     // The segment that is currently instantiated.
     public Segment segment;
@@ -29,7 +30,7 @@ public class SegmentPresenter {
      * @param context The context.
      */
     SegmentPresenter(long flightID, Context context) {
-        FlightDbHelper flightDbHelper = new FlightDbHelper(context);
+        flightDbHelper = new FlightDbHelper(context);
         segment = flightDbHelper.insertNewSegment(flightID, context);
         segments = flightDbHelper.getAllSegments(flightID, context);
     }
@@ -95,4 +96,21 @@ public class SegmentPresenter {
         FlightDbHelper dbHelper = new FlightDbHelper(context);
         this.segments = dbHelper.getAllSegments(flightId, context);
     }
+<<<<<<< Updated upstream
+=======
+
+    /**
+     * Use this for logic for entire segment creation process
+     * Get start time, create segment with time, update model
+     * sets the returned segmentID in segmentInProgressID
+     */
+    public void handleSegmentStart() {
+        Date startTime = this.getCurrentTime();
+
+       // int segmentID = startSegment(startTime);
+       // setSegmentInProgressID(segmentID);
+        return;
+    }
+
+>>>>>>> Stashed changes
 }
