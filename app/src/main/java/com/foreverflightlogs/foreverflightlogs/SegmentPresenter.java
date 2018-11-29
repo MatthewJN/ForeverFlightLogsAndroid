@@ -95,12 +95,4 @@ public class SegmentPresenter {
         FlightDbHelper dbHelper = new FlightDbHelper(context);
         this.segments = dbHelper.getAllSegments(flightId, context);
     }
-
-//    public long getFlightID() {
-//        return flightID;
-//    }
-//
-//    public void setFlightID(long flightID) {
-//        this.flightID = flightID;
-//    }
 }
