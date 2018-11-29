@@ -1,4 +1,5 @@
 package com.foreverflightlogs.foreverflightlogs;
+
 import android.content.Context;
 import android.widget.Toast;
 
@@ -8,13 +9,6 @@ import java.util.Date;
 import java.util.List;
 
 public class SegmentPresenter {
-    //public int flightID; //for testing
-//    public int segmentID;
-//    SegmentActivity sView;
-//    SegmentModel sModel;
-//    String testMsg;
-
-//    public int segmentInProgressID; //get this from flightSegment model?
 
     // The segment that is currently instantiated.
     public Segment segment;
@@ -37,6 +31,7 @@ public class SegmentPresenter {
     SegmentPresenter(long flightID, Context context) {
         FlightDbHelper flightDbHelper = new FlightDbHelper(context);
         segment = flightDbHelper.insertNewSegment(flightID, context);
+        segments = flightDbHelper.getAllSegments(flightID, context);
     }
 
 //    /**
@@ -100,5 +95,4 @@ public class SegmentPresenter {
         FlightDbHelper dbHelper = new FlightDbHelper(context);
         this.segments = dbHelper.getAllSegments(flightId, context);
     }
-
 }

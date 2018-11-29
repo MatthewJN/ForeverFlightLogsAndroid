@@ -48,6 +48,5 @@ public class EditSegmentActivity extends AppCompatActivity {
 
     public void onClickButtonSave() {
         presenter.saveSegmentInDB();
-
     }
 }

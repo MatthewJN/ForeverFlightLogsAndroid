@@ -5,6 +5,9 @@ import android.provider.BaseColumns;
 public final class FlightContract {
     private FlightContract() {}
 
+    /**
+     * The contract.
+     */
     public static class FlightEntry implements BaseColumns {
         public static final String TABLE_NAME = "flight";
         public static final String COLUMN_NAME_ORIGIN = "origin";

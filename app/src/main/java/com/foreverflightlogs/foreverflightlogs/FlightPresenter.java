@@ -30,7 +30,6 @@ public class FlightPresenter implements Syncable {
     public FlightPresenter(long flightID, Context context) {
         FlightDbHelper flightDbHelper = new FlightDbHelper(context);
         flight = flightDbHelper.getFlight(flightID, context);
-        flights = flightDbHelper.getAllFlights(false, context);
     }
 
     /**
@@ -45,6 +44,7 @@ public class FlightPresenter implements Syncable {
     public FlightPresenter(String origin, String aircraft, Date startDate, Context context) {
         FlightDbHelper flightDbHelper = new FlightDbHelper(context);
         flight = flightDbHelper.insertNewFlight(origin, aircraft, startDate, context);
+        flights = flightDbHelper.getAllFlights(false, context);
     }
 
     /**

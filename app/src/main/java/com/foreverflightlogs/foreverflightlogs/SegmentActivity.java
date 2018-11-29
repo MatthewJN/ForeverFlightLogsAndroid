@@ -83,6 +83,7 @@ public class SegmentActivity extends AppCompatActivity implements CompoundButton
             startRun = savedInstanceState.getBoolean("startRun");
         }
         Timer(); //update timer value on screen
+
     }
 
     /**
