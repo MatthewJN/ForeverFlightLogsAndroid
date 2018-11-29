@@ -186,7 +186,7 @@ public class SegmentActivity extends AppCompatActivity implements CompoundButton
                     seconds++;
                 }
 
-                handler.postDelayed(this, 100);
+                handler.postDelayed(this, 1000);
             }
         });
     }

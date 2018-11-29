@@ -5,14 +5,13 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
 public class ListSegmentActivity extends AppCompatActivity {
 
     ListView listView;
-    ArrayAdapter<String> adapter;
+
     long flightID;
     public final static String ID_EXTRA = "com.foreverflightlogs.ListSegmentActivity._ID";
     public static final String FLIGHTID = "com.foreverflightlogs.FLIGHTID";
@@ -27,16 +26,18 @@ public class ListSegmentActivity extends AppCompatActivity {
         Intent intent = getIntent();
         flightID = intent.getLongExtra(SegmentActivity.FLIGHTID, -1);
 
+        SegmentPresenter segmentPresenter = new SegmentPresenter(flightID, getApplicationContext());
+
         //reference items on screen
         Button btnAddRemarks = (Button)findViewById(R.id.button_add_remarks);
         listView = (ListView)findViewById(R.id.segmentList);
         //to use preloaded layout - must use android.R.layout...
-        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1);
+        SegmentsAdapter adapter = new SegmentsAdapter(this, segmentPresenter.segments);
 
         listView.setAdapter(adapter);
 
-        LoadSegmentItem load = new LoadSegmentItem(flightID,ListSegmentActivity.this, adapter);
-        load.execute();
+//        LoadSegmentItem load = new LoadSegmentItem(flightID,ListSegmentActivity.this, adapter);
+//        load.execute();
         //make each list item clickable and open editSegmentActivity
         listView.setOnItemClickListener(new android.widget.AdapterView.OnItemClickListener(){
             @Override

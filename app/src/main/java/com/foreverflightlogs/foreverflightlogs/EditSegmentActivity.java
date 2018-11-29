@@ -27,7 +27,7 @@ public class EditSegmentActivity extends AppCompatActivity {
         setContentView(R.layout.activity_edit_segment);
 
         //Get passed variables from our intent's EXTRAS
-        segmentID = getIntent().getStringExtra(ListSegmentActivity.ID_EXTRA);
+       // segmentID = getIntent().getLongExtra(ListSegmentActivity.ID_EXTRA);
         //assign all fields and switches
         EditText duration = (EditText)findViewById(R.id.duration);
         EditText startTime = (EditText)findViewById(R.id.startTime);

@@ -7,10 +7,21 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/list_item"
-        android:layout_width="384dp"
-        android:layout_height="38dp"
+        android:id="@+id/segmentNumber"
+        android:layout_width="44dp"
+        android:layout_height="41dp"
         android:layout_marginTop="8dp"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/startDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:text="TextView"
+        app:layout_constraintStart_toEndOf="@+id/segmentNumber"
         app:layout_constraintTop_toTopOf="parent" />
 
 </android.support.constraint.ConstraintLayout>
