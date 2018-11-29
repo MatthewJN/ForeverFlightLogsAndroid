@@ -26,11 +26,29 @@ public class SegmentPresenter {
     /**
      * SegmentPresenter Non-Default Constructor
      * Pass in the associated flightId and Context of the activity.
-     * @param flightID The current flight that the segment is associated with.
      * @param context The context.
+     */
+    SegmentPresenter(Context context) {
+        flightDbHelper = new FlightDbHelper(context);
+    }
+
+    /**
+     * Non-Default constructor used for getting all segments for an activity.
+     * @param flightID The flight.
+     * @param context The context
      */
     SegmentPresenter(long flightID, Context context) {
         flightDbHelper = new FlightDbHelper(context);
+        segments = flightDbHelper.getAllSegments(flightID, context);
+    }
+
+    /**
+     * startSegment:
+     * Used to start a new segment.
+     * @param flightID The flight the segment is associated with.
+     * @param context The context.
+     */
+    public void startSegment(long flightID, Context context) {
         segment = flightDbHelper.insertNewSegment(flightID, context);
         segments = flightDbHelper.getAllSegments(flightID, context);
     }

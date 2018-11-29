@@ -13,14 +13,13 @@ public class ListSegmentActivity extends AppCompatActivity {
     ListView listView;
 
     long flightID;
-    public final static String ID_EXTRA = "com.foreverflightlogs.ListSegmentActivity._ID";
+    //public final static String ID_EXTRA = "com.foreverflightlogs.ListSegmentActivity._ID";
     public static final String FLIGHTID = "com.foreverflightlogs.FLIGHTID";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_segment);
-
 
         // Get the flight ID
         Intent intent = getIntent();
@@ -36,9 +35,6 @@ public class ListSegmentActivity extends AppCompatActivity {
 
         listView.setAdapter(adapter);
 
-//        LoadSegmentItem load = new LoadSegmentItem(flightID,ListSegmentActivity.this, adapter);
-//        load.execute();
-        //make each list item clickable and open editSegmentActivity
         listView.setOnItemClickListener(new android.widget.AdapterView.OnItemClickListener(){
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {

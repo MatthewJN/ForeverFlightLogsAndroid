@@ -38,7 +38,7 @@ public class SegmentActivity extends AppCompatActivity implements CompoundButton
     Switch visualFlight;
     Switch instrFlight;
     Switch night;
-    private SegmentPresenter segmentPresenter; // = new SegmentPresenter(this);
+    SegmentPresenter segmentPresenter; // = new SegmentPresenter(this);
     long flightID = -1; //set to -1 for ability to test for error
 
     public static final String FLIGHTID = "com.foreverflightlogs.FLIGHTID";
@@ -53,7 +53,8 @@ public class SegmentActivity extends AppCompatActivity implements CompoundButton
         flightID = intent.getLongExtra(FlightActivity.FLIGHTID, -1);
 
         // Create a new segment attached to the flightID passed in.
-        segmentPresenter = new SegmentPresenter(flightID, getApplicationContext());
+        segmentPresenter = new SegmentPresenter(getApplicationContext());
+        segmentPresenter.startSegment(flightID, getApplicationContext());
 
         // Get all of the switches
         pic = (Switch)findViewById(R.id.switch_PIC);
@@ -114,7 +115,6 @@ public class SegmentActivity extends AppCompatActivity implements CompoundButton
 
         // Pass in the current time to the segment.
         segmentPresenter.segment.setStartDate(new Date());
-
     }
 
     /**
