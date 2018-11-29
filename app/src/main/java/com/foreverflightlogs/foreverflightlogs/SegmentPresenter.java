@@ -96,8 +96,6 @@ public class SegmentPresenter {
         FlightDbHelper dbHelper = new FlightDbHelper(context);
         this.segments = dbHelper.getAllSegments(flightId, context);
     }
-<<<<<<< Updated upstream
-=======
 
     /**
      * Use this for logic for entire segment creation process
@@ -112,5 +110,5 @@ public class SegmentPresenter {
         return;
     }
 
->>>>>>> Stashed changes
+
 }
