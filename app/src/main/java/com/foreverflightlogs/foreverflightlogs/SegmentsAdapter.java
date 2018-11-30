@@ -49,7 +49,10 @@ public class SegmentsAdapter extends ArrayAdapter<Segment> {
         startDate.setText(getStringFromDate(segment.getStartDate()));
         endDate.setText(getStringFromDate(segment.getEndDate()));
 
-        duration.setText("TEST");
+
+
+        String segmentDurationText = String.format("%ds", getSegmentDuration(segment)/1000);
+        duration.setText(segmentDurationText);
 
         if (segment.getPilotInCommand()) {
             pic.setBackgroundColor(Color.rgb(180, 0, 0));
@@ -98,5 +101,9 @@ public class SegmentsAdapter extends ArrayAdapter<Segment> {
         } else {
             return sdf.format(date);
         }
+    }
+
+    public long getSegmentDuration(Segment segment) {
+        return segment.getEndDate().getTime() - segment.getStartDate().getTime();
     }
 }
