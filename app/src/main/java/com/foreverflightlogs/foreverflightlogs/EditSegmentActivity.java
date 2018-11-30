@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
@@ -76,33 +77,37 @@ public class EditSegmentActivity extends AppCompatActivity implements CompoundBu
             case R.id.switch_PIC:
                 //Toast.makeText(this, "pic has changed", Toast.LENGTH_SHORT).show();
                 segmentPresenter.segment.setPilotInCommand(isChecked);
-                Log.i("picSwitch", "onCheckedChange:pic: "+segmentPresenter.segment.getPilotInCommand());
+                Log.i("picSwitch", "onCheckedChange:pic: " + segmentPresenter.segment.getPilotInCommand());
                 break;
             case R.id.switch_dualHours:
                 //Toast.makeText(this, "dualHours has changed", Toast.LENGTH_SHORT).show();
                 segmentPresenter.segment.setDualHours(isChecked);
-                Log.i("dualSwitch", "onCheckedChange:dual: "+segmentPresenter.segment.getDualHours());
+                Log.i("dualSwitch", "onCheckedChange:dual: " + segmentPresenter.segment.getDualHours());
                 break;
             case R.id.switch_SimInstruments:
                 //Toast.makeText(this, "simInstruments has changed", Toast.LENGTH_SHORT).show();
                 segmentPresenter.segment.setSimulatedInstruments(isChecked);
-                Log.i("simSwitch", "onCheckedChange:sim: "+segmentPresenter.segment.getSimulatedInstruments());
+                Log.i("simSwitch", "onCheckedChange:sim: " + segmentPresenter.segment.getSimulatedInstruments());
                 break;
             case R.id.switch_VisualFlight:
                 //Toast.makeText(this, "visualFlight has changed", Toast.LENGTH_SHORT).show();
                 segmentPresenter.segment.setVisualFlight(isChecked);
-                Log.i("visualSwitch", "onCheckedChange:visual: "+segmentPresenter.segment.getVisualFlight());
+                Log.i("visualSwitch", "onCheckedChange:visual: " + segmentPresenter.segment.getVisualFlight());
                 break;
             case R.id.switch_InstrFlight:
                 // Toast.makeText(this, "instrFlight has changed", Toast.LENGTH_SHORT).show();
                 segmentPresenter.segment.setInstrumentFlight(isChecked);
-                Log.i("instrSwitch", "onCheckedChange:instr: "+segmentPresenter.segment.getinstrumentFlight());
+                Log.i("instrSwitch", "onCheckedChange:instr: " + segmentPresenter.segment.getinstrumentFlight());
                 break;
             case R.id.switch_Night:
                 // Toast.makeText(this, "night has changed", Toast.LENGTH_SHORT).show();
                 segmentPresenter.segment.setNight(isChecked);
-                Log.i("nightSwitch", "onCheckedChange:night: "+segmentPresenter.segment.getNight());
+                Log.i("nightSwitch", "onCheckedChange:night: " + segmentPresenter.segment.getNight());
                 break;
         }
+    }
+
+    public void onSaveButtonClicked(View view) {
+        finish();
     }
 }

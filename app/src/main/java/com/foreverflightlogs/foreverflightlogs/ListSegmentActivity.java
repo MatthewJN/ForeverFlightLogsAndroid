@@ -11,6 +11,7 @@ import android.widget.ListView;
 public class ListSegmentActivity extends AppCompatActivity {
 
     ListView listView;
+    SegmentsAdapter adapter;
 
     long flightID;
     //public final static String ID_EXTRA = "com.foreverflightlogs.ListSegmentActivity._ID";
@@ -32,7 +33,7 @@ public class ListSegmentActivity extends AppCompatActivity {
         Button btnAddRemarks = (Button)findViewById(R.id.button_add_remarks);
         listView = (ListView)findViewById(R.id.segmentList);
         //to use preloaded layout - must use android.R.layout...
-        SegmentsAdapter adapter = new SegmentsAdapter(this, segmentPresenter.segments);
+        adapter = new SegmentsAdapter(this, segmentPresenter.segments);
 
         listView.setAdapter(adapter);
 
@@ -47,7 +48,13 @@ public class ListSegmentActivity extends AppCompatActivity {
         });
     }
 
-
+    @Override
+    public void onResume(){
+        super.onResume();
+        SegmentPresenter segmentPresenter = new SegmentPresenter(flightID, getApplicationContext());
+        adapter = new SegmentsAdapter(this, segmentPresenter.segments);
+        listView.setAdapter(adapter);
+    }
 
     public void addRemarksPressed(View view) {
         Intent intent = new Intent(this, FinalizeFlightActivity.class);
