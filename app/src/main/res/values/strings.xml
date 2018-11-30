@@ -29,5 +29,14 @@
     <string name="label_crossCountry">Cross Country</string>
     <string name="label_solo">Solo</string>
     <string name="label_remarks">Remarks:</string>
-
+    <string name="label_segment_title">Segment</string>
+    <string name="label_duration_title">Duration:</string>
+    <string name="label_night_title">Night Flight:</string>
+    <string name="label_inst_title">Inst Flight:</string>
+    <string name="label_vis_flight_title">Vis Flight:</string>
+    <string name="label_sim_inst_title">Sim Inst:</string>
+    <string name="label_dual_hours_title">Dual Hours:</string>
+    <string name="label_pic_title">PIC:</string>
+    <string name="label_end_title">End:</string>
+    <string name="label_start_title">Start:</string>
 </resources>
