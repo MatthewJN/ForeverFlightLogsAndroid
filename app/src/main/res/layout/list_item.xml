@@ -209,6 +209,7 @@
         android:gravity="left"
         android:text="TextView"
         android:textColor="@android:color/black"
+        android:textSize="13sp"
         app:layout_constraintStart_toEndOf="@+id/endTitle"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Start:" />
@@ -239,6 +240,7 @@
         android:gravity="left"
         android:text="TextView"
         android:textColor="@android:color/black"
+        android:textSize="13sp"
         app:layout_constraintStart_toEndOf="@+id/startTitle"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Start:" />
@@ -267,6 +269,7 @@
         android:layout_marginTop="4dp"
         android:text="TextView"
         android:textColor="@android:color/black"
+        android:textSize="13sp"
         app:layout_constraintStart_toEndOf="@+id/durationTitle"
         app:layout_constraintTop_toTopOf="parent" />
 
