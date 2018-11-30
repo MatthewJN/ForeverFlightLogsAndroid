@@ -13,10 +13,10 @@
         android:layout_marginStart="152dp"
         android:layout_marginLeft="152dp"
         android:layout_marginTop="28dp"
+        android:background="@color/red"
+        android:contentDescription="TODO"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@color/red"
-        android:contentDescription="TODO" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/simInstImage"
@@ -25,10 +25,10 @@
         android:layout_marginStart="152dp"
         android:layout_marginLeft="152dp"
         android:layout_marginTop="10dp"
+        android:background="@color/red"
+        android:contentDescription="TODO"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dualImage"
-        app:srcCompat="@color/red"
-        android:contentDescription="TODO" />
+        app:layout_constraintTop_toBottomOf="@+id/dualImage" />
 
     <ImageView
         android:id="@+id/dualImage"
@@ -37,10 +37,10 @@
         android:layout_marginStart="152dp"
         android:layout_marginLeft="152dp"
         android:layout_marginTop="10dp"
+        android:background="@color/red"
+        android:contentDescription="TODO"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/picImage"
-        app:srcCompat="@color/red"
-        android:contentDescription="TODO" />
+        app:layout_constraintTop_toBottomOf="@+id/picImage" />
 
     <ImageView
         android:id="@+id/nightFlightImage"
@@ -49,9 +49,9 @@
         android:layout_marginStart="100dp"
         android:layout_marginLeft="100dp"
         android:layout_marginTop="10dp"
+        android:background="@color/red"
         app:layout_constraintStart_toEndOf="@+id/simInstImage"
-        app:layout_constraintTop_toBottomOf="@+id/instFlightImage"
-        app:srcCompat="@color/red" />
+        app:layout_constraintTop_toBottomOf="@+id/instFlightImage" />
 
     <ImageView
         android:id="@+id/instFlightImage"
@@ -60,9 +60,9 @@
         android:layout_marginStart="100dp"
         android:layout_marginLeft="100dp"
         android:layout_marginTop="10dp"
+        android:background="@color/red"
         app:layout_constraintStart_toEndOf="@+id/dualImage"
-        app:layout_constraintTop_toBottomOf="@+id/visFlightImage"
-        app:srcCompat="@color/red" />
+        app:layout_constraintTop_toBottomOf="@+id/visFlightImage" />
 
     <ImageView
         android:id="@+id/visFlightImage"
@@ -71,9 +71,9 @@
         android:layout_marginStart="100dp"
         android:layout_marginLeft="100dp"
         android:layout_marginTop="28dp"
+        android:background="@color/red"
         app:layout_constraintStart_toEndOf="@+id/picImage"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@color/red" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/segmentNumber"
