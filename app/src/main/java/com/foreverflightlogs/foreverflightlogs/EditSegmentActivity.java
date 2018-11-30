@@ -84,17 +84,17 @@ public class EditSegmentActivity extends AppCompatActivity implements CompoundBu
                 segmentPresenter.segment.setDualHours(isChecked);
                 Log.i("dualSwitch", "onCheckedChange:dual: " + segmentPresenter.segment.getDualHours());
                 break;
-            case R.id.switch_SimInstruments:
+            case R.id.switch_simInstruments:
                 //Toast.makeText(this, "simInstruments has changed", Toast.LENGTH_SHORT).show();
                 segmentPresenter.segment.setSimulatedInstruments(isChecked);
                 Log.i("simSwitch", "onCheckedChange:sim: " + segmentPresenter.segment.getSimulatedInstruments());
                 break;
-            case R.id.switch_VisualFlight:
+            case R.id.switch_visualFlight:
                 //Toast.makeText(this, "visualFlight has changed", Toast.LENGTH_SHORT).show();
                 segmentPresenter.segment.setVisualFlight(isChecked);
                 Log.i("visualSwitch", "onCheckedChange:visual: " + segmentPresenter.segment.getVisualFlight());
                 break;
-            case R.id.switch_InstrFlight:
+            case R.id.switch_instrFlight:
                 // Toast.makeText(this, "instrFlight has changed", Toast.LENGTH_SHORT).show();
                 segmentPresenter.segment.setInstrumentFlight(isChecked);
                 Log.i("instrSwitch", "onCheckedChange:instr: " + segmentPresenter.segment.getinstrumentFlight());
