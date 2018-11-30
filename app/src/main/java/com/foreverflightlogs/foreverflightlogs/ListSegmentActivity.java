@@ -40,7 +40,6 @@ public class ListSegmentActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
                 Intent intent = new Intent(ListSegmentActivity.this, EditSegmentActivity.class);
                 intent.putExtra("ID_EXTRA", String.valueOf(id));  //@todo how to pass in the values to prepopulate EditSegmentActivity for item clicked?
-
                 startActivity(intent);
             }
         });

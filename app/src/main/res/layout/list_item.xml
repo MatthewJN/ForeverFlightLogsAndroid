@@ -15,7 +15,8 @@
         android:layout_marginTop="28dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@color/red" />
+        app:srcCompat="@color/red"
+        android:contentDescription="TODO" />
 
     <ImageView
         android:id="@+id/simInstImage"
@@ -26,7 +27,8 @@
         android:layout_marginTop="10dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/dualImage"
-        app:srcCompat="@color/red" />
+        app:srcCompat="@color/red"
+        android:contentDescription="TODO" />
 
     <ImageView
         android:id="@+id/dualImage"
@@ -37,7 +39,8 @@
         android:layout_marginTop="10dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/picImage"
-        app:srcCompat="@color/red" />
+        app:srcCompat="@color/red"
+        android:contentDescription="TODO" />
 
     <ImageView
         android:id="@+id/nightFlightImage"
@@ -81,7 +84,7 @@
         android:layout_marginTop="2dp"
         android:gravity="center"
         android:textColor="@android:color/black"
-        android:textSize="30sp"
+        android:textSize="40sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/segmentTitle"
         tools:text="1" />
@@ -90,16 +93,16 @@
         android:id="@+id/startTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+
         android:layout_marginStart="2dp"
         android:layout_marginLeft="2dp"
         android:layout_marginTop="4dp"
-
-        android:gravity="right"
-        android:text="TextView"
+        android:gravity="end"
+        android:text="@string/label_start_title"
         android:textColor="@android:color/black"
+        android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/segmentTitle"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="@string/label_start_title" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/endTitle"
@@ -110,26 +113,25 @@
         android:layout_marginLeft="2dp"
         android:layout_marginTop="4dp"
         android:gravity="right"
-        android:text="TextView"
+        android:text="@string/label_end_title"
         android:textColor="@android:color/black"
-        app:layout_constraintStart_toEndOf="@+id/duration"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="@string/label_end_title" />
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/startDate"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/picTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="6dp"
-        android:layout_marginLeft="6dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
 
         android:layout_marginTop="2dp"
         android:gravity="right"
-        android:text="TextView"
+        android:text="@string/label_pic_title"
         android:textColor="@android:color/black"
         app:layout_constraintStart_toEndOf="@+id/segmentNumber"
-        app:layout_constraintTop_toBottomOf="@+id/startTitle"
-        tools:text="@string/label_pic_title" />
+        app:layout_constraintTop_toBottomOf="@+id/startTitle" />
 
     <TextView
         android:id="@+id/dualHoursTitle"
@@ -138,11 +140,10 @@
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:gravity="right"
-        android:text="TextView"
+        android:text="@string/label_dual_hours_title"
         android:textColor="@android:color/black"
         app:layout_constraintStart_toEndOf="@+id/segmentNumber"
-        app:layout_constraintTop_toBottomOf="@+id/picTitle"
-        tools:text="@string/label_dual_hours_title" />
+        app:layout_constraintTop_toBottomOf="@+id/picTitle" />
 
     <TextView
         android:id="@+id/simInstTitle"
@@ -152,11 +153,10 @@
         android:layout_marginLeft="8dp"
 
         android:gravity="right"
-        android:text="TextView"
+        android:text="@string/label_sim_inst_title"
         android:textColor="@android:color/black"
         app:layout_constraintStart_toEndOf="@+id/segmentNumber"
-        app:layout_constraintTop_toBottomOf="@+id/dualHoursTitle"
-        tools:text="@string/label_sim_inst_title" />
+        app:layout_constraintTop_toBottomOf="@+id/dualHoursTitle" />
 
     <TextView
         android:id="@+id/visFlightTitle"
@@ -167,11 +167,10 @@
 
         android:layout_marginTop="2dp"
         android:gravity="right"
-        android:text="TextView"
+        android:text="@string/label_vis_flight_title"
         android:textColor="@android:color/black"
         app:layout_constraintStart_toEndOf="@+id/picImage"
-        app:layout_constraintTop_toBottomOf="@+id/endDate"
-        tools:text="@string/label_vis_flight_title" />
+        app:layout_constraintTop_toBottomOf="@+id/endDate" />
 
     <TextView
         android:id="@+id/instTitle"
@@ -181,11 +180,10 @@
         android:layout_marginLeft="16dp"
 
         android:gravity="right"
-        android:text="TextView"
+        android:text="@string/label_inst_title"
         android:textColor="@android:color/black"
         app:layout_constraintStart_toEndOf="@+id/dualImage"
-        app:layout_constraintTop_toBottomOf="@+id/visFlightTitle"
-        tools:text="@string/label_vis_flight_title" />
+        app:layout_constraintTop_toBottomOf="@+id/visFlightTitle" />
 
     <TextView
         android:id="@+id/nightTitle"
@@ -195,33 +193,17 @@
         android:layout_marginLeft="16dp"
 
         android:gravity="right"
-        android:text="TextView"
+        android:text="@string/label_night_title"
         android:textColor="@android:color/black"
         app:layout_constraintStart_toEndOf="@+id/simInstImage"
-        app:layout_constraintTop_toBottomOf="@+id/instTitle"
-        tools:text="@string/label_night_title" />
-
-    <TextView
-        android:id="@+id/startDate"
-        android:layout_width="52dp"
-        android:layout_height="19dp"
-
-        android:layout_marginStart="2dp"
-        android:layout_marginLeft="2dp"
-        android:layout_marginTop="4dp"
-        android:gravity="left"
-        android:text="TextView"
-        android:textColor="@android:color/black"
-        app:layout_constraintStart_toEndOf="@+id/durationTitle"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="Start:" />
+        app:layout_constraintTop_toBottomOf="@+id/instTitle" />
 
     <TextView
         android:id="@+id/endDate"
         android:layout_width="52dp"
         android:layout_height="19dp"
-        android:layout_marginStart="2dp"
 
+        android:layout_marginStart="2dp"
         android:layout_marginLeft="2dp"
         android:layout_marginTop="4dp"
         android:gravity="left"
@@ -235,24 +217,24 @@
         android:id="@+id/durationTitle"
         android:layout_width="76dp"
         android:layout_height="19dp"
+
         android:layout_marginStart="2dp"
         android:layout_marginLeft="2dp"
         android:layout_marginTop="4dp"
-
         android:gravity="left"
-        android:text="TextView"
+        android:text="@string/label_duration_title"
         android:textColor="@android:color/black"
+        android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/endDate"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="@string/label_duration_title" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/duration"
+        android:id="@+id/startDate"
         android:layout_width="52dp"
         android:layout_height="19dp"
+
         android:layout_marginStart="2dp"
         android:layout_marginLeft="2dp"
-
         android:layout_marginTop="4dp"
         android:gravity="left"
         android:text="TextView"
@@ -269,11 +251,23 @@
         android:layout_marginLeft="2dp"
         android:layout_marginTop="4dp"
         android:gravity="center"
-        android:text="TextView"
+        android:text="@string/label_segment_title"
         android:textAllCaps="false"
         android:textColor="@android:color/black"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="@string/label_segment_title" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/duration"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
+        android:layout_marginLeft="2dp"
+        android:layout_marginTop="4dp"
+        android:text="TextView"
+        android:textColor="@android:color/black"
+        app:layout_constraintStart_toEndOf="@+id/durationTitle"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </android.support.constraint.ConstraintLayout>
