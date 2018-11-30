@@ -240,6 +240,20 @@ public class FlightDbHelper extends SQLiteOpenHelper {
         return flight;
     }
 
+    public List<Flight> getAllFlightsOfType(Boolean synced, Boolean inProgress, Context context) {
+        String query;
+        if (synced == null || inProgress == null) {
+            query = "SELECT * FROM " + FlightContract.FlightEntry.TABLE_NAME + " ORDER BY " + FlightContract.FlightEntry._ID + " DESC";
+        } else {
+            query = "SELECT * FROM " + FlightContract.FlightEntry.TABLE_NAME +
+                    " WHERE " + FlightContract.FlightEntry.COLUMN_NAME_HASSYNCED + " = " + (synced ? 1 : 0)
+                    + " AND " + FlightContract.FlightEntry.COLUMN_NAME_INPROGRESS + " = " + (inProgress ? 1 : 0)
+                    + " ORDER BY " + FlightContract.FlightEntry._ID + " DESC";
+        }
+
+        return getAllFlights(query, context);
+    }
+
     /**
      * getAllFlights:
      * Gets all of the flights in the database filtered by the sync column.
@@ -247,30 +261,10 @@ public class FlightDbHelper extends SQLiteOpenHelper {
      * @param context The context of the activity.
      * @return A list of flights.
      */
-    public List<Flight> getAllFlights(Boolean synced, Context context) {
+    private List<Flight> getAllFlights(String query, Context context) {
         List<Flight> flights = new ArrayList<Flight>();
 
         SQLiteDatabase db = getReadableDatabase();
-        String[] projection = {
-                BaseColumns._ID,
-                FlightContract.FlightEntry.COLUMN_NAME_ORIGIN,
-                FlightContract.FlightEntry.COLUMN_NAME_DESTINATION,
-                FlightContract.FlightEntry.COLUMN_NAME_STARTDATE,
-                FlightContract.FlightEntry.COLUMN_NAME_ENDDATE,
-                FlightContract.FlightEntry.COLUMN_NAME_AIRCRAFT,
-                FlightContract.FlightEntry.COLUMN_NAME_INPROGRESS,
-                FlightContract.FlightEntry.COLUMN_NAME_HASSYNCED,
-                FlightContract.FlightEntry.COLUMN_NAME_CROSSCOUNTRY,
-                FlightContract.FlightEntry.COLUMN_NAME_SOLO,
-                FlightContract.FlightEntry.COLUMN_NAME_REMARKS
-        };
-
-        String query;
-        if (synced == null) {
-            query = "SELECT * FROM " + FlightContract.FlightEntry.TABLE_NAME + " ORDER BY " + FlightContract.FlightEntry._ID + " DESC";
-        } else {
-            query = "SELECT * FROM " + FlightContract.FlightEntry.TABLE_NAME + " WHERE " + FlightContract.FlightEntry.COLUMN_NAME_HASSYNCED + " = " + (synced ? 1 : 0)  + " ORDER BY " + FlightContract.FlightEntry._ID + " DESC";
-        }
 
         Cursor cursor = db.rawQuery(query, null);
 
