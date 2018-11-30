@@ -51,12 +51,41 @@ public class SegmentsAdapter extends ArrayAdapter<Segment> {
 
         duration.setText("TEST");
 
-        pic.setColorFilter(Color.argb(1, 0, 255, 0));
-        dualHours.setColorFilter(Color.argb(1, 0, 255, 0));
-        simulatedInstruments.setColorFilter(Color.argb(1, 0, 255, 0));
-        visualFlight.setColorFilter(Color.argb(1, 0, 255, 0));
-        instrumentFlight.setColorFilter(Color.argb(1, 255, 0, 0));
-        nightFlight.setColorFilter(Color.argb(1, 0, 255, 0));
+        if (segment.getPilotInCommand()) {
+            pic.setBackgroundColor(Color.rgb(180, 0, 0));
+        } else {
+            pic.setBackgroundColor(Color.rgb(0, 180, 0));
+        }
+
+        if (segment.getDualHours()) {
+            dualHours.setBackgroundColor(Color.rgb(180, 0, 0));
+        } else {
+            dualHours.setBackgroundColor(Color.rgb(0, 180, 0));
+        }
+
+        if (segment.getSimulatedInstruments()) {
+            simulatedInstruments.setBackgroundColor(Color.rgb(180, 0, 0));
+        } else {
+            simulatedInstruments.setBackgroundColor(Color.rgb(0, 180, 0));
+        }
+
+        if (segment.getVisualFlight()) {
+            visualFlight.setBackgroundColor(Color.rgb(180, 0, 0));
+        } else {
+            visualFlight.setBackgroundColor(Color.rgb(0, 180, 0));
+        }
+
+        if (segment.getinstrumentFlight()) {
+            instrumentFlight.setBackgroundColor(Color.rgb(180, 0, 0));
+        } else {
+            instrumentFlight.setBackgroundColor(Color.rgb(0, 180, 0));
+        }
+
+        if (segment.getNight()) {
+            nightFlight.setBackgroundColor(Color.rgb(180, 0, 0));
+        } else {
+            nightFlight.setBackgroundColor(Color.rgb(0, 180, 0));
+        }
 
         // Return the completed view to render on screen
         return convertView;
