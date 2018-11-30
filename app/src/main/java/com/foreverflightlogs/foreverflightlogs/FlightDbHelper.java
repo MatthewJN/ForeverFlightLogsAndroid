@@ -27,6 +27,7 @@ public class FlightDbHelper extends SQLiteOpenHelper {
                     FlightContract.FlightEntry.COLUMN_NAME_CROSSCOUNTRY + " BOOLEAN," +
                     FlightContract.FlightEntry.COLUMN_NAME_SOLO + " BOOLEAN," +
                     FlightContract.FlightEntry.COLUMN_NAME_REMARKS + " TEXT," +
+                    FlightContract.FlightEntry.COLUMN_NAME_INPROGRESS + " BOOLEAN," +
                     FlightContract.FlightEntry.COLUMN_NAME_HASSYNCED + " BOOLEAN)";
 
     private static final String SQL_CREATE_SEGMENT_ENTRIES =
@@ -54,7 +55,7 @@ public class FlightDbHelper extends SQLiteOpenHelper {
     /**
      * The database version. Increment DB version when DB schema has changed.
      */
-    public static final int DATABASE_VERSION = 6;
+    public static final int DATABASE_VERSION = 7;
 
     /**
      * The name of the database stored on the disk.
@@ -123,6 +124,7 @@ public class FlightDbHelper extends SQLiteOpenHelper {
         values.put(FlightContract.FlightEntry.COLUMN_NAME_DESTINATION, destination);
         values.put(FlightContract.FlightEntry.COLUMN_NAME_AIRCRAFT, aircraft);
         values.put(FlightContract.FlightEntry.COLUMN_NAME_STARTDATE, date);
+        values.put(FlightContract.FlightEntry.COLUMN_NAME_INPROGRESS, true);
         values.put(FlightContract.FlightEntry.COLUMN_NAME_HASSYNCED, false);
         long newRowID = db.insert(FlightContract.FlightEntry.TABLE_NAME, null, values);
 
@@ -145,6 +147,7 @@ public class FlightDbHelper extends SQLiteOpenHelper {
                 FlightContract.FlightEntry.COLUMN_NAME_STARTDATE,
                 FlightContract.FlightEntry.COLUMN_NAME_ENDDATE,
                 FlightContract.FlightEntry.COLUMN_NAME_AIRCRAFT,
+                FlightContract.FlightEntry.COLUMN_NAME_INPROGRESS,
                 FlightContract.FlightEntry.COLUMN_NAME_HASSYNCED,
                 FlightContract.FlightEntry.COLUMN_NAME_CROSSCOUNTRY,
                 FlightContract.FlightEntry.COLUMN_NAME_SOLO,
@@ -171,6 +174,7 @@ public class FlightDbHelper extends SQLiteOpenHelper {
         Date startDate = null;
         Date endDate = null;
         String aircraft = "";
+        boolean inProgress = true;
         boolean hasSynced = false;
         boolean crosscountry = false;
         boolean solo = false;
@@ -198,6 +202,10 @@ public class FlightDbHelper extends SQLiteOpenHelper {
                 aircraft = cursor.getString(cursor.getColumnIndex(FlightContract.FlightEntry.COLUMN_NAME_AIRCRAFT));
             }
 
+            if (!cursor.isNull(cursor.getColumnIndex(FlightContract.FlightEntry.COLUMN_NAME_INPROGRESS))) {
+                inProgress = cursor.getInt(cursor.getColumnIndex(FlightContract.FlightEntry.COLUMN_NAME_INPROGRESS)) > 0;
+            }
+
             if (!cursor.isNull(cursor.getColumnIndex(FlightContract.FlightEntry.COLUMN_NAME_HASSYNCED))) {
                 hasSynced = cursor.getInt(cursor.getColumnIndex(FlightContract.FlightEntry.COLUMN_NAME_HASSYNCED)) > 0;
             }
@@ -221,6 +229,7 @@ public class FlightDbHelper extends SQLiteOpenHelper {
                 startDate,
                 endDate,
                 aircraft,
+                inProgress,
                 hasSynced,
                 crosscountry,
                 solo,
@@ -249,6 +258,7 @@ public class FlightDbHelper extends SQLiteOpenHelper {
                 FlightContract.FlightEntry.COLUMN_NAME_STARTDATE,
                 FlightContract.FlightEntry.COLUMN_NAME_ENDDATE,
                 FlightContract.FlightEntry.COLUMN_NAME_AIRCRAFT,
+                FlightContract.FlightEntry.COLUMN_NAME_INPROGRESS,
                 FlightContract.FlightEntry.COLUMN_NAME_HASSYNCED,
                 FlightContract.FlightEntry.COLUMN_NAME_CROSSCOUNTRY,
                 FlightContract.FlightEntry.COLUMN_NAME_SOLO,
@@ -271,6 +281,7 @@ public class FlightDbHelper extends SQLiteOpenHelper {
             Date startDate = null;
             Date endDate = null;
             String aircraft = "";
+            boolean inProgress = true;
             boolean hasSynced = false;
             boolean crosscountry = false;
             boolean solo = false;
@@ -300,6 +311,10 @@ public class FlightDbHelper extends SQLiteOpenHelper {
                 aircraft = cursor.getString(cursor.getColumnIndex(FlightContract.FlightEntry.COLUMN_NAME_AIRCRAFT));
             }
 
+            if (!cursor.isNull(cursor.getColumnIndex(FlightContract.FlightEntry.COLUMN_NAME_INPROGRESS))) {
+                inProgress = cursor.getInt(cursor.getColumnIndex(FlightContract.FlightEntry.COLUMN_NAME_INPROGRESS)) > 0;
+            }
+
             if (!cursor.isNull(cursor.getColumnIndex(FlightContract.FlightEntry.COLUMN_NAME_HASSYNCED))) {
                 hasSynced = cursor.getInt(cursor.getColumnIndex(FlightContract.FlightEntry.COLUMN_NAME_HASSYNCED)) > 0;
             }
@@ -322,6 +337,7 @@ public class FlightDbHelper extends SQLiteOpenHelper {
                     startDate,
                     endDate,
                     aircraft,
+                    inProgress,
                     hasSynced,
                     crosscountry,
                     solo,
@@ -351,6 +367,7 @@ public class FlightDbHelper extends SQLiteOpenHelper {
         values.put(FlightContract.FlightEntry.COLUMN_NAME_STARTDATE, getStringFromDate(flight.getStartDate()));
         values.put(FlightContract.FlightEntry.COLUMN_NAME_ENDDATE, getStringFromDate(flight.getEndDate()));
         values.put(FlightContract.FlightEntry.COLUMN_NAME_AIRCRAFT, flight.getAircraft());
+        values.put(FlightContract.FlightEntry.COLUMN_NAME_INPROGRESS, flight.getInProgress());
         values.put(FlightContract.FlightEntry.COLUMN_NAME_HASSYNCED, flight.getHasSynced());
         values.put(FlightContract.FlightEntry.COLUMN_NAME_CROSSCOUNTRY, flight.getCrosscountry());
         values.put(FlightContract.FlightEntry.COLUMN_NAME_SOLO, flight.getSolo());
