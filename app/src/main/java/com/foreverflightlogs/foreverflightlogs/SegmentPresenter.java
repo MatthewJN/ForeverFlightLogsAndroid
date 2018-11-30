@@ -52,6 +52,7 @@ public class SegmentPresenter {
         segment = flightDbHelper.insertNewSegment(flightID, context);
         segments = flightDbHelper.getAllSegments(flightID, context);
     }
+
     
     /**
      * Calculate Duration
@@ -61,7 +62,11 @@ public class SegmentPresenter {
      *   long getTime() : Returns the number of milliseconds since January 1, 1970, 00:00:00 GMT represented by this Date object.
      */
     public long getSegmentDuration() {
-        return segment.getEndDate().getTime() - segment.getStartDate().getTime(); //for testing, actual duration should be difference between 2 times.
+        if (segment.getEndDate() == null) {
+            return segment.getEndDate().getTime() - segment.getStartDate().getTime();
+        } else {
+            return new Date().getTime() - segment.getStartDate().getTime();
+        }
     }
 
     /**
@@ -84,17 +89,17 @@ public class SegmentPresenter {
         this.segments = dbHelper.getAllSegments(flightId, context);
     }
 
-    /**
-     * Use this for logic for entire segment creation process
-     * Get start time, create segment with time, update model
-     * sets the returned segmentID in segmentInProgressID
-     */
-    public void handleSegmentStart() {
-        Date startTime = this.getCurrentTime();
-
-       // int segmentID = startSegment(startTime);
-       // setSegmentInProgressID(segmentID);
-        return;
-    }
+//    /**
+//     * Use this for logic for entire segment creation process
+//     * Get start time, create segment with time, update model
+//     * sets the returned segmentID in segmentInProgressID
+//     */
+//    public void handleSegmentStart() {
+//        Date startTime = this.getCurrentTime();
+//
+//       // int segmentID = startSegment(startTime);
+//       // setSegmentInProgressID(segmentID);
+//        return;
+//    }
 
 }
