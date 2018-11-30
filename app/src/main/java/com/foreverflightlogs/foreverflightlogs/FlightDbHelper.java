@@ -542,7 +542,8 @@ public class FlightDbHelper extends SQLiteOpenHelper {
             boolean night = false;
 
             if (!cursor.isNull(cursor.getColumnIndex(SegmentContract.SegmentEntry._ID))) {
-                id = cursor.getColumnIndex(SegmentContract.SegmentEntry._ID);
+//                id = cursor.getColumnIndex(SegmentContract.SegmentEntry._ID);
+                id = cursor.getLong(0);
             }
 
             if (!cursor.isNull(cursor.getColumnIndex(SegmentContract.SegmentEntry.COLUMN_NAME_STARTDATE))) {
