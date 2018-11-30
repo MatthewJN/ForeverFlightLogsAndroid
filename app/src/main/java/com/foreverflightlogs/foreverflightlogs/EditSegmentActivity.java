@@ -35,6 +35,12 @@ public class EditSegmentActivity extends AppCompatActivity implements CompoundBu
         flightID = intent.getLongExtra(ListSegmentActivity.FLIGHTID, -1);
         segmentPresenter = new SegmentPresenter(flightID, segmentID, getApplicationContext());
         setSwitches();
+        setTextLabels();
+    }
+
+    private void setTextLabels() {
+        TextView duration = (TextView)findViewById(R.id.duration);
+        duration.setText("23s");
     }
 
     private void setSwitches() {

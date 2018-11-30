@@ -54,37 +54,37 @@ public class SegmentsAdapter extends ArrayAdapter<Segment> {
         String segmentDurationText = String.format("%ds", getSegmentDuration(segment)/1000);
         duration.setText(segmentDurationText);
 
-        if (segment.getPilotInCommand()) {
+        if (!segment.getPilotInCommand()) {
             pic.setBackgroundColor(Color.rgb(180, 0, 0));
         } else {
             pic.setBackgroundColor(Color.rgb(0, 180, 0));
         }
 
-        if (segment.getDualHours()) {
+        if (!segment.getDualHours()) {
             dualHours.setBackgroundColor(Color.rgb(180, 0, 0));
         } else {
             dualHours.setBackgroundColor(Color.rgb(0, 180, 0));
         }
 
-        if (segment.getSimulatedInstruments()) {
+        if (!segment.getSimulatedInstruments()) {
             simulatedInstruments.setBackgroundColor(Color.rgb(180, 0, 0));
         } else {
             simulatedInstruments.setBackgroundColor(Color.rgb(0, 180, 0));
         }
 
-        if (segment.getVisualFlight()) {
+        if (!segment.getVisualFlight()) {
             visualFlight.setBackgroundColor(Color.rgb(180, 0, 0));
         } else {
             visualFlight.setBackgroundColor(Color.rgb(0, 180, 0));
         }
 
-        if (segment.getinstrumentFlight()) {
+        if (!segment.getinstrumentFlight()) {
             instrumentFlight.setBackgroundColor(Color.rgb(180, 0, 0));
         } else {
             instrumentFlight.setBackgroundColor(Color.rgb(0, 180, 0));
         }
 
-        if (segment.getNight()) {
+        if (!segment.getNight()) {
             nightFlight.setBackgroundColor(Color.rgb(180, 0, 0));
         } else {
             nightFlight.setBackgroundColor(Color.rgb(0, 180, 0));
