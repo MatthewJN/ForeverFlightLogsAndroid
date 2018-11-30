@@ -41,7 +41,12 @@ public class EditSegmentActivity extends AppCompatActivity implements CompoundBu
 
     private void setTextLabels() {
         TextView duration = (TextView)findViewById(R.id.duration);
-        duration.setText("23s");
+        String segmentDurationText = String.format("%ds", getSegmentDuration(segmentPresenter.segment)/1000);
+        duration.setText(segmentDurationText);
+    }
+
+    public long getSegmentDuration(Segment segment) {
+        return segment.getEndDate().getTime() - segment.getStartDate().getTime();
     }
 
     private void setSwitches() {

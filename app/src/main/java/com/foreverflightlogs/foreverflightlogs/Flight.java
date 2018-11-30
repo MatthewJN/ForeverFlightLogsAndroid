@@ -11,6 +11,7 @@ public class Flight {
     private Date startDate;
     private Date endDate;
     private String aircraft;
+    private boolean inProgress;
     private boolean hasSynced;
     private boolean crosscountry;
     private boolean solo;
@@ -33,6 +34,7 @@ public class Flight {
      * @param startDate The time that the flight started.
      * @param endDate The time that the flight ended.
      * @param aircraft The N number of the plane used.
+     * @param inProgress Is the flight in progress?
      * @param hasSynced Indicates if the flight has been succesfully sent to the server.
      * @param crosscountry Was the flight cross-country?
      * @param solo Was the pilot alone?
@@ -45,6 +47,7 @@ public class Flight {
                   Date startDate,
                   Date endDate,
                   String aircraft,
+                  boolean inProgress,
                   boolean hasSynced,
                   boolean crosscountry,
                   boolean solo,
@@ -86,6 +89,10 @@ public class Flight {
 
     public String getAircraft() {
         return aircraft;
+    }
+
+    public boolean getInProgress() {
+        return inProgress;
     }
 
     public boolean getHasSynced() {
@@ -131,6 +138,11 @@ public class Flight {
 
     public void setAircraft(String aircraft) {
         this.aircraft = aircraft;
+        updateDatabase();
+    }
+
+    public void setInProgress(boolean inProgress) {
+        this.inProgress = inProgress;
         updateDatabase();
     }
 

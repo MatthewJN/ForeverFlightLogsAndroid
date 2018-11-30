@@ -18,6 +18,7 @@ public final class FlightContract {
         public static final String COLUMN_NAME_HASSYNCED = "hasSynced";
         public static final String COLUMN_NAME_CROSSCOUNTRY = "crossCountry";
         public static final String COLUMN_NAME_SOLO = "solo";
+        public static final String COLUMN_NAME_INPROGRESS = "inProgress";
         public static final String COLUMN_NAME_REMARKS = "remarks";
     }
 }

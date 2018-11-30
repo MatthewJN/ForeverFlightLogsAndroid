@@ -57,6 +57,7 @@ public class FinalizeFlightActivity extends AppCompatActivity {
         flightPresenter.flight.setCrosscountry(cross.isChecked());
         flightPresenter.flight.setSolo(solo.isChecked());
         flightPresenter.flight.setEndDate(new Date());
+        flightPresenter.flight.setInProgress(false);
        // flightPresenter.flight.setInProgress(false);
 //        FinalizeFlightPresenter finalizeFlightPresenter = new FinalizeFlightPresenter(flightID, getApplicationContext());
 //        finalizeFlightPresenter.flight.setRemarks(remarks);
