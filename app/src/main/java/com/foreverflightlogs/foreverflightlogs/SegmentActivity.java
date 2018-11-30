@@ -112,7 +112,7 @@ public class SegmentActivity extends AppCompatActivity implements CompoundButton
         startBtn.setEnabled(false); //disable start button till stop is pushed
         onClickReset(view); //reset the clock
         startRun = true;
-
+        
         // Pass in the current time to the segment.
         segmentPresenter.segment.setStartDate(new Date());
     }
@@ -130,7 +130,6 @@ public class SegmentActivity extends AppCompatActivity implements CompoundButton
 
         //Pass in the current time to the segment.
         segmentPresenter.segment.setEndDate(new Date());
-
     }
 
     /**
@@ -158,8 +157,6 @@ public class SegmentActivity extends AppCompatActivity implements CompoundButton
         intent.putExtra(FLIGHTID, flightID);
         startActivity(intent);
         Toast.makeText(this, "onclickEndFlight opens ListSegmentActivity", Toast.LENGTH_SHORT).show();
-
-
     }
 
     /**
