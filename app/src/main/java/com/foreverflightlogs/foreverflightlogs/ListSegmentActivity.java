@@ -11,9 +11,11 @@ import android.widget.ListView;
 public class ListSegmentActivity extends AppCompatActivity {
 
     ListView listView;
+    SegmentsAdapter adapter;
 
     long flightID;
     //public final static String ID_EXTRA = "com.foreverflightlogs.ListSegmentActivity._ID";
+    public static final String SEGMENTID = "com.foreverflightlogs.SEGMENTID";
     public static final String FLIGHTID = "com.foreverflightlogs.FLIGHTID";
 
     @Override
@@ -25,13 +27,13 @@ public class ListSegmentActivity extends AppCompatActivity {
         Intent intent = getIntent();
         flightID = intent.getLongExtra(SegmentActivity.FLIGHTID, -1);
 
-        SegmentPresenter segmentPresenter = new SegmentPresenter(flightID, getApplicationContext());
+        final SegmentPresenter segmentPresenter = new SegmentPresenter(flightID, getApplicationContext());
 
         //reference items on screen
         Button btnAddRemarks = (Button)findViewById(R.id.button_add_remarks);
         listView = (ListView)findViewById(R.id.segmentList);
         //to use preloaded layout - must use android.R.layout...
-        SegmentsAdapter adapter = new SegmentsAdapter(this, segmentPresenter.segments);
+        adapter = new SegmentsAdapter(this, segmentPresenter.segments);
 
         listView.setAdapter(adapter);
 
@@ -39,10 +41,19 @@ public class ListSegmentActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
                 Intent intent = new Intent(ListSegmentActivity.this, EditSegmentActivity.class);
-                intent.putExtra("ID_EXTRA", String.valueOf(id));  //@todo how to pass in the values to prepopulate EditSegmentActivity for item clicked?
+                intent.putExtra(SEGMENTID, segmentPresenter.segments.get(position).getSegmentID());
+                intent.putExtra(FLIGHTID, flightID);
                 startActivity(intent);
             }
         });
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        SegmentPresenter segmentPresenter = new SegmentPresenter(flightID, getApplicationContext());
+        adapter = new SegmentsAdapter(this, segmentPresenter.segments);
+        listView.setAdapter(adapter);
     }
 
     public void addRemarksPressed(View view) {
