@@ -526,7 +526,7 @@ public class FlightDbHelper extends SQLiteOpenHelper {
                 SegmentContract.SegmentEntry.COLUMN_NAME_NIGHT
         };
 
-        String query = "SELECT * FROM " + SegmentContract.SegmentEntry.TABLE_NAME + " WHERE " + SegmentContract.SegmentEntry.COLUMN_NAME_FLIGHTID + " = " + flightId + " ORDER BY " + SegmentContract.SegmentEntry._ID + " DESC";
+        String query = "SELECT * FROM " + SegmentContract.SegmentEntry.TABLE_NAME + " WHERE " + SegmentContract.SegmentEntry.COLUMN_NAME_FLIGHTID + " = " + flightId + " ORDER BY " + SegmentContract.SegmentEntry._ID + " ASC";
 
         Cursor cursor = db.rawQuery(query, null);
 
