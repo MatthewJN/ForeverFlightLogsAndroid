@@ -50,18 +50,13 @@ public class FinalizeFlightActivity extends AppCompatActivity {
     }
 
     public void saveLogEntry(View view) {
-        Log.d("saveLogEntry", "flightID = " + flightID);
-       // Context context = getApplicationContext();
+        Log.i("saveLogEntry", "flightID = " + flightID);
+
         flightPresenter.flight.setRemarks(remarks);
         flightPresenter.flight.setEndDate(new Date());
-       // flightPresenter.flight.setInProgress(false);
-//        FinalizeFlightPresenter finalizeFlightPresenter = new FinalizeFlightPresenter(flightID, getApplicationContext());
-//        finalizeFlightPresenter.flight.setRemarks(remarks);
-//        finalizeFlightPresenter.flight.setEndDate(new Date());
-//        FlightPresenter flightPresenter = new FlightPresenter(flightID, getApplicationContext());
-      //  flightPresenter.flight.setRemarks(remarks);
-     //   flightPresenter.flight.setEndDate(new Date());
+
         SyncManager.sync(getApplicationContext());
+
         Intent i=new Intent(this, MainActivity.class);
         i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(i);

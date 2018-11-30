@@ -16,6 +16,16 @@ public class Flight {
     private boolean solo;
     private String remarks;
     private Context context;
+    Segment[] segments;
+    public Segment[] getSegments() {
+        return segments;
+    }
+
+    public void setSegments(Segment[] segments) {
+        this.segments = segments;
+    }
+
+
 
     /**
      * Non-Default constructor which creates the flight and stores a context locally.
@@ -158,4 +168,5 @@ public class Flight {
         FlightDbHelper dbHelper = new FlightDbHelper(context);
         dbHelper.updateFlight(this, context);
     }
+
 }

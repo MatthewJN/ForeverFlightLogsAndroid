@@ -15,6 +15,8 @@ public class FlightPresenter implements Syncable {
     public Flight flight;
     public List<Flight> flights;
 
+    List<Segment> segments;
+
     /**
      * Default Constructor:
      * Not available to be called.
@@ -30,6 +32,13 @@ public class FlightPresenter implements Syncable {
     public FlightPresenter(long flightID, Context context) {
         FlightDbHelper flightDbHelper = new FlightDbHelper(context);
         flight = flightDbHelper.getFlight(flightID, context);
+
+
+        //convert segments list to array and store in segments
+        List<Segment> segments = flightDbHelper.getAllSegments(flightID, context);
+        Segment[] segmentArray = new Segment[segments.size()];
+        flight.setSegments(segmentArray);
+
     }
 
     /**
