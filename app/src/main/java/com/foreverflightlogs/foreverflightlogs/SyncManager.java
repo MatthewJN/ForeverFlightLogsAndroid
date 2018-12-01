@@ -7,9 +7,6 @@ import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -73,14 +70,14 @@ public class SyncManager {
                       // Gson gson = new Gson();
                       // User user = gson.fromJson(reply, User.class);
 
-                      JSONObject jsonObject = new JSONObject(reply);
-//                      User user = new User(thisContext);
-//                      String auth = jsonObject.getString("auth");
-//                      user.setAuth(auth);
 
                       Log.i("SYNCSTATUS", String.valueOf(conn.getResponseCode()));
                       Log.i("SYNCMSG" , conn.getResponseMessage());
                       Log.i("SYNCRETURNED", reply);
+
+                      //parse reply and update flight to show synced
+                      //updateFlightsSynced(reply, context);
+
 
 
 
@@ -92,14 +89,22 @@ public class SyncManager {
                       e.printStackTrace();
                   } catch (IOException e) {
                       e.printStackTrace();
-                  } catch (JSONException e) {
-                      e.printStackTrace();
                   }
-          }
+              }
     });
 
         thread.start();
 }
+
+    private void updateFlightsSynced(String reply, Context context) {
+        //parse to object
+//        Gson gson = new Gson();
+//        ArrayList<Flight> flights = new ArrayList<Flight>();
+//        jsonFlight = gson.fromJson(reply, Flight.class);
+//        if(reply != null){
+//            for()
+//        }
+    }
 
 
     public static String createJson(Context context) {
