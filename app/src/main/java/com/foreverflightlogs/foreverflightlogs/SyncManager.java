@@ -4,6 +4,7 @@ import android.content.Context;
 import android.util.Log;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -75,7 +76,7 @@ public class SyncManager {
                       Log.i("SYNCRETURNED", reply);
 
                       //parse reply and update flight to show synced
-                      //updateFlightsSynced(reply, context);
+                      updateFlightsSynced(reply, context);
 
 
 
@@ -94,15 +95,14 @@ public class SyncManager {
         thread.start();
 }
 
-    private void updateFlightsSynced(String reply, Context context) {
-        //parse to object
-//        Gson gson = new Gson();
-//        ArrayList<Flight> flights = new ArrayList<Flight>();
-//        jsonFlight = gson.fromJson(reply, Flight.class);
-//        if(reply != null){
-//            for()
-//        }
-    }
+    private static void updateFlightsSynced(String reply, Context context) {
+        Gson gson = new GsonBuilder().create();
+        JsonServerResponse objectReply = gson.fromJson(reply, JsonServerResponse.class);
+
+        //loop thru and update flight data with synced or not
+        return;
+
+        }
 
     /**
      * Create a json object by taking items stored in the db and
