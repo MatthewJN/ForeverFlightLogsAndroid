@@ -48,11 +48,11 @@ public class SyncManager {
                         conn.setDoInput(true);
                       Log.i("URL", "url is: " + url);
                         //create the json object
-                        String json = createJson(context);
+                        String jsonString = createJson(context);
 
                       DataOutputStream os = new DataOutputStream(conn.getOutputStream());
                       //os.writeBytes(URLEncoder.encode(jsonParam.toString(), "UTF-8"));
-                      os.writeBytes(json);
+                      os.writeBytes(jsonString);
 
                       os.flush();
                       os.close();
@@ -107,6 +107,7 @@ public class SyncManager {
         FlightPresenter flightPresenter = new FlightPresenter(56, context);
         Flight flight = flightPresenter.flight;
 
+
         //get all flights in flightArray
 
         //get all segments for flights
@@ -119,42 +120,59 @@ public class SyncManager {
         Gson gson = new Gson();
 
         //create json object
-        JsonObject flightData = new JsonObject();
-        // JSONObject segmentData = new JSONObject();
+        JsonObject userFlights = new JsonObject();
+        JsonArray flightData = new JsonArray();
+        JsonObject flightDetails = new JsonObject();
         JsonArray segmentsData = new JsonArray();
         JsonObject segment = new JsonObject();
-        int accountID = 432;
+        int accountID = 10195;
 
 
-        flightData.addProperty("userID", accountID);
-        flightData.addProperty("flights", flight.getFlightID());
+        userFlights.addProperty("userID", accountID);
+        flightDetails.addProperty("id", flight.getFlightID());
+        flightDetails.addProperty("duration", "15.00");
+        flightDetails.addProperty("n-Number", "5631B");
+        flightDetails.addProperty("flightDate", "2016-01-01");
+        flightDetails.addProperty("multiEngine", "0");
+        flightDetails.addProperty("solo", "0");
+        flightDetails.addProperty("crossCountry", "0");
+        flightDetails.addProperty("fromAirport", "BOI");
+        flightDetails.addProperty("toAirport", "BOI");
+        flightDetails.addProperty("numberOfTakeOffs", "1");
+        flightDetails.addProperty("numberOfLandings", "1");
+        flightDetails.addProperty("createdByID", accountID);
+        flightDetails.addProperty("active", true);
+        flightData.add(flightDetails);
+        userFlights.add("flights", flightData);
+        flightDetails.add("segments", segmentsData);
 
-        flightData.add("segments", segmentsData);
+
         for (int i = 0; i < 4; i++) {
             //for (int i = 0; i < segments.length; i++) {
             //   if(segments[i] != null) {
-            segment.addProperty("id", i);
+            segment.addProperty("id", 600 + i);
             segment.addProperty("accountID", accountID);
+            segment.addProperty("flightID", flight.getFlightID());
             segment.addProperty("segmentStartTime", "2017-04-12 18:21:03");
             segment.addProperty("segmentEndTime", "2017-04-12 18:27:03");
-            segment.addProperty("segmentDuration", 5);
-            segment.addProperty("pilotInCommandID", 1);
+
+            segment.addProperty("pilotInCommandID", accountID);
             segment.addProperty("dualHourPilotID", 0);
-            segment.addProperty("night", 1);
-            segment.addProperty("simulatedInstrument", 1);
-            segment.addProperty("instrumentFlightRules", 1);
-            segment.addProperty("instrumentFlightRules", 1);
-            segment.addProperty("visualFlight", 0);
-            segment.addProperty("active", 1);
+            segment.addProperty("night", "1");
+            segment.addProperty("simulatedInstrument", "1");
+            segment.addProperty("instrumentFlightRules", "1");
+            segment.addProperty("visualFlightRules", "1");
+            segment.addProperty("active", "1");
             //convert date to  string format
 //                     segment.addProperty("segmentStartTime", segments[i].getStartDate());
 
             segmentsData.add(segment);
+
             //}
         }
 
 
-        String json = gson.toJson(flightData);
+        String json = gson.toJson(userFlights);
 
         Log.i("jsonFlight", json);
         return json;
