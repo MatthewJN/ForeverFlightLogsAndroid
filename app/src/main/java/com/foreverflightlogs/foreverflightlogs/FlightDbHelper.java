@@ -282,7 +282,8 @@ public class FlightDbHelper extends SQLiteOpenHelper {
             String remarks = "";
 
             if (!cursor.isNull(cursor.getColumnIndex(FlightContract.FlightEntry._ID))) {
-                id = cursor.getColumnIndex(FlightContract.FlightEntry._ID);
+//                id = cursor.getColumnIndex(SegmentContract.SegmentEntry._ID);
+                id = cursor.getLong(0);
             }
 
             if (!cursor.isNull(cursor.getColumnIndex(FlightContract.FlightEntry.COLUMN_NAME_ORIGIN))) {
