@@ -13,4 +13,19 @@ public class JsonUnsyncedFlightsModel {
     int userID;
     List<JsonFlightModel> flights;
 
+    public int getUserID() {
+        return userID;
+    }
+
+    public void setUserID(int userID) {
+        this.userID = userID;
+    }
+
+    public List<JsonFlightModel> getFlights() {
+        return flights;
+    }
+
+    public void setFlights(List<JsonFlightModel> flights) {
+        this.flights = flights;
+    }
 }

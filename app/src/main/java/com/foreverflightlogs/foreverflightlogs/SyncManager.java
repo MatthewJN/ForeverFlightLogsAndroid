@@ -104,43 +104,44 @@ public class SyncManager {
 //        }
     }
 
-
+    /**
+     * Create a json object by taking items stored in the db and
+     * set those values into an object to pass to the API
+     * UserFlights {
+     *      "userID": int,
+     *      "flights" [
+     *          {
+     *              flight info
+     *              "segments" [
+     *                  {
+     *                      segmentInfo
+     *                  }
+     *              ]
+     *          },
+     *          {
+     *              flight #2 info
+     *              segments for flight#2 [
+     *                  {
+     *                      segment info
+     *                  }
+     *              ]
+     *          }
+     *      ]
+     *  }
+     * @param context
+     * @return
+     */
     public static String createJson(Context context) {
         //Get all unsynced flights that are not in progress
         FlightPresenter flightPresenter = new FlightPresenter(false, false, context);
         List<Flight> dbflights = flightPresenter.flights;
         //List<Segment> dbsegments = flightPresenter.segments;
        // Log.i("NUMSEGMENTS", "length: "+ dbsegments.size());
-
+    int accountID = 2;
         Gson gson = new Gson();
-        /**
-         * Create a json object by taking items stored in db and
-         * set the values into a object to pass to API
-         * UserFlights {
-         *      "userID": int,
-         *      "flights" [
-         *          {
-         *              flight info
-         *              "segments" [
-         *                  {
-         *                      segmentInfo
-         *                  }
-         *              ]
-         *          },
-         *          {
-         *              flight #2 info
-         *              segments for flight#2 [
-         *                  {
-         *                      segment info
-         *                  }
-         *              ]
-         *          }
-         *      ]
-         *  }
-         *
-         */
+
         JsonUnsyncedFlightsModel userFlights = new JsonUnsyncedFlightsModel();
-        userFlights.userID = 2;
+        userFlights.setUserID(accountID);
         userFlights.flights = new ArrayList<>();
         //Access the data for each flight from the db
        // FlightPresenter flight;
@@ -150,10 +151,30 @@ public class SyncManager {
             Log.i("NUMFLIGHTSEGMENTS", "length: "+ segmentPresenter.segments.size());
             JsonFlightModel jsonFlight = new JsonFlightModel();
             jsonFlight.id = dbflight.getFlightID();
+            jsonFlight.setAircraft(dbflight.getAircraft());
+            jsonFlight.setFlightDate(getStringFromDate(dbflight.getStartDate()));
+            jsonFlight.setSolo(convertBooleanToString(dbflight.getSolo()));
+            jsonFlight.setCrossCountry(convertBooleanToString(dbflight.getCrosscountry()));
+            jsonFlight.setFromAirport(dbflight.getOrigin());
+            jsonFlight.setToAirport(dbflight.getDestination());
+
            jsonFlight.segments= new ArrayList<>();
             for(Segment dbsegment: segmentPresenter.segments){
                 JsonSegmentModel jsonSegment = new JsonSegmentModel();
                 jsonSegment.id = dbsegment.getSegmentID();
+                jsonSegment.setAccountID(accountID);
+                jsonSegment.setFlightID(dbflight.getFlightID());
+                jsonSegment.setSegmentStartTime(getStringFromDate(dbsegment.getStartDate()));
+                jsonSegment.setSegmentEndTime(getStringFromDate(dbsegment.getEndDate()));
+                jsonSegment.setPilotInCommandID(accountID);
+                jsonSegment.setDualHourPilotID(0);
+                jsonSegment.setNight(convertBooleanToString(dbsegment.getNight()));
+                jsonSegment.setSimulatedInstrument(convertBooleanToString(dbsegment.getSimulatedInstruments()));
+                jsonSegment.setInstrumentFlightRules(convertBooleanToString(dbsegment.getinstrumentFlight()));
+                jsonSegment.setVisualFlightRules(convertBooleanToString(dbsegment.getVisualFlight()));
+
+
+
                 jsonFlight.segments.add(jsonSegment);
             }
             userFlights.flights.add(jsonFlight);
