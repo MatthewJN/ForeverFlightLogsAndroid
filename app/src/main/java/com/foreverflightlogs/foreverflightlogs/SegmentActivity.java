@@ -11,7 +11,6 @@ import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import java.util.Date;
 
 /**
@@ -38,7 +37,7 @@ public class SegmentActivity extends AppCompatActivity implements CompoundButton
     Switch visualFlight;
     Switch instrFlight;
     Switch night;
-    private SegmentPresenter segmentPresenter; // = new SegmentPresenter(this);
+    SegmentPresenter segmentPresenter; // = new SegmentPresenter(this);
     long flightID = -1; //set to -1 for ability to test for error
 
     public static final String FLIGHTID = "com.foreverflightlogs.FLIGHTID";
@@ -53,8 +52,23 @@ public class SegmentActivity extends AppCompatActivity implements CompoundButton
         flightID = intent.getLongExtra(FlightActivity.FLIGHTID, -1);
 
         // Create a new segment attached to the flightID passed in.
-        segmentPresenter = new SegmentPresenter(flightID, getApplicationContext());
+        segmentPresenter = new SegmentPresenter(getApplicationContext());
+        segmentPresenter.startSegment(flightID, getApplicationContext());
 
+        setSwitches();
+        enableNewSegmentButton(false);
+        enableEndFlightButton(false);
+        enableEndButton(false);
+
+        // get state of timer
+        if(savedInstanceState != null) {
+            seconds = savedInstanceState.getInt("seconds");
+            startRun = savedInstanceState.getBoolean("startRun");
+        }
+        Timer(); //update timer value on screen
+    }
+
+    public void setSwitches() {
         // Get all of the switches
         pic = (Switch)findViewById(R.id.switch_PIC);
         dualHour = (Switch)findViewById(R.id.switch_dualHours);
@@ -79,14 +93,6 @@ public class SegmentActivity extends AppCompatActivity implements CompoundButton
         visualFlight.setChecked(segmentPresenter.segment.getVisualFlight());
         instrFlight.setChecked(segmentPresenter.segment.getinstrumentFlight());
         night.setChecked(segmentPresenter.segment.getNight());
-
-        // get state of timer
-        if(savedInstanceState != null) {
-            seconds = savedInstanceState.getInt("seconds");
-            startRun = savedInstanceState.getBoolean("startRun");
-        }
-        Timer(); //update timer value on screen
-
     }
 
     /**
@@ -100,6 +106,39 @@ public class SegmentActivity extends AppCompatActivity implements CompoundButton
         saveInstanceState.putBoolean("startRun", startRun);
     }
 
+    public void onClickNewSegment(View view) {
+        enableStartButton(true);
+        enableEndButton(false);
+        enableNewSegmentButton(false);
+        enableEndFlightButton(false);
+        // Instantiate a new segment
+        segmentPresenter.startSegment(flightID, getApplicationContext());
+        // Reset the switches
+        setSwitches();
+        // reset timer
+        onClickReset(view);
+    }
+
+    public void enableStartButton(boolean enable) {
+        startBtn = (Button) findViewById(R.id.btn_start);
+        startBtn.setEnabled(enable);
+    }
+
+    public void enableEndButton(boolean enable) {
+        startBtn = (Button) findViewById(R.id.btn_stop);
+        startBtn.setEnabled(enable);
+    }
+
+    public void enableNewSegmentButton(boolean enable) {
+        startBtn = (Button) findViewById(R.id.btn_newSegment);
+        startBtn.setEnabled(enable);
+    }
+
+    public void enableEndFlightButton(boolean enable) {
+        startBtn = (Button) findViewById(R.id.btn_endFlight);
+        startBtn.setEnabled(enable);
+    }
+
     /**
      * Process once start button is clicked
      * After disabling start button and resetting timer
@@ -107,14 +146,15 @@ public class SegmentActivity extends AppCompatActivity implements CompoundButton
      * @param view
      */
     public void onClickStart(View view) {
-        startBtn = (Button) findViewById(R.id.btn_start);
-        startBtn.setEnabled(false); //disable start button till stop is pushed
+        enableStartButton(false);
+        enableEndButton(true);
+        enableNewSegmentButton(false);
+        enableEndFlightButton(false);
         onClickReset(view); //reset the clock
         startRun = true;
-
+        
         // Pass in the current time to the segment.
         segmentPresenter.segment.setStartDate(new Date());
-
     }
 
     /**
@@ -124,13 +164,14 @@ public class SegmentActivity extends AppCompatActivity implements CompoundButton
      * @param view
      */
     public void onClickStop(View view) {
-        startBtn = (Button) findViewById(R.id.btn_start); //find start button to enable it
-        startBtn.setEnabled(true);
+        enableStartButton(false);
+        enableEndButton(false);
+        enableNewSegmentButton(true);
+        enableEndFlightButton(true);
         startRun = false;
 
         //Pass in the current time to the segment.
         segmentPresenter.segment.setEndDate(new Date());
-
     }
 
     /**
@@ -158,8 +199,6 @@ public class SegmentActivity extends AppCompatActivity implements CompoundButton
         intent.putExtra(FLIGHTID, flightID);
         startActivity(intent);
         Toast.makeText(this, "onclickEndFlight opens ListSegmentActivity", Toast.LENGTH_SHORT).show();
-
-
     }
 
     /**

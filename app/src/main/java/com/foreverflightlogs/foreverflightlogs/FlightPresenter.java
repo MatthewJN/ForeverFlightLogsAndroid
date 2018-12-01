@@ -50,10 +50,15 @@ public class FlightPresenter implements Syncable {
      * @param aircraft The aircraft tail number.
      * @param startDate The start date (usually the exact time the start button was pressed).
      */
-    public FlightPresenter(String origin, String aircraft, Date startDate, Context context) {
+    public FlightPresenter(String origin, String destination, String aircraft, Date startDate, Context context) {
         FlightDbHelper flightDbHelper = new FlightDbHelper(context);
-        flight = flightDbHelper.insertNewFlight(origin, aircraft, startDate, context);
-        flights = flightDbHelper.getAllFlights(false, context);
+        flight = flightDbHelper.insertNewFlight(origin, destination, aircraft, startDate, context);
+        flights = flightDbHelper.getAllFlightsOfType(false, false, context);
+    }
+
+    public FlightPresenter(Boolean hasSynced, Boolean inProgress, Context context) {
+        FlightDbHelper flightDbHelper = new FlightDbHelper(context);
+        flights = flightDbHelper.getAllFlightsOfType(hasSynced, inProgress, context);
     }
 
     /**
@@ -101,9 +106,9 @@ public class FlightPresenter implements Syncable {
         }
     }
 
-    private void getAllFlights(boolean synced, Context context) {
-        FlightDbHelper dbHelper = new FlightDbHelper(context);
-        this.flights =  dbHelper.getAllFlights(synced, context);
-    }
+//    private void getAllFlights(boolean synced, Context context) {
+//        FlightDbHelper dbHelper = new FlightDbHelper(context);
+//        this.flights =  dbHelper.getAllFlights(synced, context);
+//    }
 
 }
