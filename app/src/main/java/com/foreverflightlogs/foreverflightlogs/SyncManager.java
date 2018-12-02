@@ -96,10 +96,19 @@ public class SyncManager {
 }
 
     private static void updateFlightsSynced(String reply, Context context) {
+        FlightPresenter flightPresenter;
         Gson gson = new GsonBuilder().create();
         JsonServerResponse objectReply = gson.fromJson(reply, JsonServerResponse.class);
 
-        //loop thru and update flight data with synced or not
+        //loop thru and update flight hasSynced in db
+        for (JsonServerResponse.JsonFlights flight : objectReply.getJsonFlights()){
+            if(flight.getHttpResponse() == 200){
+                //create flight presenter to access flight info and update db
+                flightPresenter = new FlightPresenter(flight.getFlightID(),context);
+                flightPresenter.flight.setHasSynced(true);
+
+            }
+        }
         return;
 
         }
