@@ -4,6 +4,12 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
+/**
+ * Json Server Response
+ * Model of response from API
+ * This allows access to the entire json object that is returned
+ * When sync is called
+ */
 public class JsonServerResponse {
     @SerializedName("flights")
     private List<JsonFlights> jsonFlights;
@@ -23,7 +29,7 @@ public class JsonServerResponse {
         private Long flightID;
         private int httpResponse;
         @SerializedName("flightID")
-        private long apiflightID;
+        private long apiFlightID;
         private  Segments segments;
 
 
@@ -43,12 +49,12 @@ public class JsonServerResponse {
             this.httpResponse = httpResponse;
         }
 
-        public long getApiflightID() {
-            return apiflightID;
+        public long getApiFlightID() {
+            return apiFlightID;
         }
 
-        public void setApiflightID(long apiflightID) {
-            this.apiflightID = apiflightID;
+        public void setApiFlightID(long apiFlightID) {
+            this.apiFlightID = apiFlightID;
         }
 
         public Segments getSegments() {
