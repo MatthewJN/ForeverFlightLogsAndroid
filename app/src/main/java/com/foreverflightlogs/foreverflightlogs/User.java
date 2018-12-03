@@ -16,18 +16,26 @@ public class User {
     }
 
     public String getAuth() {
-        // return auth;
-
         SharedPreferences mPrefs = _context.getSharedPreferences("authPref", MODE_PRIVATE);
         return mPrefs.getString("AuthCode", "");
     }
 
     public void setAuth(String auth) {
-        // this.auth = auth;
-
         SharedPreferences mPrefs = _context.getSharedPreferences("authPref", MODE_PRIVATE);
         SharedPreferences.Editor prefsEditor = mPrefs.edit();
         prefsEditor.putString("AuthCode", auth);
+        prefsEditor.commit();
+    }
+
+    public int getUserID() {
+        SharedPreferences mPrefs = _context.getSharedPreferences("userPref", MODE_PRIVATE);
+        return mPrefs.getInt("UserID", -1);
+    }
+
+    public void setUserID(int userID) {
+        SharedPreferences mPrefs = _context.getSharedPreferences("userPref", MODE_PRIVATE);
+        SharedPreferences.Editor prefsEditor = mPrefs.edit();
+        prefsEditor.putInt("UserID", userID);
         prefsEditor.commit();
     }
 
