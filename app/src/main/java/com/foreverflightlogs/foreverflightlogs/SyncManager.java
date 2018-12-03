@@ -50,6 +50,11 @@ public class SyncManager {
 
                       String jsonString = createJson(context); //create the json object
 
+                      if(jsonString == "0") {
+                          //no flights are returned
+                          return;
+                      }
+
                       //send the POST
                       DataOutputStream os = new DataOutputStream(conn.getOutputStream());
                       os.writeBytes(jsonString);
@@ -144,6 +149,9 @@ public class SyncManager {
         //Get all unsynced flights that are not in progress
         FlightPresenter flightPresenter = new FlightPresenter(false, false, context);
         List<Flight> dbflights = flightPresenter.flights;
+        if(dbflights.size() <= 0){
+            return "0";
+        }
         Gson gson = new Gson();
 
         int accountID = 2;
