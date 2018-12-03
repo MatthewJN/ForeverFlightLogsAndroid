@@ -103,11 +103,11 @@ public class UserManager {
                     User user = new User(thisContext);
                     URL url = new URL("https://api.foreverflightlogs.com/v1/accounts?auth=" + user.getAuth());
                     HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-                    conn.setRequestMethod("POST");
+                    conn.setRequestMethod("GET");
                     conn.setRequestProperty("Content-Type", "application/json;charset=UTF-8");
                     conn.setRequestProperty("Accept","application/json");
-                    conn.setDoOutput(true);
-                    //conn.setDoInput(true);
+                    conn.setDoOutput(false);
+                    conn.setDoInput(true);
 
                     String reply;
                     InputStream in = conn.getInputStream();
@@ -124,7 +124,7 @@ public class UserManager {
 
                     JSONObject jsonObject = new JSONObject(reply);
 
-                    int userID = jsonObject.getInt("userID");
+                    int userID = jsonObject.getJSONObject("object").getJSONObject("items").getJSONArray("ownerAvailableObjects").getJSONObject(0).getInt("id");
                     user.setUserID(userID);
 
 
