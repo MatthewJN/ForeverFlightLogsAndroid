@@ -6,11 +6,282 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/list_item"
-        android:layout_width="384dp"
-        android:layout_height="38dp"
-        android:layout_marginTop="8dp"
+    <ImageView
+        android:id="@+id/picImage"
+        android:layout_width="11dp"
+        android:layout_height="10dp"
+        android:layout_marginStart="152dp"
+        android:layout_marginLeft="152dp"
+        android:layout_marginTop="28dp"
+        android:background="@color/red"
+        android:contentDescription="TODO"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/simInstImage"
+        android:layout_width="11dp"
+        android:layout_height="10dp"
+        android:layout_marginStart="152dp"
+        android:layout_marginLeft="152dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/red"
+        android:contentDescription="TODO"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dualImage" />
+
+    <ImageView
+        android:id="@+id/dualImage"
+        android:layout_width="11dp"
+        android:layout_height="10dp"
+        android:layout_marginStart="152dp"
+        android:layout_marginLeft="152dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/red"
+        android:contentDescription="TODO"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/picImage" />
+
+    <ImageView
+        android:id="@+id/nightFlightImage"
+        android:layout_width="11dp"
+        android:layout_height="10dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginLeft="100dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/red"
+        app:layout_constraintStart_toEndOf="@+id/simInstImage"
+        app:layout_constraintTop_toBottomOf="@+id/instFlightImage" />
+
+    <ImageView
+        android:id="@+id/instFlightImage"
+        android:layout_width="11dp"
+        android:layout_height="10dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginLeft="100dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/red"
+        app:layout_constraintStart_toEndOf="@+id/dualImage"
+        app:layout_constraintTop_toBottomOf="@+id/visFlightImage" />
+
+    <ImageView
+        android:id="@+id/visFlightImage"
+        android:layout_width="11dp"
+        android:layout_height="10dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginLeft="100dp"
+        android:layout_marginTop="28dp"
+        android:background="@color/red"
+        app:layout_constraintStart_toEndOf="@+id/picImage"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/segmentNumber"
+        android:layout_width="62dp"
+        android:layout_height="54dp"
+        android:layout_marginStart="2dp"
+        android:layout_marginLeft="2dp"
+        android:layout_marginTop="2dp"
+        android:gravity="center"
+        android:textColor="@android:color/black"
+        android:textSize="40sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/segmentTitle"
+        tools:text="1" />
+
+    <TextView
+        android:id="@+id/startTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginStart="2dp"
+        android:layout_marginLeft="2dp"
+        android:layout_marginTop="4dp"
+        android:gravity="end"
+        android:text="@string/label_start_title"
+        android:textColor="@android:color/black"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/segmentTitle"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/endTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginStart="2dp"
+        android:layout_marginLeft="2dp"
+        android:layout_marginTop="4dp"
+        android:gravity="right"
+        android:text="@string/label_end_title"
+        android:textColor="@android:color/black"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/startDate"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/picTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+
+        android:layout_marginTop="2dp"
+        android:gravity="right"
+        android:text="@string/label_pic_title"
+        android:textColor="@android:color/black"
+        app:layout_constraintStart_toEndOf="@+id/segmentNumber"
+        app:layout_constraintTop_toBottomOf="@+id/startTitle" />
+
+    <TextView
+        android:id="@+id/dualHoursTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:gravity="right"
+        android:text="@string/label_dual_hours_title"
+        android:textColor="@android:color/black"
+        app:layout_constraintStart_toEndOf="@+id/segmentNumber"
+        app:layout_constraintTop_toBottomOf="@+id/picTitle" />
+
+    <TextView
+        android:id="@+id/simInstTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+
+        android:gravity="right"
+        android:text="@string/label_sim_inst_title"
+        android:textColor="@android:color/black"
+        app:layout_constraintStart_toEndOf="@+id/segmentNumber"
+        app:layout_constraintTop_toBottomOf="@+id/dualHoursTitle" />
+
+    <TextView
+        android:id="@+id/visFlightTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+
+        android:layout_marginTop="2dp"
+        android:gravity="right"
+        android:text="@string/label_vis_flight_title"
+        android:textColor="@android:color/black"
+        app:layout_constraintStart_toEndOf="@+id/picImage"
+        app:layout_constraintTop_toBottomOf="@+id/endDate" />
+
+    <TextView
+        android:id="@+id/instTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+
+        android:gravity="right"
+        android:text="@string/label_inst_title"
+        android:textColor="@android:color/black"
+        app:layout_constraintStart_toEndOf="@+id/dualImage"
+        app:layout_constraintTop_toBottomOf="@+id/visFlightTitle" />
+
+    <TextView
+        android:id="@+id/nightTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+
+        android:gravity="right"
+        android:text="@string/label_night_title"
+        android:textColor="@android:color/black"
+        app:layout_constraintStart_toEndOf="@+id/simInstImage"
+        app:layout_constraintTop_toBottomOf="@+id/instTitle" />
+
+    <TextView
+        android:id="@+id/endDate"
+        android:layout_width="52dp"
+        android:layout_height="19dp"
+
+        android:layout_marginStart="2dp"
+        android:layout_marginLeft="2dp"
+        android:layout_marginTop="4dp"
+        android:gravity="left"
+        android:text="TextView"
+        android:textColor="@android:color/black"
+        android:textSize="13sp"
+        app:layout_constraintStart_toEndOf="@+id/endTitle"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Start:" />
+
+    <TextView
+        android:id="@+id/durationTitle"
+        android:layout_width="76dp"
+        android:layout_height="19dp"
+
+        android:layout_marginStart="2dp"
+        android:layout_marginLeft="2dp"
+        android:layout_marginTop="4dp"
+        android:gravity="left"
+        android:text="@string/label_duration_title"
+        android:textColor="@android:color/black"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/endDate"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/startDate"
+        android:layout_width="52dp"
+        android:layout_height="19dp"
+
+        android:layout_marginStart="2dp"
+        android:layout_marginLeft="2dp"
+        android:layout_marginTop="4dp"
+        android:gravity="left"
+        android:text="TextView"
+        android:textColor="@android:color/black"
+        android:textSize="13sp"
+        app:layout_constraintStart_toEndOf="@+id/startTitle"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Start:" />
+
+    <TextView
+        android:id="@+id/segmentTitle"
+        android:layout_width="62dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="2dp"
+        android:layout_marginLeft="2dp"
+        android:layout_marginTop="4dp"
+        android:gravity="center"
+        android:text="@string/label_segment_title"
+        android:textAllCaps="false"
+        android:textColor="@android:color/black"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/duration"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
+        android:layout_marginLeft="2dp"
+        android:layout_marginTop="4dp"
+        android:text="TextView"
+        android:textColor="@android:color/black"
+        android:textSize="13sp"
+        app:layout_constraintStart_toEndOf="@+id/durationTitle"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="0dp"
+        android:layout_height="78dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginLeft="1dp"
+        android:layout_marginTop="1dp"
+        app:layout_constraintStart_toEndOf="@+id/segmentNumber"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@android:color/darker_gray" />
 
 </android.support.constraint.ConstraintLayout>

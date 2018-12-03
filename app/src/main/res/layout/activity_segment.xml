@@ -26,7 +26,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="88dp"
         android:layout_marginLeft="88dp"
-        android:layout_marginTop="116dp"
+        android:layout_marginTop="104dp"
         android:background="@color/colorPrimary"
         android:onClick="onClickStart"
         android:text="@string/start"
@@ -42,7 +42,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginLeft="32dp"
-        android:layout_marginTop="116dp"
+        android:layout_marginTop="104dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:background="@color/red"
@@ -200,13 +200,26 @@
 
     <Button
         android:id="@+id/btn_endFlight"
-        android:layout_width="250dp"
-        android:layout_height="75dp"
-        android:layout_marginBottom="32dp"
+        android:layout_width="248dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="18dp"
         android:onClick="onClickEndFlight"
         android:text="@string/button_end_flight"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_newSegment"
         tools:text="@string/button_end_flight" />
+
+    <Button
+        android:id="@+id/btn_newSegment"
+        android:layout_width="248dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="12dp"
+        android:onClick="onClickNewSegment"
+        android:text="@string/button_new_segment"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/switch_Night" />
 </android.support.constraint.ConstraintLayout>

@@ -1,10 +1,13 @@
 package com.foreverflightlogs.foreverflightlogs;
 
-        import android.provider.BaseColumns;
+import android.provider.BaseColumns;
 
 public final class FlightContract {
     private FlightContract() {}
 
+    /**
+     * The contract.
+     */
     public static class FlightEntry implements BaseColumns {
         public static final String TABLE_NAME = "flight";
         public static final String COLUMN_NAME_ORIGIN = "origin";
@@ -15,6 +18,7 @@ public final class FlightContract {
         public static final String COLUMN_NAME_HASSYNCED = "hasSynced";
         public static final String COLUMN_NAME_CROSSCOUNTRY = "crossCountry";
         public static final String COLUMN_NAME_SOLO = "solo";
+        public static final String COLUMN_NAME_INPROGRESS = "inProgress";
         public static final String COLUMN_NAME_REMARKS = "remarks";
     }
 }

@@ -11,22 +11,53 @@ public class Flight {
     private Date startDate;
     private Date endDate;
     private String aircraft;
+    private boolean inProgress;
     private boolean hasSynced;
     private boolean crosscountry;
     private boolean solo;
     private String remarks;
     private Context context;
+    Segment[] segments;
+    public Segment[] getSegments() {
+        return segments;
+    }
 
+    public void setSegments(Segment[] segments) {
+        this.segments = segments;
+    }
+
+
+
+    /**
+     * Non-Default constructor which creates the flight and stores a context locally.
+     * @param context The context which is stored local to the class.
+     */
     public Flight(Context context) {
         this.context = context;
     }
 
+    /**
+     * Non-Default constructor used for creating a new flight.
+     * @param flightID The ID of the flight.
+     * @param origin The origin of the flight (a 3 char airport code)
+     * @param destination The destination of the flight (a 3 char airport code)
+     * @param startDate The time that the flight started.
+     * @param endDate The time that the flight ended.
+     * @param aircraft The N number of the plane used.
+     * @param inProgress Is the flight in progress?
+     * @param hasSynced Indicates if the flight has been succesfully sent to the server.
+     * @param crosscountry Was the flight cross-country?
+     * @param solo Was the pilot alone?
+     * @param remarks Comments about the flight.
+     * @param context The context of the activity.
+     */
     public Flight(long flightID,
                   String origin,
                   String destination,
                   Date startDate,
                   Date endDate,
                   String aircraft,
+                  boolean inProgress,
                   boolean hasSynced,
                   boolean crosscountry,
                   boolean solo,
@@ -68,6 +99,10 @@ public class Flight {
 
     public String getAircraft() {
         return aircraft;
+    }
+
+    public boolean getInProgress() {
+        return inProgress;
     }
 
     public boolean getHasSynced() {
@@ -116,6 +151,11 @@ public class Flight {
         updateDatabase();
     }
 
+    public void setInProgress(boolean inProgress) {
+        this.inProgress = inProgress;
+        updateDatabase();
+    }
+
     public void setHasSynced(boolean hasSynced) {
         this.hasSynced = hasSynced;
         updateDatabase();
@@ -140,4 +180,5 @@ public class Flight {
         FlightDbHelper dbHelper = new FlightDbHelper(context);
         dbHelper.updateFlight(this, context);
     }
+
 }

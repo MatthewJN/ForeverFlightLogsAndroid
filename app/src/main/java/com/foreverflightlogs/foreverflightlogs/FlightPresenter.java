@@ -3,6 +3,7 @@ package com.foreverflightlogs.foreverflightlogs;
 
 import android.content.Context;
 import java.util.Date;
+import java.util.List;
 
 
 public class FlightPresenter implements Syncable {
@@ -12,6 +13,7 @@ public class FlightPresenter implements Syncable {
      * The current flight.
      */
     public Flight flight;
+    public List<Flight> flights;
 
     /**
      * Default Constructor:
@@ -39,9 +41,15 @@ public class FlightPresenter implements Syncable {
      * @param aircraft The aircraft tail number.
      * @param startDate The start date (usually the exact time the start button was pressed).
      */
-    public FlightPresenter(String origin, String aircraft, Date startDate, Context context) {
+    public FlightPresenter(String origin, String destination, String aircraft, Date startDate, Context context) {
         FlightDbHelper flightDbHelper = new FlightDbHelper(context);
-        flight = flightDbHelper.insertNewFlight(origin, aircraft, startDate, context);
+        flight = flightDbHelper.insertNewFlight(origin, destination, aircraft, startDate, context);
+        flights = flightDbHelper.getAllFlightsOfType(false, false, context);
+    }
+
+    public FlightPresenter(Boolean hasSynced, Boolean inProgress, Context context) {
+        FlightDbHelper flightDbHelper = new FlightDbHelper(context);
+        flights = flightDbHelper.getAllFlightsOfType(hasSynced, inProgress, context);
     }
 
     /**
@@ -67,6 +75,10 @@ public class FlightPresenter implements Syncable {
         return false;
     }
 
+    /**
+     * getFlightID:
+     * @return The current ID of the running flight.
+     */
     public long getFlightID() {
         return flight.getFlightID();
     }
@@ -84,5 +96,10 @@ public class FlightPresenter implements Syncable {
             return new Date().getTime() - flight.getStartDate().getTime();
         }
     }
+
+//    private void getAllFlights(boolean synced, Context context) {
+//        FlightDbHelper dbHelper = new FlightDbHelper(context);
+//        this.flights =  dbHelper.getAllFlights(synced, context);
+//    }
 
 }
