@@ -154,7 +154,9 @@ public class SyncManager {
         }
         Gson gson = new Gson();
 
-        int accountID = 2;
+        UserManager userManager = new UserManager(context);
+        //int accountID = 2;
+        int accountID = userManager.getUserID();
         JsonUnsyncedFlightsModel userFlights = new JsonUnsyncedFlightsModel();
         userFlights.setUserID(accountID);
         userFlights.flights = new ArrayList<>();
