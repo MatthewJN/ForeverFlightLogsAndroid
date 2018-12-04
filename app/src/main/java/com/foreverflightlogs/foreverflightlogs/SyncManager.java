@@ -34,8 +34,8 @@ public class SyncManager {
           Thread thread = new Thread(new Runnable() {
               @Override
               public void run() {
-                  User user = new User(thisContext);
-                  String auth = user.getAuth();
+                  UserManager userManager = new UserManager(thisContext);
+                  String auth = userManager.getAuthCode();
                   try{
                       URL url = new URL("https://api.foreverflightlogs.com/v1/applications?auth=".concat(auth));
 

@@ -20,6 +20,12 @@ import java.net.URL;
 
 public class UserManager {
 
+    private Context context;
+
+    UserManager(Context context) {
+        this.context = context;
+    }
+
     /**
      * authWithAPI:
      * Authorises with the API.
@@ -162,9 +168,13 @@ public class UserManager {
     }
 
     public String getAuthCode() {
-        return "";
+        User user = new User(context);
+        return user.getAuth();
     }
 
-    private void setAuthCode(String authCode) { }
+    public int getUserID() {
+        User user = new User(context);
+        return user.getUserID();
+    }
 
 }

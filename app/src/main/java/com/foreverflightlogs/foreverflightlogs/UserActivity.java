@@ -30,7 +30,8 @@ public class UserActivity extends AppCompatActivity {
         String username = editText.getText().toString();
         String password = editText2.getText().toString();
 
-        new UserManager().authWithAPI(username, password, getApplicationContext());
+        UserManager userManager = new UserManager(getApplicationContext());
+        userManager.authWithAPI(username, password, getApplicationContext());
 
         Intent intent = new Intent(this, MainActivity.class);
 
