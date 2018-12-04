@@ -26,7 +26,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void showAllFlights(View view) {
-
+        Intent myIntent = new Intent(MainActivity.this, ListFlightsActivity.class);
+        MainActivity.this.startActivity(myIntent);
     }
 
     public boolean isInternetOn(Context context) {

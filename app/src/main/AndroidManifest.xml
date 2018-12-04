@@ -22,7 +22,8 @@
         <activity android:name=".SegmentActivity" />
         <activity android:name=".ListSegmentActivity" />
         <activity android:name=".EditSegmentActivity" />
-        <activity android:name=".FinalizeFlightActivity"></activity>
+        <activity android:name=".FinalizeFlightActivity" />
+        <activity android:name=".ListFlightsActivity"></activity>
     </application>
 
     <uses-permission android:name="android.permission.INTERNET" />
