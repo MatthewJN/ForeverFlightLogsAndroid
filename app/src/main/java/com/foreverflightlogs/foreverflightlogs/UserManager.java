@@ -20,6 +20,13 @@ import java.net.URL;
 
 public class UserManager {
 
+    /**
+     * authWithAPI:
+     * Authorises with the API.
+     * @param phoneNumber The phone number (user name).
+     * @param password The password for the account.
+     * @param context The current context.
+     */
     public void authWithAPI(final String phoneNumber, final String password, final Context context) {
 
         final Context thisContext = context;
@@ -93,6 +100,11 @@ public class UserManager {
         thread.start();
     }
 
+    /**
+     * getUserID:
+     * Gets the user ID associated with the login.
+     * @param context The context.
+     */
     private void getUserID(final Context context) {
         final Context thisContext = context;
         Thread thread = new Thread(new Runnable() {
@@ -124,10 +136,10 @@ public class UserManager {
 
                     JSONObject jsonObject = new JSONObject(reply);
 
-                    int userID = jsonObject.getJSONObject("object").getJSONObject("items").getJSONArray("ownerAvailableObjects").getJSONObject(0).getInt("id");
+                    int userID = jsonObject.getJSONObject("items").getJSONArray("ownerAvailableObjects").getJSONObject(0).getInt("id");
+
                     user.setUserID(userID);
-
-
+                    
                     Log.i("STATUS", String.valueOf(conn.getResponseCode()));
                     Log.i("MSG" , conn.getResponseMessage());
                     Log.i("RETURNED", reply);
