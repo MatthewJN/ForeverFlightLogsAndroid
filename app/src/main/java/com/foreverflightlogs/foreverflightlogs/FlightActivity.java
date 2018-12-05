@@ -32,7 +32,7 @@ public class FlightActivity extends AppCompatActivity {
 
         // Convert those fields to strings
         String origin = editOriginText.getText().toString();
-        String destination = editOriginText.getText().toString();
+        String destination = editDestinationText.getText().toString();
         String aircraft = editAircraftText.getText().toString();
 
         // Create a new flight
