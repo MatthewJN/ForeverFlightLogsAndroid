@@ -44,4 +44,6 @@
     <string name="label_flights_crosscountry">Cross Country:</string>
     <string name="label_flights_solo">Solo Flight:</string>
     <string name="label_flights_planeNumber">Number:</string>
+    <string name="label_flights_synced">Synced:</string>
+    <string name="label_flights_inProgress">In Progress:</string>
 </resources>

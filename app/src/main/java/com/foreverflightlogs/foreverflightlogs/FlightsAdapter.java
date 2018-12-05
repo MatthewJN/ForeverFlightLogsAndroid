@@ -36,10 +36,11 @@ public class FlightsAdapter extends ArrayAdapter<Flight> {
         TextView endDate = (TextView)convertView.findViewById(R.id.flightsEndDate);
         TextView endTime = (TextView)convertView.findViewById(R.id.flightsEndTime);
         TextView nNumber = (TextView)convertView.findViewById(R.id.flightsNNumber);
-        TextView remarks = (TextView)convertView.findViewById(R.id.flightsRemarks);
 
         ImageView crossCountry = (ImageView)convertView.findViewById(R.id.flightsCrossCountry);
         ImageView solo = (ImageView)convertView.findViewById(R.id.flightsSolo);
+        ImageView synced = (ImageView)convertView.findViewById(R.id.flightsSynced);
+        ImageView inProgress = (ImageView)convertView.findViewById(R.id.flightsInProgress);
 
         // Populate the data into the template view using the data object
         //Log.i("GETORIGIN", flight.getOrigin());
@@ -53,8 +54,6 @@ public class FlightsAdapter extends ArrayAdapter<Flight> {
         endTime.setText(getTimeStringFromDate(flight.getEndDate()));
 
         nNumber.setText(flight.getAircraft());
-        remarks.setText("Remarks");
-
 
         if (!flight.getCrosscountry()) {
             crossCountry.setBackgroundColor(Color.rgb(180, 0, 0));
@@ -66,6 +65,18 @@ public class FlightsAdapter extends ArrayAdapter<Flight> {
             solo.setBackgroundColor(Color.rgb(180, 0, 0));
         } else {
             solo.setBackgroundColor(Color.rgb(0, 180, 0));
+        }
+
+        if (!flight.getHasSynced()) {
+            synced.setBackgroundColor(Color.rgb(180, 0, 0));
+        } else {
+            synced.setBackgroundColor(Color.rgb(0, 180, 0));
+        }
+
+        if (!flight.getInProgress()) {
+            inProgress.setBackgroundColor(Color.rgb(180, 0, 0));
+        } else {
+            inProgress.setBackgroundColor(Color.rgb(0, 180, 0));
         }
 
         // Return the completed view to render on screen
