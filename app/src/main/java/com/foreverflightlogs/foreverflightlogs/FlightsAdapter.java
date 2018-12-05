@@ -82,6 +82,7 @@ public class FlightsAdapter extends ArrayAdapter<Flight> {
             inProgress.setBackgroundColor(Color.rgb(180, 0, 0));
         } else {
             inProgress.setBackgroundColor(Color.rgb(0, 180, 0));
+            convertView.setBackgroundColor(Color.argb(25, 180, 0, 0));
         }
 
         // Return the completed view to render on screen
