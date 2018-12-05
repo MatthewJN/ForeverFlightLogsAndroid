@@ -12,6 +12,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Dictionary;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -97,8 +98,30 @@ public class AirportDbHelper extends SQLiteOpenHelper {
     }
 
     public Map<String, String> getAllAirports(Context context) {
-        return null;
-    }
+        Map<String, String> airports = new HashMap<String, String>();
 
+        SQLiteDatabase db = getReadableDatabase();
+
+        String query = "SELECT * FROM " + AirportContract.AirportEntry.TABLE_NAME;
+
+        Cursor cursor = db.rawQuery(query, null);
+
+        while (cursor.moveToNext()) {
+            String key = "";
+            String name = "";
+
+            if (!cursor.isNull(cursor.getColumnIndex(AirportContract.AirportEntry.COLUMN_NAME_AIRPORT_CODE))) {
+                key = cursor.getString(cursor.getColumnIndex(AirportContract.AirportEntry.COLUMN_NAME_AIRPORT_CODE));
+            }
+
+            if (!cursor.isNull(cursor.getColumnIndex(AirportContract.AirportEntry.COLUMN_NAME_AIRPORT_NAME))) {
+                name = cursor.getString(cursor.getColumnIndex(AirportContract.AirportEntry.COLUMN_NAME_AIRPORT_NAME));
+            }
+
+            airports.put(key, name);
+        }
+
+        return airports;
+    }
 
 }

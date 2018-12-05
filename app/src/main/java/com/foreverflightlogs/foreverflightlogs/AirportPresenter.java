@@ -30,7 +30,7 @@ public class AirportPresenter {
             @Override
             public void run() {
                 try {
-                    URL url = new URL("https://gist.githubusercontent.com/MatthewJN/cd0f67c71727eb30c7b304f303ff75d5/raw/7b0762c09b519f40397e4c3e100b097d861f5588/airports.json");
+                    URL url = new URL("https://gist.githubusercontent.com/MatthewJN/cd0f67c71727eb30c7b304f303ff75d5/raw/27ff7a0b0bddc3151b960719b242107bb5440f4a/airports.json");
                     HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                     conn.setRequestMethod("GET");
                     conn.setRequestProperty("Content-Type", "application/json;charset=UTF-8");
