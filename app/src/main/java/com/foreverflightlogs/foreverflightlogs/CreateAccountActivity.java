@@ -48,58 +48,50 @@ public class CreateAccountActivity extends AppCompatActivity {
         final String confirm = editConfirmPassword.getText().toString();
 
         //validate input items
-        createAccount.setOnClickListener(new View.OnClickListener() {
-          boolean isValid;
-            @Override
-            public void onClick(View v) {
-                if(phone.length() < 10 ) {
-                    editPhone.setError("Please enter a 10 digit phone number");
-                    isValid = false;
-                    Log.i("PHONE", "phone is: " + phone);
-                    Log.i("PHONELNGTH", "phone.length is: " + phone.length());
-                }
-                if(name.length() == 0) {
-                    editName.setError("Please enter your name");
-                    isValid = false;
-                    Log.i("NAME", "name is: " + name);
-                    Log.i("NAMELNGTH", "name.length is: " + name.length());
-                }
-                if(password.length() == 0){
-                    editPassword.setError("Please enter a password");
-                    isValid = false;
-                    Log.i("PASSWORD", "password is: " + password);
-                    Log.i("PASSWORDLNGTH", "password.length is: " + password.length());
-                }
-                if( confirm.length() == 0 || !password.equals(confirm)){
-                    editConfirmPassword.setError("Passwords do not match. Please enter a password.");
-                    isValid = false;
-                    Log.i("PASSWORD", "password "+ password);
-                    Log.i("CONFIRM", "confirmPassword " + confirm);
-                }
-
-            isValid = true;
-
-                //if passwords don't match display an error
-                if(password.equals(confirm)){
-                    CreateAccountPresenter createAccountPresenter = new CreateAccountPresenter(getApplicationContext());
-                    boolean isAccountCreated = createAccountPresenter.createAccountOnAPI(phone, password, name, getApplicationContext());
-                    if( isAccountCreated){
-                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                        Toast.makeText(getApplicationContext(), "Your account has been created, please login.", Toast.LENGTH_SHORT).show();
-                        startActivity(intent);
-                    }
-                    else {
-                        Toast.makeText(getApplicationContext(), "Error creating account.", Toast.LENGTH_SHORT).show();
-                        Log.i("ACCTERROR", "Error creating acct: " + createAccountPresenter.getResponse());
-                    }
-                }
+          boolean isValid = true;
+            if(phone.length() < 10 ) {
+                editPhone.setError("Please enter a 10 digit phone number");
+                isValid = false;
+                Log.i("PHONE", "phone is: " + phone);
+                Log.i("PHONELNGTH", "phone.length is: " + phone.length());
+            }
+            if(name.length() == 0) {
+                editName.setError("Please enter your name");
+                isValid = false;
+                Log.i("NAME", "name is: " + name);
+                Log.i("NAMELNGTH", "name.length is: " + name.length());
+            }
+            if(password.length() == 0){
+                editPassword.setError("Please enter a password");
+                isValid = false;
+                Log.i("PASSWORD", "password is: " + password);
+                Log.i("PASSWORDLNGTH", "password.length is: " + password.length());
+            }
+            if( confirm.length() == 0 || !password.equals(confirm)){
+                editConfirmPassword.setError("Passwords do not match. Please enter a password.");
+                isValid = false;
+                Log.i("PASSWORD", "password "+ password);
+                Log.i("CONFIRM", "confirmPassword " + confirm);
             }
 
-        });
 
 
+            //if passwords don't match display an error
+            if(password.equals(confirm) && isValid){
+                CreateAccountPresenter createAccountPresenter = new CreateAccountPresenter(getApplicationContext());
+                createAccountPresenter.createAccountOnAPI(phone, password, name, getApplicationContext());
+//                    boolean isAccountCreated = createAccountPresenter.isAccountCreated();
+//                    if( isAccountCreated){
+                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                    Toast.makeText(getApplicationContext(), "Your account has been created, please login.", Toast.LENGTH_SHORT).show();
+                  //  startActivity(intent);
+//                    }
+//                    else {
+//                        Toast.makeText(getApplicationContext(), "Error creating account.", Toast.LENGTH_SHORT).show();
+//                        Log.i("ACCTERROR", "Error creating acct: " + createAccountPresenter.getResponse());
+//                    }
+            }
+        }
 
-
-    }
 
 }

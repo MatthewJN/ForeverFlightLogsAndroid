@@ -13,12 +13,13 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
+import java.util.Observable;
 
 /**
  * Responsible for  connecting with the API and updating the UI
  *
  */
-public class CreateAccountPresenter {
+public class CreateAccountPresenter extends Observable {
 
     private Context context;
     private String response;
@@ -27,7 +28,7 @@ public class CreateAccountPresenter {
 
     CreateAccountPresenter(Context context) { this.context = context;}
 
-    public boolean createAccountOnAPI(final String phone, final String password, final String name, final Context context) {
+    public void createAccountOnAPI(final String phone, final String password, final String name, final Context context) {
 
         final Context thisContext = context;
         Thread thread = new Thread(new Runnable() {
@@ -44,9 +45,9 @@ public class CreateAccountPresenter {
                     conn.setDoInput(true);
 
                     JSONObject jsonParam = new JSONObject();
-                    jsonParam.put("phone", phone); // 5552000000
-                    jsonParam.put("password", password); // test
-                    jsonParam.put("name", name);
+                    jsonParam.put("phone", "5554004014"); // 5552000000
+                    jsonParam.put("password", "test"); // test
+                    jsonParam.put("name", "Sheri Hansen");
 
                     Log.i("JSONACCT", jsonParam.toString());
                     DataOutputStream os = new DataOutputStream(conn.getOutputStream());
@@ -68,27 +69,21 @@ public class CreateAccountPresenter {
                     } finally {
                         in.close();
                     }
-                    response = reply;
+                    setResponse(reply); //store the reply in case we need to pull in activity
                     JSONObject jsonObject = new JSONObject(reply);
-                    String query = jsonObject.getString("query");
-                    String error = jsonObject.getString("error");
-                    Log.i("REPLYFROMACCT", "reply: " + reply);
-                   if (error != null) {
-                       setResponse(reply);
-                      Log.i("ACCTREPLY", "reply is : " + reply);
-
-
+                    if(jsonObject.has("items")){
+                        Log.i("ITEM", "items found in reply");
                     }
-                    else {
-                       isAccountCreated = true;
+//                    if(jsonObject.has("error")){
+//                        Log.i("ACCTREPLY", "reply is : " + reply);
+//                    }
+//                    else {
+//                        isAccountCreated = true;
+//                    }
 
-                   }
-
-
-
-                    Log.i("STATUS", String.valueOf(conn.getResponseCode()));
-                    Log.i("MSG" , conn.getResponseMessage());
-                    Log.i("RETURNED", reply);
+                    Log.i("ACCTSTATUS", String.valueOf(conn.getResponseCode()));
+                    Log.i("ACCTMSG" , conn.getResponseMessage());
+                    Log.i("ACCTRETURNED", reply);
 
 
                     conn.disconnect();
@@ -107,7 +102,7 @@ public class CreateAccountPresenter {
         });
 
         thread.start();
-    return isAccountCreated;
+
     }
 
     public boolean isAccountCreated() {
