@@ -15,6 +15,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // Remove any incomplete segments.
+        FlightDbHelper flightDbHelper = new FlightDbHelper(getApplicationContext());
+        flightDbHelper.cleanUpSegments(getApplicationContext());
+
+        // Sync if connection available.
         if (isInternetOn(getApplicationContext())) {
             SyncManager.sync(getApplicationContext());
         }

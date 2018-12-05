@@ -644,19 +644,30 @@ public class FlightDbHelper extends SQLiteOpenHelper {
                 selectionArgs);
     }
 
-    /**
-     * deleteSegment:
-     * Used to delete a specific segment.
-     * @param segment The ID of the segment to be deleted.
-     * @param context The context.
-     */
-    public void deleteSegment(Segment segment, Context context) {
+//    /**
+//     * deleteSegment:
+//     * Used to delete a specific segment.
+//     * @param segment The ID of the segment to be deleted.
+//     * @param context The context.
+//     */
+//    public void deleteSegment(Segment segment, Context context) {
+//        SQLiteDatabase db = getWritableDatabase();
+//
+//        String selection = FlightContract.FlightEntry._ID + " = ?";
+//        String[] selectionArgs = { String.format("%d", segment.getSegmentID()) };
+//
+//        db.delete(FlightContract.FlightEntry.TABLE_NAME,
+//                selection,
+//                selectionArgs);
+//    }
+
+    public void cleanUpSegments(Context context) {
         SQLiteDatabase db = getWritableDatabase();
 
-        String selection = FlightContract.FlightEntry._ID + " = ?";
-        String[] selectionArgs = { String.format("%d", segment.getSegmentID()) };
+        String selection = SegmentContract.SegmentEntry.COLUMN_NAME_ISCOMPLETED + " = ?";
+        String[] selectionArgs = { "0" };
 
-        db.delete(FlightContract.FlightEntry.TABLE_NAME,
+        db.delete(SegmentContract.SegmentEntry.TABLE_NAME,
                 selection,
                 selectionArgs);
     }
