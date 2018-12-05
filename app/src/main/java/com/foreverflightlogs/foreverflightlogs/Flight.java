@@ -69,6 +69,7 @@ public class Flight {
         this.startDate = startDate;
         this.endDate = endDate;
         this.aircraft = aircraft;
+        this.inProgress = inProgress;
         this.hasSynced = hasSynced;
         this.crosscountry = crosscountry;
         this.solo = solo;

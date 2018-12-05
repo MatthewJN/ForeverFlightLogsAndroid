@@ -36,6 +36,7 @@ public class FlightsAdapter extends ArrayAdapter<Flight> {
         TextView endDate = (TextView)convertView.findViewById(R.id.flightsEndDate);
         TextView endTime = (TextView)convertView.findViewById(R.id.flightsEndTime);
         TextView nNumber = (TextView)convertView.findViewById(R.id.flightsNNumber);
+        TextView segments = (TextView)convertView.findViewById(R.id.flightsNumberOfSegments);
 
         ImageView crossCountry = (ImageView)convertView.findViewById(R.id.flightsCrossCountry);
         ImageView solo = (ImageView)convertView.findViewById(R.id.flightsSolo);
@@ -46,6 +47,10 @@ public class FlightsAdapter extends ArrayAdapter<Flight> {
         //Log.i("GETORIGIN", flight.getOrigin());
         flightOrigin.setText(flight.getOrigin());
         flightDestination.setText(flight.getDestination());
+
+        SegmentPresenter segmentPresenter = new SegmentPresenter(flight.getFlightID(), getContext());
+        String numberOfSegments = String.format("%d", segmentPresenter.segments.size());
+        segments.setText(numberOfSegments);
 
         startDate.setText(getStringFromDate(flight.getStartDate()));
         startTime.setText(getTimeStringFromDate(flight.getStartDate()));

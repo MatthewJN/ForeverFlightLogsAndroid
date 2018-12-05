@@ -11,8 +11,8 @@
         android:layout_width="12dp"
         android:layout_height="12dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginRight="32dp"
+        android:layout_marginEnd="22dp"
+        android:layout_marginRight="22dp"
         android:background="@color/red"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/flightsNNumber" />
@@ -22,8 +22,8 @@
         android:layout_width="12dp"
         android:layout_height="12dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginRight="32dp"
+        android:layout_marginEnd="22dp"
+        android:layout_marginRight="22dp"
         android:background="@color/red"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/flightsCrossCountry" />
@@ -33,22 +33,22 @@
         android:layout_width="12dp"
         android:layout_height="12dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginRight="32dp"
+        android:layout_marginEnd="22dp"
+        android:layout_marginRight="22dp"
         android:background="@color/red"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/flightsSolo" />
+        app:layout_constraintTop_toBottomOf="@+id/flightsInProgress" />
 
     <ImageView
         android:id="@+id/flightsInProgress"
         android:layout_width="12dp"
         android:layout_height="12dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginRight="32dp"
+        android:layout_marginEnd="22dp"
+        android:layout_marginRight="22dp"
         android:background="@color/red"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/flightsSynced" />
+        app:layout_constraintTop_toBottomOf="@+id/flightsSolo" />
 
     <TextView
         android:id="@+id/flightsDeparture"
@@ -94,12 +94,12 @@
 
     <TextView
         android:id="@+id/textView8"
-        android:layout_width="160dp"
+        android:layout_width="110dp"
         android:layout_height="21dp"
         android:layout_marginStart="2dp"
         android:layout_marginLeft="2dp"
         android:layout_marginTop="2dp"
-        android:text="@string/label_flights_start_end_title"
+        android:text="@string/label_flights_segments_title"
         android:textColor="@android:color/black"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/flightsDeparture"
@@ -155,16 +155,15 @@
 
     <TextView
         android:id="@+id/flightsNNumber"
-        android:layout_width="150dp"
+        android:layout_width="80dp"
         android:layout_height="21dp"
-        android:layout_marginStart="2dp"
-        android:layout_marginLeft="2dp"
-        android:layout_marginTop="2dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="1dp"
         android:text="TextView"
         android:textColor="@android:color/black"
         android:textSize="15sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@+id/textView8"
+        app:layout_constraintStart_toEndOf="@+id/textView11"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -173,9 +172,10 @@
         android:layout_height="19dp"
         android:layout_marginStart="2dp"
         android:layout_marginLeft="2dp"
-        android:layout_marginTop="2dp"
+        android:layout_marginTop="3dp"
         android:text="@string/label_flights_crosscountry"
         android:textColor="@android:color/black"
+        android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/flightsStartDate"
         app:layout_constraintTop_toBottomOf="@+id/flightsNNumber" />
 
@@ -188,6 +188,7 @@
         android:layout_marginTop="2dp"
         android:text="@string/label_flights_solo"
         android:textColor="@android:color/black"
+        android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/flightsStartTime"
         app:layout_constraintTop_toBottomOf="@+id/textView17" />
 
@@ -210,8 +211,9 @@
         android:layout_marginTop="2dp"
         android:text="@string/label_flights_synced"
         android:textColor="@android:color/black"
+        android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/flightsEndTime"
-        app:layout_constraintTop_toBottomOf="@+id/textView18" />
+        app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
     <TextView
         android:id="@+id/textView6"
@@ -222,7 +224,33 @@
         android:layout_marginTop="2dp"
         android:text="@string/label_flights_inProgress"
         android:textColor="@android:color/black"
+        android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/flightsEndTime"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+        app:layout_constraintTop_toBottomOf="@+id/textView18" />
+
+    <TextView
+        android:id="@+id/flightsNumberOfSegments"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
+        android:layout_marginLeft="2dp"
+        android:layout_marginTop="2dp"
+        android:text="3"
+        android:textColor="@android:color/black"
+        app:layout_constraintStart_toEndOf="@+id/textView8"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="2dp"
+        android:text="@string/label_flights_planeNumber"
+        android:textColor="@android:color/black"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/flightsNumberOfSegments"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

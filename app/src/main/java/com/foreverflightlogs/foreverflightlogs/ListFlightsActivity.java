@@ -12,6 +12,8 @@ public class ListFlightsActivity extends AppCompatActivity {
     ListView listView;
     FlightsAdapter adapter;
 
+    public static final String FLIGHTID = "com.foreverflightlogs.FLIGHTID";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,10 +30,10 @@ public class ListFlightsActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new android.widget.AdapterView.OnItemClickListener(){
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-//                Intent intent = new Intent(ListSegmentActivity.this, EditSegmentActivity.class);
-//                intent.putExtra(SEGMENTID, segmentPresenter.segments.get(position).getSegmentID());
-//                intent.putExtra(FLIGHTID, flightID);
-//                startActivity(intent);
+                Intent intent = new Intent(ListFlightsActivity.this, EditSegmentActivity.class);
+
+                //intent.putExtra(FLIGHTID, flightID);
+                startActivity(intent);
             }
         });
     }
