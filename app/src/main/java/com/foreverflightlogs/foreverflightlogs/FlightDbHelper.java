@@ -41,6 +41,7 @@ public class FlightDbHelper extends SQLiteOpenHelper {
                     SegmentContract.SegmentEntry.COLUMN_NAME_VISUALFLIGHT + " BOOLEAN," +
                     SegmentContract.SegmentEntry.COLUMN_NAME_INSTRUMENTFLIGHT + " BOOLEAN," +
                     SegmentContract.SegmentEntry.COLUMN_NAME_NIGHT + " BOOLEAN," +
+                    SegmentContract.SegmentEntry.COLUMN_NAME_ISCOMPLETED + " BOOLEAN," +
                     SegmentContract.SegmentEntry.COLUMN_NAME_FLIGHTID + " INTEGER," +
                     " FOREIGN KEY(" + SegmentContract.SegmentEntry.COLUMN_NAME_FLIGHTID +
                     ") REFERENCES " + FlightContract.FlightEntry.TABLE_NAME + "(" +
@@ -55,7 +56,7 @@ public class FlightDbHelper extends SQLiteOpenHelper {
     /**
      * The database version. Increment DB version when DB schema has changed.
      */
-    public static final int DATABASE_VERSION = 7;
+    public static final int DATABASE_VERSION = 8;
 
     /**
      * The name of the database stored on the disk.
@@ -413,6 +414,7 @@ public class FlightDbHelper extends SQLiteOpenHelper {
         values.put(SegmentContract.SegmentEntry.COLUMN_NAME_VISUALFLIGHT, false);
         values.put(SegmentContract.SegmentEntry.COLUMN_NAME_INSTRUMENTFLIGHT, false);
         values.put(SegmentContract.SegmentEntry.COLUMN_NAME_NIGHT, false);
+        values.put(SegmentContract.SegmentEntry.COLUMN_NAME_ISCOMPLETED, false);
         values.put(SegmentContract.SegmentEntry.COLUMN_NAME_FLIGHTID, flightId);
         long newRowID = db.insert(SegmentContract.SegmentEntry.TABLE_NAME, null, values);
 
@@ -437,7 +439,8 @@ public class FlightDbHelper extends SQLiteOpenHelper {
                 SegmentContract.SegmentEntry.COLUMN_NAME_SIMULATEDINSTRUMENTS,
                 SegmentContract.SegmentEntry.COLUMN_NAME_VISUALFLIGHT,
                 SegmentContract.SegmentEntry.COLUMN_NAME_INSTRUMENTFLIGHT,
-                SegmentContract.SegmentEntry.COLUMN_NAME_NIGHT
+                SegmentContract.SegmentEntry.COLUMN_NAME_NIGHT,
+                SegmentContract.SegmentEntry.COLUMN_NAME_ISCOMPLETED
         };
 
         String selection = SegmentContract.SegmentEntry._ID + " = ?";
@@ -463,6 +466,7 @@ public class FlightDbHelper extends SQLiteOpenHelper {
         boolean visualFlight = false;
         boolean instrumentFlight = false;
         boolean night = false;
+        boolean isCompleted = false;
 
         while (cursor.moveToNext()) {
 
@@ -498,6 +502,10 @@ public class FlightDbHelper extends SQLiteOpenHelper {
                 night = cursor.getInt(cursor.getColumnIndex(SegmentContract.SegmentEntry.COLUMN_NAME_NIGHT)) > 0;
             }
 
+            if (!cursor.isNull(cursor.getColumnIndex(SegmentContract.SegmentEntry.COLUMN_NAME_ISCOMPLETED))) {
+                isCompleted = cursor.getInt(cursor.getColumnIndex(SegmentContract.SegmentEntry.COLUMN_NAME_ISCOMPLETED)) > 0;
+            }
+
         }
 
         Segment segment = new Segment(id,
@@ -509,6 +517,7 @@ public class FlightDbHelper extends SQLiteOpenHelper {
                 visualFlight,
                 instrumentFlight,
                 night,
+                isCompleted,
                 context);
 
         cursor.close();
@@ -526,19 +535,12 @@ public class FlightDbHelper extends SQLiteOpenHelper {
         List<Segment> segments = new ArrayList<Segment>();
 
         SQLiteDatabase db = getReadableDatabase();
-        String[] projection = {
-                BaseColumns._ID,
-                SegmentContract.SegmentEntry.COLUMN_NAME_STARTDATE,
-                SegmentContract.SegmentEntry.COLUMN_NAME_ENDDATE,
-                SegmentContract.SegmentEntry.COLUMN_NAME_PILOTINCOMMAND,
-                SegmentContract.SegmentEntry.COLUMN_NAME_DUALHOURS,
-                SegmentContract.SegmentEntry.COLUMN_NAME_SIMULATEDINSTRUMENTS,
-                SegmentContract.SegmentEntry.COLUMN_NAME_VISUALFLIGHT,
-                SegmentContract.SegmentEntry.COLUMN_NAME_INSTRUMENTFLIGHT,
-                SegmentContract.SegmentEntry.COLUMN_NAME_NIGHT
-        };
 
-        String query = "SELECT * FROM " + SegmentContract.SegmentEntry.TABLE_NAME + " WHERE " + SegmentContract.SegmentEntry.COLUMN_NAME_FLIGHTID + " = " + flightId + " ORDER BY " + SegmentContract.SegmentEntry._ID + " ASC";
+        String query = "SELECT * FROM " +
+                SegmentContract.SegmentEntry.TABLE_NAME +
+                " WHERE " + SegmentContract.SegmentEntry.COLUMN_NAME_FLIGHTID + " = " + flightId +
+                " AND " + SegmentContract.SegmentEntry.COLUMN_NAME_ISCOMPLETED + " = " + 1 +
+                " ORDER BY " + SegmentContract.SegmentEntry._ID + " ASC";
 
         Cursor cursor = db.rawQuery(query, null);
 
@@ -552,6 +554,7 @@ public class FlightDbHelper extends SQLiteOpenHelper {
             boolean visualFlight = false;
             boolean instrumentFlight = false;
             boolean night = false;
+            boolean isCompleted = false;
 
             if (!cursor.isNull(cursor.getColumnIndex(SegmentContract.SegmentEntry._ID))) {
 //                id = cursor.getColumnIndex(SegmentContract.SegmentEntry._ID);
@@ -590,6 +593,10 @@ public class FlightDbHelper extends SQLiteOpenHelper {
                 night = cursor.getInt(cursor.getColumnIndex(SegmentContract.SegmentEntry.COLUMN_NAME_NIGHT)) > 0;
             }
 
+            if (!cursor.isNull(cursor.getColumnIndex(SegmentContract.SegmentEntry.COLUMN_NAME_ISCOMPLETED))) {
+                isCompleted = cursor.getInt(cursor.getColumnIndex(SegmentContract.SegmentEntry.COLUMN_NAME_ISCOMPLETED)) > 0;
+            }
+
             Segment segment = new Segment(id,
                     startDate,
                     endDate,
@@ -599,6 +606,7 @@ public class FlightDbHelper extends SQLiteOpenHelper {
                     visualFlight,
                     instrumentFlight,
                     night,
+                    isCompleted,
                     context);
 
             segments.add(segment);
@@ -625,6 +633,7 @@ public class FlightDbHelper extends SQLiteOpenHelper {
         values.put(SegmentContract.SegmentEntry.COLUMN_NAME_VISUALFLIGHT, segment.getVisualFlight());
         values.put(SegmentContract.SegmentEntry.COLUMN_NAME_INSTRUMENTFLIGHT, segment.getinstrumentFlight());
         values.put(SegmentContract.SegmentEntry.COLUMN_NAME_NIGHT, segment.getNight());
+        values.put(SegmentContract.SegmentEntry.COLUMN_NAME_ISCOMPLETED, segment.getIsCompleted());
 
         String selection = FlightContract.FlightEntry._ID + " = ?";
         String[] selectionArgs = { String.format("%d", segment.getSegmentID()) };

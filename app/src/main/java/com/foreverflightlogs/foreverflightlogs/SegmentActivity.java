@@ -125,6 +125,7 @@ public class SegmentActivity extends AppCompatActivity implements CompoundButton
     }
 
     public void enableEndButton(boolean enable) {
+        segmentPresenter.segment.setIsCompleted(true);
         startBtn = (Button) findViewById(R.id.btn_stop);
         startBtn.setEnabled(enable);
     }
