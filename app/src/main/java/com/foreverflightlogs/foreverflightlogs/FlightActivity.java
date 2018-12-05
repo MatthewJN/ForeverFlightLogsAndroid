@@ -15,6 +15,7 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 public class FlightActivity extends AppCompatActivity {
 
@@ -31,9 +32,9 @@ public class FlightActivity extends AppCompatActivity {
         editOriginText = (AutoCompleteTextView) findViewById(R.id.originText);
         editDestinationText = (AutoCompleteTextView) findViewById(R.id.destinationText);
 
-        List<String> array = new ArrayList<String>();
+        AirportPresenter airportPresenter = new AirportPresenter();
 
-        adapter = new ArrayAdapter<String>(this, android.R.layout.select_dialog_item, array);
+        adapter = new ArrayAdapter<String>(this, android.R.layout.select_dialog_item, airportPresenter.getAirports(getApplicationContext()));
 
         editOriginText.setThreshold(1);
         editOriginText.setAdapter(adapter);

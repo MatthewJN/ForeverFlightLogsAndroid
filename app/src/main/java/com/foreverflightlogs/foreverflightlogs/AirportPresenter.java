@@ -15,6 +15,7 @@ import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class AirportPresenter {
@@ -78,5 +79,10 @@ public class AirportPresenter {
         });
 
         thread.start();
+    }
+
+    public List<String> getAirports(Context context) {
+        AirportDbHelper airportDbHelper = new AirportDbHelper(context);
+        return airportDbHelper.getAllAirports();
     }
 }

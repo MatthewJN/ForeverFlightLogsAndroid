@@ -97,8 +97,8 @@ public class AirportDbHelper extends SQLiteOpenHelper {
         db.endTransaction();
     }
 
-    public Map<String, String> getAllAirports(Context context) {
-        Map<String, String> airports = new HashMap<String, String>();
+    public List<String> getAllAirports() {
+        List<String> airports = new ArrayList<String>();
 
         SQLiteDatabase db = getReadableDatabase();
 
@@ -118,7 +118,7 @@ public class AirportDbHelper extends SQLiteOpenHelper {
                 name = cursor.getString(cursor.getColumnIndex(AirportContract.AirportEntry.COLUMN_NAME_AIRPORT_NAME));
             }
 
-            airports.put(key, name);
+            airports.add(String.format("%s - %s", key, name));
         }
 
         return airports;
