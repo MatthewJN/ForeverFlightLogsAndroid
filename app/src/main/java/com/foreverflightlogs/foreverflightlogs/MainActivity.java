@@ -9,6 +9,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -24,6 +27,9 @@ public class MainActivity extends AppCompatActivity {
         if (isInternetOn(getApplicationContext())) {
             SyncManager.sync(getApplicationContext());
         }
+
+        AirportPresenter airportPresenter = new AirportPresenter();
+        airportPresenter.fetchAirports(getApplicationContext());
     }
 
     public void createNewFlight(View view) {

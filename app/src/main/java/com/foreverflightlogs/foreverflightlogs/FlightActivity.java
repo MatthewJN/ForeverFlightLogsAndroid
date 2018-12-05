@@ -32,7 +32,7 @@ public class FlightActivity extends AppCompatActivity {
         editDestinationText = (AutoCompleteTextView) findViewById(R.id.destinationText);
 
         List<String> array = new ArrayList<String>();
-        array.add("SLC");
+        array.add("SLC - Salt Lake City");
         array.add("LBA");
         array.add("ADK");
         array.add("AKK");
@@ -539,7 +539,7 @@ public class FlightActivity extends AppCompatActivity {
 
         editOriginText.setThreshold(1);
         editOriginText.setAdapter(adapter);
-        
+
         editDestinationText.setThreshold(1);
         editDestinationText.setAdapter(adapter);
     }
