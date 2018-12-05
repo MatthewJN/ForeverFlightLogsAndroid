@@ -14,6 +14,7 @@ public class Segment {
     private boolean visualFlight;
     private boolean instrumentFlight;
     private boolean night;
+    private boolean isCompleted;
     private Context context;
 
     public Segment(Context context) {
@@ -29,6 +30,7 @@ public class Segment {
                   boolean visualFlight,
                   boolean instrumentFlight,
                   boolean night,
+                  boolean isCompleted,
                   Context context) {
         this.segmentID = segmentID;
         this.startDate = startDate;
@@ -39,6 +41,7 @@ public class Segment {
         this.visualFlight = visualFlight;
         this.instrumentFlight = instrumentFlight;
         this.night = night;
+        this.isCompleted = isCompleted;
         this.context = context;
     }
 
@@ -76,6 +79,10 @@ public class Segment {
     }
 
     public boolean getNight() { return night; }
+
+    public boolean getIsCompleted() {
+        return isCompleted;
+    }
 
     // Setters
     public void setSegmentID(long segmentID) {
@@ -119,6 +126,11 @@ public class Segment {
 
     public void setNight(boolean night) {
         this.night = night;
+        updateDatabase();
+    }
+
+    public void setIsCompleted(boolean isCompleted) {
+        this.isCompleted = isCompleted;
         updateDatabase();
     }
 

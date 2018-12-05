@@ -39,4 +39,11 @@
     <string name="label_pic_title">PIC:</string>
     <string name="label_end_title">End:</string>
     <string name="label_start_title">Start:</string>
+    <string name="label_flights_list_to_title">to</string>
+    <string name="label_flights_segments_title">No of Segments:</string>
+    <string name="label_flights_crosscountry">Cross Country:</string>
+    <string name="label_flights_solo">Solo Flight:</string>
+    <string name="label_flights_planeNumber">Plane Number:</string>
+    <string name="label_flights_synced">Synced:</string>
+    <string name="label_flights_inProgress">In Progress:</string>
 </resources>

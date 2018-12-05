@@ -164,6 +164,7 @@ public class SegmentActivity extends AppCompatActivity implements CompoundButton
      * @param view
      */
     public void onClickStop(View view) {
+        segmentPresenter.segment.setIsCompleted(true);
         enableStartButton(false);
         enableEndButton(false);
         enableNewSegmentButton(true);
