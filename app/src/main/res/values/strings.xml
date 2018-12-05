@@ -43,5 +43,5 @@
     <string name="label_flights_start_end_title">Start/End Date:</string>
     <string name="label_flights_crosscountry">Cross Country:</string>
     <string name="label_flights_solo">Solo Flight:</string>
-
+    <string name="label_flights_planeNumber">Number:</string>
 </resources>

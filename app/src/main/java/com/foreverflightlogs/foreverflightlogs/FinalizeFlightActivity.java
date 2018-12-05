@@ -58,13 +58,6 @@ public class FinalizeFlightActivity extends AppCompatActivity {
         flightPresenter.flight.setSolo(solo.isChecked());
         flightPresenter.flight.setEndDate(new Date());
         flightPresenter.flight.setInProgress(false);
-       // flightPresenter.flight.setInProgress(false);
-//        FinalizeFlightPresenter finalizeFlightPresenter = new FinalizeFlightPresenter(flightID, getApplicationContext());
-//        finalizeFlightPresenter.flight.setRemarks(remarks);
-//        finalizeFlightPresenter.flight.setEndDate(new Date());
-//        FlightPresenter flightPresenter = new FlightPresenter(flightID, getApplicationContext());
-      //  flightPresenter.flight.setRemarks(remarks);
-     //   flightPresenter.flight.setEndDate(new Date());
         SyncManager.sync(getApplicationContext());
         Intent i=new Intent(this, MainActivity.class);
         i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

@@ -17,14 +17,14 @@ public class Flight {
     private boolean solo;
     private String remarks;
     private Context context;
-    Segment[] segments;
-    public Segment[] getSegments() {
-        return segments;
-    }
-
-    public void setSegments(Segment[] segments) {
-        this.segments = segments;
-    }
+//    Segment[] segments;
+//    public Segment[] getSegments() {
+//        return segments;
+//    }
+//
+//    public void setSegments(Segment[] segments) {
+//        this.segments = segments;
+//    }
 
 
 

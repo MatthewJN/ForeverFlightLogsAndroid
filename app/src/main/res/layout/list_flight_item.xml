@@ -6,6 +6,28 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <ImageView
+        android:id="@+id/flightsCrossCountry"
+        android:layout_width="12dp"
+        android:layout_height="12dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
+        android:background="@color/red"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/flightsSolo"
+        android:layout_width="12dp"
+        android:layout_height="12dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
+        android:background="@color/red"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/flightsCrossCountry" />
+
     <TextView
         android:id="@+id/flightsDeparture"
         android:layout_width="66dp"
@@ -65,10 +87,13 @@
         android:id="@+id/flightsStartDate"
         android:layout_width="160dp"
         android:layout_height="19dp"
+        android:layout_marginStart="2dp"
+        android:layout_marginLeft="2dp"
+        android:layout_marginTop="2dp"
         android:text="Date"
         android:textColor="@android:color/black"
-        tools:layout_editor_absoluteX="70dp"
-        tools:layout_editor_absoluteY="25dp" />
+        app:layout_constraintStart_toEndOf="@+id/flightsDeparture"
+        app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
     <TextView
         android:id="@+id/flightsStartTime"
@@ -108,14 +133,19 @@
 
     <TextView
         android:id="@+id/flightsNNumber"
-        android:layout_width="143dp"
+        android:layout_width="80dp"
         android:layout_height="21dp"
-        android:layout_marginStart="2dp"
-        android:layout_marginLeft="2dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginLeft="4dp"
         android:layout_marginTop="2dp"
+        android:layout_marginEnd="2dp"
+        android:layout_marginRight="2dp"
         android:text="TextView"
         android:textColor="@android:color/black"
-        app:layout_constraintStart_toEndOf="@+id/textView8"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView4"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -129,30 +159,6 @@
         android:textColor="@android:color/black"
         app:layout_constraintStart_toEndOf="@+id/flightsStartDate"
         app:layout_constraintTop_toBottomOf="@+id/flightsNNumber" />
-
-    <ImageView
-        android:id="@+id/flightsCrossCountry"
-        android:layout_width="12dp"
-        android:layout_height="12dp"
-        android:layout_marginTop="6dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginRight="32dp"
-        android:background="@color/red"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/flightsNNumber"
-        app:srcCompat="?attr/actionMenuTextColor" />
-
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="12dp"
-        android:layout_height="12dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginRight="32dp"
-        android:background="@color/red"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/flightsCrossCountry"
-        app:srcCompat="?attr/actionMenuTextColor" />
 
     <TextView
         android:id="@+id/textView18"
@@ -173,16 +179,13 @@
         android:layout_marginStart="2dp"
         android:layout_marginLeft="2dp"
         android:layout_marginTop="2dp"
-        android:layout_marginEnd="2dp"
-        android:layout_marginRight="2dp"
         android:text="TextView"
         android:textColor="@android:color/black"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/flightsEndDate"
+        app:layout_constraintStart_toEndOf="@+id/flightsEndTime"
         app:layout_constraintTop_toBottomOf="@+id/textView18" />
 
     <ImageView
-        android:id="@+id/flightsSolo"
+        android:id="@+id/aLine"
         android:layout_width="160dp"
         android:layout_height="2dp"
         android:layout_marginStart="2dp"
@@ -190,4 +193,16 @@
         app:layout_constraintStart_toEndOf="@+id/textView7"
         app:layout_constraintTop_toBottomOf="@+id/flightsStartTime"
         app:srcCompat="@color/gray" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
+        android:layout_marginLeft="2dp"
+        android:layout_marginTop="2dp"
+        android:text="@string/label_flights_planeNumber"
+        android:textColor="@android:color/black"
+        app:layout_constraintStart_toEndOf="@+id/textView8"
+        app:layout_constraintTop_toTopOf="parent" />
 </android.support.constraint.ConstraintLayout>

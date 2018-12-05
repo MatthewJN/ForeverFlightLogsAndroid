@@ -2,21 +2,18 @@ package com.foreverflightlogs.foreverflightlogs;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import org.w3c.dom.Text;
-
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
 public class FlightsAdapter extends ArrayAdapter<Flight> {
-
     public FlightsAdapter(Context context, List<Flight> flights) {
         super(context, 0, flights);
     }
@@ -28,7 +25,7 @@ public class FlightsAdapter extends ArrayAdapter<Flight> {
 
         // Check if an existing view is being reused, otherwise inflate the view
         if (convertView == null) {
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.list_item, parent, false);
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.list_flight_item, parent, false);
         }
 
         // Lookup view for data population
@@ -45,6 +42,7 @@ public class FlightsAdapter extends ArrayAdapter<Flight> {
         ImageView solo = (ImageView)convertView.findViewById(R.id.flightsSolo);
 
         // Populate the data into the template view using the data object
+        //Log.i("GETORIGIN", flight.getOrigin());
         flightOrigin.setText(flight.getOrigin());
         flightDestination.setText(flight.getDestination());
 
@@ -54,7 +52,9 @@ public class FlightsAdapter extends ArrayAdapter<Flight> {
         endDate.setText(getStringFromDate(flight.getEndDate()));
         endTime.setText(getTimeStringFromDate(flight.getEndDate()));
 
-        remarks.setText(String.format("Remarks: %@", flight.getRemarks()));
+        nNumber.setText(flight.getAircraft());
+        remarks.setText("Remarks");
+
 
         if (!flight.getCrosscountry()) {
             crossCountry.setBackgroundColor(Color.rgb(180, 0, 0));

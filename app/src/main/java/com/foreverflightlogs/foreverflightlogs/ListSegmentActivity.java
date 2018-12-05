@@ -31,7 +31,9 @@ public class ListSegmentActivity extends AppCompatActivity {
 
         //reference items on screen
         Button btnAddRemarks = (Button)findViewById(R.id.button_add_remarks);
+
         listView = (ListView)findViewById(R.id.segmentList);
+
         //to use preloaded layout - must use android.R.layout...
         adapter = new SegmentsAdapter(this, segmentPresenter.segments);
 
