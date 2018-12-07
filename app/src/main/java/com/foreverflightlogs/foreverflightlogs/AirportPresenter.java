@@ -26,59 +26,61 @@ public class AirportPresenter {
 
     public void fetchAirports(Context context) {
         final Context thisContext = context;
-        Thread thread = new Thread(new Runnable() {
+        if (getAirports(context).size() == 0) {
+            Thread thread = new Thread(new Runnable() {
 
-            @Override
-            public void run() {
-                try {
-                    URL url = new URL("https://gist.githubusercontent.com/MatthewJN/cd0f67c71727eb30c7b304f303ff75d5/raw/27ff7a0b0bddc3151b960719b242107bb5440f4a/airports.json");
-                    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-                    conn.setRequestMethod("GET");
-                    conn.setRequestProperty("Content-Type", "application/json;charset=UTF-8");
-                    conn.setRequestProperty("Accept","application/json");
-                    conn.setDoOutput(false);
-                    conn.setDoInput(true);
-
-                    String reply;
-                    InputStream in = conn.getInputStream();
-                    StringBuffer sb = new StringBuffer();
+                @Override
+                public void run() {
                     try {
-                        int chr;
-                        while ((chr = in.read()) != -1) {
-                            sb.append((char) chr);
+                        URL url = new URL("https://gist.githubusercontent.com/MatthewJN/cd0f67c71727eb30c7b304f303ff75d5/raw/27ff7a0b0bddc3151b960719b242107bb5440f4a/airports.json");
+                        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                        conn.setRequestMethod("GET");
+                        conn.setRequestProperty("Content-Type", "application/json;charset=UTF-8");
+                        conn.setRequestProperty("Accept","application/json");
+                        conn.setDoOutput(false);
+                        conn.setDoInput(true);
+
+                        String reply;
+                        InputStream in = conn.getInputStream();
+                        StringBuffer sb = new StringBuffer();
+                        try {
+                            int chr;
+                            while ((chr = in.read()) != -1) {
+                                sb.append((char) chr);
+                            }
+                            reply = sb.toString();
+                        } finally {
+                            in.close();
                         }
-                        reply = sb.toString();
-                    } finally {
-                        in.close();
+
+                        JSONArray jsonArray = new JSONArray(reply); //JSONObject(reply).getJSONArray("items");
+
+                        AirportDbHelper airportDbHelper = new AirportDbHelper(thisContext);
+
+                        Map<String, String> airports = new HashMap<String, String>();
+
+                        for (int i = 0; i < jsonArray.length(); i++) {
+                            airports.put(jsonArray.getJSONObject(i).getString("code"), jsonArray.getJSONObject(i).getString("name"));
+                        }
+
+                        airportDbHelper.insertAirports(airports, thisContext);
+
+                        conn.disconnect();
+
+                    } catch (MalformedURLException e) {
+                        e.printStackTrace();
+                    } catch (ProtocolException e) {
+                        e.printStackTrace();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    } catch (JSONException e) {
+                        e.printStackTrace();
                     }
-
-                    JSONArray jsonArray = new JSONArray(reply); //JSONObject(reply).getJSONArray("items");
-
-                    AirportDbHelper airportDbHelper = new AirportDbHelper(thisContext);
-
-                    Map<String, String> airports = new HashMap<String, String>();
-
-                    for (int i = 0; i < jsonArray.length(); i++) {
-                        airports.put(jsonArray.getJSONObject(i).getString("code"), jsonArray.getJSONObject(i).getString("name"));
-                    }
-
-                    airportDbHelper.insertAirports(airports, thisContext);
-
-                    conn.disconnect();
-
-                } catch (MalformedURLException e) {
-                    e.printStackTrace();
-                } catch (ProtocolException e) {
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } catch (JSONException e) {
-                    e.printStackTrace();
                 }
-            }
-        });
+            });
 
-        thread.start();
+            thread.start();
+        }
     }
 
     public List<String> getAirports(Context context) {
