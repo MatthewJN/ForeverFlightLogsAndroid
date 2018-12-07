@@ -11,6 +11,9 @@ import android.widget.Toast;
 
 import java.util.List;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class MainActivity extends AppCompatActivity {
 
     public static final String FLIGHTID = "com.foreverflightlogs.FLIGHTID";
@@ -32,7 +35,6 @@ public class MainActivity extends AppCompatActivity {
         List<Flight> inProgressFlights = flightDbHelper.getAllFlightsOfType(false, true, getApplicationContext());
 
         if (inProgressFlights.size() == 1) {
-
             Intent intent = new Intent(MainActivity.this, SegmentActivity.class );
             intent.putExtra(FLIGHTID, inProgressFlights.get(0).getFlightID());
             MainActivity.this.startActivity(intent);
@@ -43,6 +45,10 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(MainActivity.this, ListFlightsActivity.class );
             MainActivity.this.startActivity(intent);
         }
+
+        AirportPresenter airportPresenter = new AirportPresenter();
+        airportPresenter.fetchAirports(getApplicationContext());
+
     }
 
     public void createNewFlight(View view) {

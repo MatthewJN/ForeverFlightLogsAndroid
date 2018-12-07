@@ -6,6 +6,28 @@
     android:layout_height="match_parent"
     tools:context=".FlightActivity">
 
+    <AutoCompleteTextView
+        android:id="@+id/originText"
+        android:layout_width="214dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:inputType="textCapCharacters"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <AutoCompleteTextView
+        android:id="@+id/destinationText"
+        android:layout_width="214dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:inputType="textCapCharacters"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/originText" />
+
     <TextView
         android:id="@+id/textView3"
         android:layout_width="115dp"
@@ -53,30 +75,6 @@
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/originText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:ems="10"
-        android:inputType="textCapCharacters"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/destinationText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:ems="10"
-        android:inputType="textCapCharacters"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/originText" />
 
     <EditText
         android:id="@+id/aircraftText"
