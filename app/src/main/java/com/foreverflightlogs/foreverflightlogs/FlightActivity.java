@@ -7,12 +7,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -32,7 +34,7 @@ public class FlightActivity extends AppCompatActivity {
         editOriginText = (AutoCompleteTextView) findViewById(R.id.originText);
         editDestinationText = (AutoCompleteTextView) findViewById(R.id.destinationText);
 
-        AirportPresenter airportPresenter = new AirportPresenter();
+        final AirportPresenter airportPresenter = new AirportPresenter();
 
         adapter = new ArrayAdapter<String>(this, android.R.layout.select_dialog_item, airportPresenter.getAirports(getApplicationContext()));
 
@@ -42,6 +44,8 @@ public class FlightActivity extends AppCompatActivity {
         editDestinationText.setThreshold(1);
         editDestinationText.setAdapter(adapter);
     }
+
+
 
     /**
      * startFlight:
@@ -53,8 +57,8 @@ public class FlightActivity extends AppCompatActivity {
         EditText editAircraftText = (EditText) findViewById(R.id.aircraftText);
 
         // Convert those fields to strings
-        String origin = editOriginText.getText().toString();
-        String destination = editDestinationText.getText().toString();
+        String origin = editOriginText.getText().toString().split("\\ -")[0];
+        String destination = editDestinationText.getText().toString().split("\\ -")[0];
         String aircraft = editAircraftText.getText().toString();
 
         // Create a new flight
