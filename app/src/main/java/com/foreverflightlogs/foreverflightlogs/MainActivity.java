@@ -7,6 +7,7 @@ import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import java.util.List;
@@ -28,16 +29,18 @@ public class MainActivity extends AppCompatActivity {
         if (isInternetOn(getApplicationContext())) {
             SyncManager.sync(getApplicationContext());
         }
-
+        
         // handle one or more flights in progress
+        Button continueFlight = (Button) findViewById(R.id.btn_continue_flight);
+        continueFlight.setVisibility(View.INVISIBLE); //make btn invisible unless unfinished flight
+
         List<Flight> inProgressFlights = flightDbHelper.getAllFlightsOfType(false, true, getApplicationContext());
 
         if (inProgressFlights.size() == 1) {
-            Intent intent = new Intent(MainActivity.this, SegmentActivity.class );
-            intent.putExtra(FLIGHTID, inProgressFlights.get(0).getFlightID());
+            continueFlight.setVisibility(View.VISIBLE); //make btn invisible unless unfinished flightIntent intent = new Intent(MainActivity.this, SegmentActivity.class );
             inProgressFlightID = inProgressFlights.get(0).getFlightID();
-            MainActivity.this.startActivity(intent);
-            Toast.makeText(this, "This flight is unfinished. ", Toast.LENGTH_LONG).show();
+
+            Toast.makeText(this, "You have an unfinished flight. To complete flight, select Continue Flight. ", Toast.LENGTH_LONG).show();
 
         }
         else if(inProgressFlights.size() > 1){ //more than 1 flight in progress go to listFlights
