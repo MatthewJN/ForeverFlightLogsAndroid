@@ -42,11 +42,11 @@ public class MainActivity extends AppCompatActivity {
 
             Toast.makeText(this, "You have an unfinished flight. To complete flight, select Continue Flight. ", Toast.LENGTH_LONG).show();
 
-
         }
         else if(inProgressFlights.size() > 1){ //more than 1 flight in progress go to listFlights
             Intent intent = new Intent(MainActivity.this, ListFlightsActivity.class );
             MainActivity.this.startActivity(intent);
+            Toast.makeText(this, "You have unfinished flights. To complete a flight, select Continue Flight. ", Toast.LENGTH_LONG).show();
         }
     }
     public void continueFlight(View view) {

@@ -28,13 +28,6 @@ public class ListFlightsActivity extends AppCompatActivity {
 
         listView.setAdapter(adapter);
 
-        // Get the flight ID
-        Intent myIntent = getIntent();
-        Long flightID = myIntent.getLongExtra(FlightActivity.FLIGHTID, -1);
-        
-
-
-
         listView.setOnItemClickListener(new android.widget.AdapterView.OnItemClickListener(){
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
@@ -45,6 +38,7 @@ public class ListFlightsActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Flight Already Completed", Toast.LENGTH_SHORT).show();
                 } else {
                     intent.putExtra(FLIGHTID, flight.getFlightID());
+                    intent.putExtra("In Progress", true);
                     startActivity(intent);
                 }
             }
