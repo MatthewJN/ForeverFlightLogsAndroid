@@ -10,7 +10,7 @@ import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.TextView;
-import android.widget.Toast;
+
 import java.util.Date;
 
 /**
@@ -51,14 +51,24 @@ public class SegmentActivity extends AppCompatActivity implements CompoundButton
         Intent intent = getIntent();
         flightID = intent.getLongExtra(FlightActivity.FLIGHTID, -1);
 
+
         // Create a new segment attached to the flightID passed in.
         segmentPresenter = new SegmentPresenter(getApplicationContext());
         segmentPresenter.startSegment(flightID, getApplicationContext());
 
-        setSwitches();
-        enableNewSegmentButton(false);
-        enableEndFlightButton(false);
-        enableEndButton(false);
+        //in progress flights have option to start new segment or just end the flight.
+        if(intent.hasExtra("In Progress")){
+            setSwitches();
+            enableNewSegmentButton(true);
+            enableEndFlightButton(true);
+            enableEndButton(true);
+        }
+        else {
+            setSwitches();
+            enableNewSegmentButton(false);
+            enableEndFlightButton(false);
+            enableEndButton(false);
+        }
 
         // get state of timer
         if(savedInstanceState != null) {
@@ -199,7 +209,7 @@ public class SegmentActivity extends AppCompatActivity implements CompoundButton
         Intent intent = new Intent(this, ListSegmentActivity.class);
         intent.putExtra(FLIGHTID, flightID);
         startActivity(intent);
-        Toast.makeText(this, "onclickEndFlight opens ListSegmentActivity", Toast.LENGTH_SHORT).show();
+       // Toast.makeText(this, "onclickEndFlight opens ListSegmentActivity", Toast.LENGTH_SHORT).show();
     }
 
     /**
