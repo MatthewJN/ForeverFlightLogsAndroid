@@ -34,9 +34,11 @@ public class ListFlightsActivity extends AppCompatActivity {
                 Intent intent = new Intent(ListFlightsActivity.this, SegmentActivity.class);
                 Flight flight = adapter.getItem(position);
                 if (!flight.getInProgress()) {
+
                     Toast.makeText(getApplicationContext(), "Flight Already Completed", Toast.LENGTH_SHORT).show();
                 } else {
                     intent.putExtra(FLIGHTID, flight.getFlightID());
+                    intent.putExtra("In Progress", true);
                     startActivity(intent);
                 }
             }

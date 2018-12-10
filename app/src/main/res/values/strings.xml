@@ -11,6 +11,7 @@
     <string name="button_new_segment">New Segment</string>
     <string name="button_end_flight">End Flight</string>
     <string name="button_add_remarks">Add Remarks</string>
+    <string name="button_continue_flight">Continue Flight</string>
     <string name="button_save">Save</string>
     <string name="button_save_log">Save Log</string>
     <string name="start">Start</string>

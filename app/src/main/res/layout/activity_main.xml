@@ -10,10 +10,11 @@
         android:id="@+id/createNewFlightButton"
         android:layout_width="221dp"
         android:layout_height="81dp"
-        android:layout_marginTop="128dp"
+        android:layout_marginTop="84dp"
         android:onClick="createNewFlight"
         android:text="@string/create_new_flight"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -27,4 +28,18 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btn_continue_flight"
+        android:layout_width="216dp"
+        android:layout_height="77dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginBottom="8dp"
+        android:onClick="continueFlight"
+        android:text="@string/button_continue_flight"
+        app:layout_constraintBottom_toTopOf="@+id/showAllFlightsButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/createNewFlightButton"
+        app:layout_constraintVertical_bias="0.041" />
 </android.support.constraint.ConstraintLayout>

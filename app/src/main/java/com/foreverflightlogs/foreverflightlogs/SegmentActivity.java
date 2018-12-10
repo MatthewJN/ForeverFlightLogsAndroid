@@ -51,14 +51,24 @@ public class SegmentActivity extends AppCompatActivity implements CompoundButton
         Intent intent = getIntent();
         flightID = intent.getLongExtra(FlightActivity.FLIGHTID, -1);
 
+
         // Create a new segment attached to the flightID passed in.
         segmentPresenter = new SegmentPresenter(getApplicationContext());
         segmentPresenter.startSegment(flightID, getApplicationContext());
 
-        setSwitches();
-        enableNewSegmentButton(false);
-        enableEndFlightButton(false);
-        enableEndButton(false);
+        //in progress flights have option to start new segment or just end the flight.
+        if(intent.hasExtra("In Progress")){
+            setSwitches();
+            enableNewSegmentButton(true);
+            enableEndFlightButton(true);
+            enableEndButton(true);
+        }
+        else {
+            setSwitches();
+            enableNewSegmentButton(false);
+            enableEndFlightButton(false);
+            enableEndButton(false);
+        }
 
         // get state of timer
         if(savedInstanceState != null) {
