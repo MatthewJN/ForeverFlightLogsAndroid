@@ -45,10 +45,6 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(MainActivity.this, ListFlightsActivity.class );
             MainActivity.this.startActivity(intent);
         }
-
-        AirportPresenter airportPresenter = new AirportPresenter();
-        airportPresenter.fetchAirports(getApplicationContext());
-
     }
 
     public void createNewFlight(View view) {

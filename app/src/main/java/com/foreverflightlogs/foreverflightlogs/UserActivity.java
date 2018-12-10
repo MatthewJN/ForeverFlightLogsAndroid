@@ -13,13 +13,9 @@ public class UserActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user);
-    }
 
-    // quick test comment to push
-    public boolean loginUser(String phoneNumber, String password) {
-
-
-        return false;
+        AirportPresenter airportPresenter = new AirportPresenter();
+        airportPresenter.fetchAirports(getApplicationContext());
     }
 
     /** Called when the user taps the login button */
