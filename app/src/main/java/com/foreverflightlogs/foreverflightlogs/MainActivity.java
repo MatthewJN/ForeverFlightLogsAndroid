@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
         if (isInternetOn(getApplicationContext())) {
             SyncManager.sync(getApplicationContext());
         }
-        
+
         // handle one or more flights in progress
         Button continueFlight = (Button) findViewById(R.id.btn_continue_flight);
         continueFlight.setVisibility(View.INVISIBLE); //make btn invisible unless unfinished flight

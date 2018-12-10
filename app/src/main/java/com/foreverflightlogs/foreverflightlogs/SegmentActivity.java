@@ -10,7 +10,7 @@ import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.TextView;
-import android.widget.Toast;
+
 import java.util.Date;
 
 /**
@@ -209,7 +209,7 @@ public class SegmentActivity extends AppCompatActivity implements CompoundButton
         Intent intent = new Intent(this, ListSegmentActivity.class);
         intent.putExtra(FLIGHTID, flightID);
         startActivity(intent);
-        Toast.makeText(this, "onclickEndFlight opens ListSegmentActivity", Toast.LENGTH_SHORT).show();
+       // Toast.makeText(this, "onclickEndFlight opens ListSegmentActivity", Toast.LENGTH_SHORT).show();
     }
 
     /**
