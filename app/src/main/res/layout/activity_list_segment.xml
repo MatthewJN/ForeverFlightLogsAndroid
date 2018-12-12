@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ListSegmentActivity">
+    tools:context=".ListSegmentActivity"
+    android:background="@drawable/background">
 
     <ListView
         android:id="@+id/segmentList"
@@ -25,8 +26,11 @@
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
+        android:background="@color/white"
         android:onClick="addRemarksPressed"
         android:text="@string/button_add_remarks"
+        android:textColor="@color/blue"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

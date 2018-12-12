@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".EditSegmentActivity">
+    tools:context=".EditSegmentActivity"
+    android:background="@drawable/background">
 
     <TextView
         android:id="@+id/lable_Night"
@@ -14,6 +15,9 @@
         android:layout_marginLeft="48dp"
         android:layout_marginTop="16dp"
         android:text="@string/label_night"
+        android:textAllCaps="true"
+        android:textColor="@color/navy"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/label_instrumentFlight" />
 
@@ -35,6 +39,9 @@
         android:layout_marginLeft="48dp"
         android:layout_marginTop="32dp"
         android:text="@string/label_PilotInCommand"
+        android:textAllCaps="true"
+        android:textColor="@color/navy"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView14" />
 
@@ -46,6 +53,9 @@
         android:layout_marginLeft="48dp"
         android:layout_marginTop="16dp"
         android:text="@string/label_dualHours"
+        android:textAllCaps="true"
+        android:textColor="@color/navy"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/label_PilotInCommand" />
 
@@ -57,6 +67,9 @@
         android:layout_marginLeft="48dp"
         android:layout_marginTop="16dp"
         android:text="@string/label_instrumentFlight"
+        android:textAllCaps="true"
+        android:textColor="@color/navy"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/label_visualFlight" />
 
@@ -68,6 +81,9 @@
         android:layout_marginLeft="48dp"
         android:layout_marginTop="16dp"
         android:text="@string/label_visualFlight"
+        android:textAllCaps="true"
+        android:textColor="@color/navy"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/label_simInstruments" />
 
@@ -99,6 +115,9 @@
         android:layout_marginLeft="48dp"
         android:layout_marginTop="16dp"
         android:text="@string/label_simInstruments"
+        android:textAllCaps="true"
+        android:textColor="@color/navy"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/label_dualHours" />
 
@@ -142,6 +161,7 @@
         android:ems="10"
         android:hint="@string/endTime"
         android:inputType="textPersonName|datetime"
+        android:textColor="@color/navy"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/startTime" />
 
@@ -155,6 +175,7 @@
         android:ems="10"
         android:hint="@string/startTime"
         android:inputType="textPersonName|datetime"
+        android:textColor="@color/navy"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/duration" />
 
@@ -171,12 +192,15 @@
 
     <TextView
         android:id="@+id/textView12"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="84dp"
+        android:layout_height="21dp"
         android:layout_marginStart="32dp"
         android:layout_marginLeft="32dp"
         android:layout_marginTop="16dp"
         android:text="Duration"
+        android:textAllCaps="true"
+        android:textColor="@color/navy"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/closeActivity" />
 
@@ -188,6 +212,9 @@
         android:layout_marginLeft="32dp"
         android:layout_marginTop="32dp"
         android:text="Start Time"
+        android:textAllCaps="true"
+        android:textColor="@color/navy"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView12" />
 
@@ -199,6 +226,9 @@
         android:layout_marginLeft="32dp"
         android:layout_marginTop="32dp"
         android:text="End Time"
+        android:textAllCaps="true"
+        android:textColor="@color/navy"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView13" />
 
@@ -212,6 +242,7 @@
         android:ems="10"
         android:hint="@string/duration"
         android:inputType="textPersonName|numberDecimal"
+        android:textColor="@color/navy"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -220,8 +251,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
+        android:background="@color/white"
         android:onClick="onSaveButtonClicked"
         android:text="@string/button_save"
+        android:textColor="@color/blue"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

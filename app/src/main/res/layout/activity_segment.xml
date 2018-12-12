@@ -4,13 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SegmentActivity">
+    tools:context=".SegmentActivity"
+    android:background="@drawable/background">
+
     <TextView
         android:id="@+id/time_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:textColor="@color/gray"
+        android:textColor="@color/navy"
         android:textSize="60sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -129,6 +131,9 @@
         android:layout_marginLeft="48dp"
         android:layout_marginTop="24dp"
         android:text="@string/label_PilotInCommand"
+        android:textAllCaps="true"
+        android:textColor="@color/navy"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_start" />
 
@@ -140,6 +145,9 @@
         android:layout_marginLeft="48dp"
         android:layout_marginTop="16dp"
         android:text="@string/label_dualHours"
+        android:textAllCaps="true"
+        android:textColor="@color/navy"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/label_PilotInCommand" />
 
@@ -151,6 +159,9 @@
         android:layout_marginLeft="48dp"
         android:layout_marginTop="16dp"
         android:text="@string/label_simInstruments"
+        android:textAllCaps="true"
+        android:textColor="@color/navy"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/label_dualHours" />
 
@@ -162,6 +173,9 @@
         android:layout_marginLeft="48dp"
         android:layout_marginTop="16dp"
         android:text="@string/label_visualFlight"
+        android:textAllCaps="true"
+        android:textColor="@color/navy"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/label_SimulatedInstruments" />
 
@@ -173,6 +187,9 @@
         android:layout_marginLeft="48dp"
         android:layout_marginTop="16dp"
         android:text="@string/label_instrumentFlight"
+        android:textAllCaps="true"
+        android:textColor="@color/navy"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/label_visualFlight" />
 
@@ -184,6 +201,9 @@
         android:layout_marginLeft="48dp"
         android:layout_marginTop="16dp"
         android:text="@string/label_night"
+        android:textAllCaps="true"
+        android:textColor="@color/navy"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/label_instrumentalFlight" />
 
@@ -204,8 +224,11 @@
         android:layout_height="49dp"
         android:layout_marginTop="15dp"
         android:layout_marginBottom="18dp"
+        android:background="@color/white"
         android:onClick="onClickEndFlight"
         android:text="@string/button_end_flight"
+        android:textColor="@color/blue"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -217,8 +240,11 @@
         android:layout_width="248dp"
         android:layout_height="49dp"
         android:layout_marginTop="12dp"
+        android:background="@color/white"
         android:onClick="onClickNewSegment"
         android:text="@string/button_new_segment"
+        android:textColor="@color/blue"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/switch_Night" />
