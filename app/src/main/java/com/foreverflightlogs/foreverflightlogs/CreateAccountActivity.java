@@ -36,16 +36,16 @@ public class CreateAccountActivity extends AppCompatActivity {
 ;    }
 
     public void createNewAccount(View view){
-        final EditText editPhone = (EditText) findViewById(R.id.phone);
-        final EditText editName = (EditText) findViewById(R.id.name);
-        final EditText editPassword = (EditText) findViewById(R.id.password);
-        final EditText editConfirmPassword = (EditText) findViewById(R.id.confirmPassword);
-        final Button createAccount = (Button) findViewById(R.id.btn_createAccount);
+        EditText editPhone = (EditText) findViewById(R.id.phone);
+        EditText editName = (EditText) findViewById(R.id.name);
+        EditText editPassword = (EditText) findViewById(R.id.password);
+        EditText editConfirmPassword = (EditText) findViewById(R.id.confirmPassword);
+        Button createAccount = (Button) findViewById(R.id.btn_createAccount);
 
-        final String phone = editPhone.getText().toString();
-        final String name = editName.getText().toString();
-        final String password = editPassword.getText().toString();
-        final String confirm = editConfirmPassword.getText().toString();
+        String phone = editPhone.getText().toString();
+        String name = editName.getText().toString();
+        String password = editPassword.getText().toString();
+        String confirm = editConfirmPassword.getText().toString();
 
         //validate input items
           boolean isValid = true;

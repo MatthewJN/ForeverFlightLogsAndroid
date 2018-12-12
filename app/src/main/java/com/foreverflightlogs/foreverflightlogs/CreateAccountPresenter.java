@@ -45,9 +45,9 @@ public class CreateAccountPresenter extends Observable {
                     conn.setDoInput(true);
 
                     JSONObject jsonParam = new JSONObject();
-                    jsonParam.put("phone", "5554004014"); // 5552000000
-                    jsonParam.put("password", "test"); // test
-                    jsonParam.put("name", "Sheri Hansen");
+                    jsonParam.put("phone", phone); // 5552000000
+                    jsonParam.put("password", password); // test
+                    jsonParam.put("name", name);
 
                     Log.i("JSONACCT", jsonParam.toString());
                     DataOutputStream os = new DataOutputStream(conn.getOutputStream());
