@@ -1,7 +1,10 @@
 <resources>
     <string name="app_name">Forever Flight Logs</string>
     <string name="username">Phone Number</string>
+    <string name="label_phone">Phone number</string>
+    <string name="label_name">Name</string>
     <string name="password">Password</string>
+    <string name="confirmPassword">Confirm Password</string>
     <string name="button_login">Login</string>
     <string name="create_new_flight">Create New Flight</string>
     <string name="show_all_flights">Show All Flights</string>
@@ -47,4 +50,6 @@
     <string name="label_flights_planeNumber">Plane Number:</string>
     <string name="label_flights_synced">Synced:</string>
     <string name="label_flights_inProgress">In Progress:</string>
+    <string name="button_createAccount">Create Account</string>
+
 </resources>
