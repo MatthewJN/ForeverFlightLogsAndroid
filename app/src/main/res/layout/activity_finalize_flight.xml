@@ -8,22 +8,22 @@
     android:background="@drawable/background">
 
     <TextView
-        android:id="@+id/label_crossCountry"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="64dp"
-        android:layout_marginLeft="64dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:text="@string/label_crossCountry"
-        android:textAllCaps="true"
-        android:textColor="@color/navy"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/switch_crossCountry"
-        app:layout_constraintHorizontal_bias="0.395"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+      android:id="@+id/label_crossCountry"
+      android:textStyle="bold"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="34dp"
+      android:layout_marginStart="64dp"
+      android:layout_marginEnd="8dp"
+      android:layout_marginLeft="64dp"
+      android:layout_marginRight="8dp"
+      android:text="@string/label_crossCountry"
+      android:textAllCaps="true"
+      android:textColor="@color/navy"
+      app:layout_constraintEnd_toStartOf="@+id/switch_crossCountry"
+      app:layout_constraintHorizontal_bias="0.395"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent"/>
 
     <TextView
         android:id="@+id/label_solo"
@@ -44,14 +44,14 @@
         app:layout_constraintTop_toBottomOf="@+id/label_crossCountry" />
 
     <Switch
-        android:id="@+id/switch_crossCountry"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="136dp"
-        android:layout_marginRight="136dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+      android:id="@+id/switch_crossCountry"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="29dp"
+      android:layout_marginEnd="136dp"
+      android:layout_marginRight="136dp"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintTop_toTopOf="parent"/>
 
     <Switch
         android:id="@+id/switch_solo"
@@ -64,23 +64,23 @@
         app:layout_constraintTop_toBottomOf="@+id/switch_crossCountry" />
 
     <TextView
-        android:id="@+id/textView21"
-        android:layout_width="88dp"
-        android:layout_height="28dp"
-        android:layout_marginStart="140dp"
-        android:layout_marginLeft="140dp"
-        android:layout_marginTop="112dp"
-        android:layout_marginBottom="8dp"
-        android:lineSpacingExtra="8sp"
-        android:text="@string/label_remarks"
-        android:textAllCaps="true"
-        android:textColor="@color/navy"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/remarksText"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+      android:id="@+id/textView21"
+      android:textStyle="bold"
+      android:layout_width="88dp"
+      android:layout_height="28dp"
+      android:layout_marginTop="122dp"
+      android:layout_marginBottom="8dp"
+      android:layout_marginStart="140dp"
+      android:layout_marginLeft="140dp"
+      android:lineSpacingExtra="8sp"
+      android:text="@string/label_remarks"
+      android:textAllCaps="true"
+      android:textColor="@color/navy"
+      android:textSize="18sp"
+      app:layout_constraintBottom_toTopOf="@+id/remarksText"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      app:layout_constraintVertical_bias="0.0"/>
 
 
     <Button
