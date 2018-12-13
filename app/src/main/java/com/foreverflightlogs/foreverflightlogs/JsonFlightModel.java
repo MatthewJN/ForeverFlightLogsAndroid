@@ -5,126 +5,127 @@ import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
 /**
- * Json Flight Model Class
- * Create a model to represent the data with correct data types
- * and structure to store flights in the API
+ * Json Flight Model Class Create a model to represent the data with correct data types and
+ * structure to store flights in the API
  */
 public class JsonFlightModel {
-    Long id;
-    @SerializedName("n-Number") String aircraft;
-    String flightDate;
-    String multiEngine = "0";
-    String solo;
-    String crossCountry;
-    String fromAirport;
-    String toAirport;
-    String numberOfTakeOffs = "1";
-    String numberOfLandings = "1";
-    Long createdByID = id;
-    Boolean active = true;
-    List<JsonSegmentModel> segments;
 
-    public Long getId() {
-        return id;
-    }
+  Long id;
+  @SerializedName("n-Number")
+  String aircraft;
+  String flightDate;
+  String multiEngine = "0";
+  String solo;
+  String crossCountry;
+  String fromAirport;
+  String toAirport;
+  String numberOfTakeOffs = "1";
+  String numberOfLandings = "1";
+  Long createdByID = id;
+  Boolean active = true;
+  List<JsonSegmentModel> segments;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+  public Long getId() {
+    return id;
+  }
 
-    public String getAircraft() {
-        return aircraft;
-    }
+  public void setId(Long id) {
+    this.id = id;
+  }
 
-    public void setAircraft(String aircraft) {
-        this.aircraft = aircraft;
-    }
+  public String getAircraft() {
+    return aircraft;
+  }
 
-    public String getFlightDate() {
-        return flightDate;
-    }
+  public void setAircraft(String aircraft) {
+    this.aircraft = aircraft;
+  }
 
-    public void setFlightDate(String flightDate) {
-        this.flightDate = flightDate;
-    }
+  public String getFlightDate() {
+    return flightDate;
+  }
 
-    public String getMultiEngine() {
-        return multiEngine;
-    }
+  public void setFlightDate(String flightDate) {
+    this.flightDate = flightDate;
+  }
 
-    public void setMultiEngine(String multiEngine) {
-        this.multiEngine = multiEngine;
-    }
+  public String getMultiEngine() {
+    return multiEngine;
+  }
 
-    public String getSolo() {
-        return solo;
-    }
+  public void setMultiEngine(String multiEngine) {
+    this.multiEngine = multiEngine;
+  }
 
-    public void setSolo(String solo) {
-        this.solo = solo;
-    }
+  public String getSolo() {
+    return solo;
+  }
 
-    public String getCrossCountry() {
-        return crossCountry;
-    }
+  public void setSolo(String solo) {
+    this.solo = solo;
+  }
 
-    public void setCrossCountry(String crossCountry) {
-        this.crossCountry = crossCountry;
-    }
+  public String getCrossCountry() {
+    return crossCountry;
+  }
 
-    public String getFromAirport() {
-        return fromAirport;
-    }
+  public void setCrossCountry(String crossCountry) {
+    this.crossCountry = crossCountry;
+  }
 
-    public void setFromAirport(String fromAirport) {
-        this.fromAirport = fromAirport;
-    }
+  public String getFromAirport() {
+    return fromAirport;
+  }
 
-    public String getToAirport() {
-        return toAirport;
-    }
+  public void setFromAirport(String fromAirport) {
+    this.fromAirport = fromAirport;
+  }
 
-    public void setToAirport(String toAirport) {
-        this.toAirport = toAirport;
-    }
+  public String getToAirport() {
+    return toAirport;
+  }
 
-    public String getNumberOfTakeOffs() {
-        return numberOfTakeOffs;
-    }
+  public void setToAirport(String toAirport) {
+    this.toAirport = toAirport;
+  }
 
-    public void setNumberOfTakeOffs(String numberOfTakeOffs) {
-        this.numberOfTakeOffs = numberOfTakeOffs;
-    }
+  public String getNumberOfTakeOffs() {
+    return numberOfTakeOffs;
+  }
 
-    public String getNumberOfLandings() {
-        return numberOfLandings;
-    }
+  public void setNumberOfTakeOffs(String numberOfTakeOffs) {
+    this.numberOfTakeOffs = numberOfTakeOffs;
+  }
 
-    public void setNumberOfLandings(String numberOfLandings) {
-        this.numberOfLandings = numberOfLandings;
-    }
+  public String getNumberOfLandings() {
+    return numberOfLandings;
+  }
 
-    public Long getCreatedByID() {
-        return createdByID;
-    }
+  public void setNumberOfLandings(String numberOfLandings) {
+    this.numberOfLandings = numberOfLandings;
+  }
 
-    public void setCreatedByID(Long createdByID) {
-        this.createdByID = createdByID;
-    }
+  public Long getCreatedByID() {
+    return createdByID;
+  }
 
-    public Boolean getActive() {
-        return active;
-    }
+  public void setCreatedByID(Long createdByID) {
+    this.createdByID = createdByID;
+  }
 
-    public void setActive(Boolean active) {
-        this.active = active;
-    }
+  public Boolean getActive() {
+    return active;
+  }
 
-    public List<JsonSegmentModel> getSegments() {
-        return segments;
-    }
+  public void setActive(Boolean active) {
+    this.active = active;
+  }
 
-    public void setSegments(List<JsonSegmentModel> segments) {
-        this.segments = segments;
-    }
+  public List<JsonSegmentModel> getSegments() {
+    return segments;
+  }
+
+  public void setSegments(List<JsonSegmentModel> segments) {
+    this.segments = segments;
+  }
 }

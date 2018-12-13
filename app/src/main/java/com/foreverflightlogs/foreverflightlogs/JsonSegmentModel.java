@@ -1,117 +1,117 @@
 package com.foreverflightlogs.foreverflightlogs;
 
 /**
- * Json Segment Model Class
- * Create a model to represent the data with correct data types
- * and structure to store Segments linked to a flight in the API
+ * Json Segment Model Class Create a model to represent the data with correct data types and
+ * structure to store Segments linked to a flight in the API
  */
 public class JsonSegmentModel {
-    Long id;
-    int accountID;
-    Long flightID;
-    String segmentStartTime;
-    String segmentEndTime;
-    int pilotInCommandID;
-    int dualHourPilotID;
-    String night;
-    String simulatedInstrument;
-    String instrumentFlightRules;
-    String visualFlightRules;
-    String  active = "1";
 
-    public Long getId() {
-        return id;
-    }
+  Long id;
+  int accountID;
+  Long flightID;
+  String segmentStartTime;
+  String segmentEndTime;
+  int pilotInCommandID;
+  int dualHourPilotID;
+  String night;
+  String simulatedInstrument;
+  String instrumentFlightRules;
+  String visualFlightRules;
+  String active = "1";
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+  public Long getId() {
+    return id;
+  }
 
-    public int getAccountID() {
-        return accountID;
-    }
+  public void setId(Long id) {
+    this.id = id;
+  }
 
-    public void setAccountID(int accountID) {
-        this.accountID = accountID;
-    }
+  public int getAccountID() {
+    return accountID;
+  }
 
-    public Long getFlightID() {
-        return flightID;
-    }
+  public void setAccountID(int accountID) {
+    this.accountID = accountID;
+  }
 
-    public void setFlightID(Long flightID) {
-        this.flightID = flightID;
-    }
+  public Long getFlightID() {
+    return flightID;
+  }
 
-    public String getSegmentStartTime() {
-        return segmentStartTime;
-    }
+  public void setFlightID(Long flightID) {
+    this.flightID = flightID;
+  }
 
-    public void setSegmentStartTime(String segmentStartTime) {
-        this.segmentStartTime = segmentStartTime;
-    }
+  public String getSegmentStartTime() {
+    return segmentStartTime;
+  }
 
-    public String getSegmentEndTime() {
-        return segmentEndTime;
-    }
+  public void setSegmentStartTime(String segmentStartTime) {
+    this.segmentStartTime = segmentStartTime;
+  }
 
-    public void setSegmentEndTime(String segmentEndTime) {
-        this.segmentEndTime = segmentEndTime;
-    }
+  public String getSegmentEndTime() {
+    return segmentEndTime;
+  }
 
-    public int getPilotInCommandID() {
-        return pilotInCommandID;
-    }
+  public void setSegmentEndTime(String segmentEndTime) {
+    this.segmentEndTime = segmentEndTime;
+  }
 
-    public void setPilotInCommandID(int pilotInCommandID) {
-        this.pilotInCommandID = pilotInCommandID;
-    }
+  public int getPilotInCommandID() {
+    return pilotInCommandID;
+  }
 
-    public int getDualHourPilotID() {
-        return dualHourPilotID;
-    }
+  public void setPilotInCommandID(int pilotInCommandID) {
+    this.pilotInCommandID = pilotInCommandID;
+  }
 
-    public void setDualHourPilotID(int dualHourPilotID) {
-        this.dualHourPilotID = dualHourPilotID;
-    }
+  public int getDualHourPilotID() {
+    return dualHourPilotID;
+  }
 
-    public String getNight() {
-        return night;
-    }
+  public void setDualHourPilotID(int dualHourPilotID) {
+    this.dualHourPilotID = dualHourPilotID;
+  }
 
-    public void setNight(String night) {
-        this.night = night;
-    }
+  public String getNight() {
+    return night;
+  }
 
-    public String getSimulatedInstrument() {
-        return simulatedInstrument;
-    }
+  public void setNight(String night) {
+    this.night = night;
+  }
 
-    public void setSimulatedInstrument(String simulatedInstrument) {
-        this.simulatedInstrument = simulatedInstrument;
-    }
+  public String getSimulatedInstrument() {
+    return simulatedInstrument;
+  }
 
-    public String getInstrumentFlightRules() {
-        return instrumentFlightRules;
-    }
+  public void setSimulatedInstrument(String simulatedInstrument) {
+    this.simulatedInstrument = simulatedInstrument;
+  }
 
-    public void setInstrumentFlightRules(String instrumentFlightRules) {
-        this.instrumentFlightRules = instrumentFlightRules;
-    }
+  public String getInstrumentFlightRules() {
+    return instrumentFlightRules;
+  }
 
-    public String getVisualFlightRules() {
-        return visualFlightRules;
-    }
+  public void setInstrumentFlightRules(String instrumentFlightRules) {
+    this.instrumentFlightRules = instrumentFlightRules;
+  }
 
-    public void setVisualFlightRules(String visualFlightRules) {
-        this.visualFlightRules = visualFlightRules;
-    }
+  public String getVisualFlightRules() {
+    return visualFlightRules;
+  }
 
-    public String getActive() {
-        return active;
-    }
+  public void setVisualFlightRules(String visualFlightRules) {
+    this.visualFlightRules = visualFlightRules;
+  }
 
-    public void setActive(String active) {
-        this.active = active;
-    }
+  public String getActive() {
+    return active;
+  }
+
+  public void setActive(String active) {
+    this.active = active;
+  }
 }

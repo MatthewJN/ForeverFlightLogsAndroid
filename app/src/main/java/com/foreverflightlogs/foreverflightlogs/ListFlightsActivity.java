@@ -10,39 +10,40 @@ import android.widget.Toast;
 
 public class ListFlightsActivity extends AppCompatActivity {
 
-    ListView listView;
-    FlightsAdapter adapter;
+  ListView listView;
+  FlightsAdapter adapter;
 
-    public static final String FLIGHTID = "com.foreverflightlogs.FLIGHTID";
+  public static final String FLIGHTID = "com.foreverflightlogs.FLIGHTID";
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_list_flights);
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_list_flights);
 
-        FlightPresenter flightPresenter = new FlightPresenter(null, null, getApplicationContext());
+    FlightPresenter flightPresenter = new FlightPresenter(null, null, getApplicationContext());
 
-        listView = (ListView)findViewById(R.id.flightsList);
+    listView = (ListView) findViewById(R.id.flightsList);
 
-        adapter = new FlightsAdapter(this, flightPresenter.flights);
+    adapter = new FlightsAdapter(this, flightPresenter.flights);
 
-        listView.setAdapter(adapter);
+    listView.setAdapter(adapter);
 
-        listView.setOnItemClickListener(new android.widget.AdapterView.OnItemClickListener(){
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-                Intent intent = new Intent(ListFlightsActivity.this, SegmentActivity.class);
-                Flight flight = adapter.getItem(position);
-                if (!flight.getInProgress()) {
+    listView.setOnItemClickListener(new android.widget.AdapterView.OnItemClickListener() {
+      @Override
+      public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+        Intent intent = new Intent(ListFlightsActivity.this, SegmentActivity.class);
+        Flight flight = adapter.getItem(position);
+        if (!flight.getInProgress()) {
 
-                    Toast.makeText(getApplicationContext(), "Flight Already Completed", Toast.LENGTH_SHORT).show();
-                } else {
-                    intent.putExtra(FLIGHTID, flight.getFlightID());
-                    intent.putExtra("In Progress", true);
-                    startActivity(intent);
-                }
-            }
-        });
-    }
+          Toast.makeText(getApplicationContext(), "Flight Already Completed", Toast.LENGTH_SHORT)
+              .show();
+        } else {
+          intent.putExtra(FLIGHTID, flight.getFlightID());
+          intent.putExtra("In Progress", true);
+          startActivity(intent);
+        }
+      }
+    });
+  }
 
 }

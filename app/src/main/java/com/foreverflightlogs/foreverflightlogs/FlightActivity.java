@@ -21,55 +21,56 @@ import java.util.Map;
 
 public class FlightActivity extends AppCompatActivity {
 
-    public static final String FLIGHTID = "com.foreverflightlogs.FLIGHTID";
-    AutoCompleteTextView editOriginText; // = (AutoCompleteTextView) findViewById(R.id.originText);
-    AutoCompleteTextView editDestinationText; // = (AutoCompleteTextView) findViewById(R.id.destinationText);
-    ArrayAdapter<String> adapter;
+  public static final String FLIGHTID = "com.foreverflightlogs.FLIGHTID";
+  AutoCompleteTextView editOriginText; // = (AutoCompleteTextView) findViewById(R.id.originText);
+  AutoCompleteTextView editDestinationText; // = (AutoCompleteTextView) findViewById(R.id.destinationText);
+  ArrayAdapter<String> adapter;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_flight);
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_flight);
 
-        editOriginText = (AutoCompleteTextView) findViewById(R.id.originText);
-        editDestinationText = (AutoCompleteTextView) findViewById(R.id.destinationText);
+    editOriginText = (AutoCompleteTextView) findViewById(R.id.originText);
+    editDestinationText = (AutoCompleteTextView) findViewById(R.id.destinationText);
 
-        final AirportPresenter airportPresenter = new AirportPresenter();
+    final AirportPresenter airportPresenter = new AirportPresenter();
 
-        adapter = new ArrayAdapter<String>(this, android.R.layout.select_dialog_item, airportPresenter.getAirports(getApplicationContext()));
+    adapter = new ArrayAdapter<String>(this, android.R.layout.select_dialog_item,
+        airportPresenter.getAirports(getApplicationContext()));
 
-        editOriginText.setThreshold(1);
-        editOriginText.setAdapter(adapter);
+    editOriginText.setThreshold(1);
+    editOriginText.setAdapter(adapter);
 
-        editDestinationText.setThreshold(1);
-        editDestinationText.setAdapter(adapter);
-    }
+    editDestinationText.setThreshold(1);
+    editDestinationText.setAdapter(adapter);
+  }
 
 
+  /**
+   * startFlight: Called when the start flight button is clicked.
+   *
+   * @param view the Buttons view.
+   */
+  public void startFlight(View view) {
+    // Get the text from the fields.
+    EditText editAircraftText = (EditText) findViewById(R.id.aircraftText);
 
-    /**
-     * startFlight:
-     * Called when the start flight button is clicked.
-     * @param view the Buttons view.
-     */
-    public void startFlight(View view) {
-        // Get the text from the fields.
-        EditText editAircraftText = (EditText) findViewById(R.id.aircraftText);
+    // Convert those fields to strings
+    String origin = editOriginText.getText().toString().split("\\ -")[0];
+    String destination = editDestinationText.getText().toString().split("\\ -")[0];
+    String aircraft = editAircraftText.getText().toString();
 
-        // Convert those fields to strings
-        String origin = editOriginText.getText().toString().split("\\ -")[0];
-        String destination = editDestinationText.getText().toString().split("\\ -")[0];
-        String aircraft = editAircraftText.getText().toString();
+    // Create a new flight
+    FlightPresenter flightPresenter = new FlightPresenter(origin, destination, aircraft, new Date(),
+        getApplicationContext());
 
-        // Create a new flight
-        FlightPresenter flightPresenter = new FlightPresenter(origin, destination, aircraft, new Date(), getApplicationContext());
-
-        // Pass the new flightID as an intent.
-        Intent intent = new Intent(this, SegmentActivity.class);
-        intent.putExtra(FLIGHTID, flightPresenter.getFlightID());
-      //test
-        Log.i("FLIGHTID", Long.toString(flightPresenter.getFlightID()));
-        startActivity(intent);
-    }
+    // Pass the new flightID as an intent.
+    Intent intent = new Intent(this, SegmentActivity.class);
+    intent.putExtra(FLIGHTID, flightPresenter.getFlightID());
+    //test
+    Log.i("FLIGHTID", Long.toString(flightPresenter.getFlightID()));
+    startActivity(intent);
+  }
 
 }
