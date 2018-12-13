@@ -21,12 +21,24 @@ import java.util.Observable;
  */
 public class CreateAccountPresenter extends Observable {
 
-    private Context context;
+    private static Context context;
+    private static Object mLock = new Object();
+    private static CreateAccountPresenter CREATE_ACCOUNT_PRESENTER_INSTANCE = null;
     private String response;
     private boolean isAccountCreated = false;
 
 
-    CreateAccountPresenter(Context context) { this.context = context;}
+   // CreateAccountPresenter(Context context) { this.context = context;}
+    //turn this into a singleton
+    public static CreateAccountPresenter getInstance(Context aContext) {
+        context = aContext;
+        synchronized (mLock) {
+            if (CREATE_ACCOUNT_PRESENTER_INSTANCE == null) {
+                CREATE_ACCOUNT_PRESENTER_INSTANCE = new CreateAccountPresenter();
+            }
+            return CREATE_ACCOUNT_PRESENTER_INSTANCE;
+        }
+    }
 
     public void createAccountOnAPI(final String phone, final String password, final String name, final Context context) {
 
@@ -74,12 +86,15 @@ public class CreateAccountPresenter extends Observable {
                     if(jsonObject.has("items")){
                         Log.i("ITEM", "items found in reply");
                     }
-//                    if(jsonObject.has("error")){
-//                        Log.i("ACCTREPLY", "reply is : " + reply);
-//                    }
-//                    else {
-//                        isAccountCreated = true;
-//                    }
+                    if(jsonObject.has("error")){
+                        Log.i("ACCTREPLY", "reply is : " + reply);
+                        setChanged();
+                        notifyObservers("401");
+                    }
+                    else {
+                        setChanged();
+                        notifyObservers("200");
+                    }
 
                     Log.i("ACCTSTATUS", String.valueOf(conn.getResponseCode()));
                     Log.i("ACCTMSG" , conn.getResponseMessage());
@@ -93,6 +108,8 @@ public class CreateAccountPresenter extends Observable {
                 } catch (ProtocolException e) {
                     e.printStackTrace();
                 } catch (IOException e) {
+                    setChanged();
+                    notifyObservers("401");
                     e.printStackTrace();
                 } catch (JSONException e) {
                     e.printStackTrace();

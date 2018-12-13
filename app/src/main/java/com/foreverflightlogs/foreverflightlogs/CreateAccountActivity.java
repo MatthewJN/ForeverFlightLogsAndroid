@@ -9,6 +9,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.util.Observable;
+import java.util.Observer;
+
 /**
  * Create Account Activity
  * User will be able to create an account by providing their
@@ -17,12 +20,16 @@ import android.widget.Toast;
  * where they will login, to create an authorization code to begin
  * using the site
  */
-public class CreateAccountActivity extends AppCompatActivity {
+public class CreateAccountActivity extends AppCompatActivity implements Observer {
+
+    CreateAccountPresenter createAccountPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_account);
+        createAccountPresenter = CreateAccountPresenter.getInstance(getApplicationContext());
+        createAccountPresenter.addObserver(this);
 
     }
 
@@ -78,20 +85,36 @@ public class CreateAccountActivity extends AppCompatActivity {
 
             //if passwords don't match display an error
             if(password.equals(confirm) && isValid){
-                CreateAccountPresenter createAccountPresenter = new CreateAccountPresenter(getApplicationContext());
+
                 createAccountPresenter.createAccountOnAPI(phone, password, name, getApplicationContext());
-//                    boolean isAccountCreated = createAccountPresenter.isAccountCreated();
-//                    if( isAccountCreated){
-                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                    Toast.makeText(getApplicationContext(), "Your account has been created, please login.", Toast.LENGTH_SHORT).show();
-                  //  startActivity(intent);
-//                    }
-//                    else {
-//                        Toast.makeText(getApplicationContext(), "Error creating account.", Toast.LENGTH_SHORT).show();
-//                        Log.i("ACCTERROR", "Error creating acct: " + createAccountPresenter.getResponse());
-//                    }
+            }
+        }
+    private void theIntent(){
+//        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+//        startActivity(intent);
+        finish();
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {
+
+        if (o != null && o instanceof CreateAccountPresenter) {
+            if (arg == "200" ) {
+                this.runOnUiThread(new Runnable() {
+                    public void run() {
+                        Toast.makeText(CreateAccountActivity.this, "Account Successfully Created, Please Login", Toast.LENGTH_SHORT).show();
+                    }
+                });
+                theIntent();
+            }
+            else {
+                this.runOnUiThread(new Runnable() {
+                    public void run() {
+                        Toast.makeText(CreateAccountActivity.this, "Invalid Registration Details - Create Account Online", Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
         }
 
-
+    }
 }
