@@ -17,13 +17,25 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
+import java.util.Observable;
 
-public class UserManager {
+public class UserManager extends Observable {
 
-    private Context context;
+    private static Context context;
+    private static Object mLock = new Object();
+    private static UserManager USER_MANAGER_INSTANCE = null;
 
-    UserManager(Context context) {
-        this.context = context;
+//    private UserManager(Context context) {
+//        this.context = context;
+//    }
+
+    public static UserManager getInstance(Context aContext) {
+        context = aContext;
+        synchronized (mLock) {
+            if (USER_MANAGER_INSTANCE == null)
+                USER_MANAGER_INSTANCE = new UserManager();
+            return USER_MANAGER_INSTANCE;
+        }
     }
 
     /**
@@ -84,12 +96,15 @@ public class UserManager {
 
                     getUserID(context);
 
-                    Log.i("STATUS", String.valueOf(conn.getResponseCode()));
-                    Log.i("MSG" , conn.getResponseMessage());
-                    Log.i("RETURNED", reply);
-                    Log.i("AUTHCODE", user.getAuth());
+//                    Log.i("STATUS", String.valueOf(conn.getResponseCode()));
+//                    Log.i("MSG" , conn.getResponseMessage());
+//                    Log.i("RETURNED", reply);
+//                    Log.i("AUTHCODE", user.getAuth());
 
                     conn.disconnect();
+
+                    setChanged();
+                    notifyObservers("200");
 
                 } catch (MalformedURLException e) {
                     e.printStackTrace();
@@ -97,6 +112,8 @@ public class UserManager {
                     e.printStackTrace();
                 } catch (IOException e) {
                     e.printStackTrace();
+                    setChanged();
+                    notifyObservers("401");
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

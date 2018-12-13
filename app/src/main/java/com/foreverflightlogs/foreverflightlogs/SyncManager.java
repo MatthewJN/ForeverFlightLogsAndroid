@@ -34,7 +34,7 @@ public class SyncManager {
           Thread thread = new Thread(new Runnable() {
               @Override
               public void run() {
-                  UserManager userManager = new UserManager(thisContext);
+                  UserManager userManager = UserManager.getInstance(thisContext);
                   String auth = userManager.getAuthCode();
                   try{
                       URL url = new URL("https://api.foreverflightlogs.com/v1/applications?auth=".concat(auth));
@@ -154,7 +154,7 @@ public class SyncManager {
         }
         Gson gson = new Gson();
 
-        UserManager userManager = new UserManager(context);
+        UserManager userManager = UserManager.getInstance(context);
         //int accountID = 2;
         int accountID = userManager.getUserID();
         JsonUnsyncedFlightsModel userFlights = new JsonUnsyncedFlightsModel();
