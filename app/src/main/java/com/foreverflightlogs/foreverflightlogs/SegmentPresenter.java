@@ -60,21 +60,6 @@ public class SegmentPresenter {
     segments = flightDbHelper.getAllSegments(flightID, context);
   }
 
-//    /**
-//     * Calculate Duration
-//     * calculate the duration of the flight segment by subtracting the start time from the end time
-//     * Format of duration: 15.00
-//     * using .getTime() @https://www.geeksforgeeks.org/date-class-java-examples/
-//     *   long getTime() : Returns the number of milliseconds since January 1, 1970, 00:00:00 GMT represented by this Date object.
-//     */
-//    public long getSegmentDuration() {
-//        if (segment.getEndDate() == null) {
-//            return segment.getEndDate().getTime() - segment.getStartDate().getTime();
-//        } else {
-//            return new Date().getTime() - segment.getStartDate().getTime();
-//        }
-//    }
-
   /**
    * getCurrentTime: Returns the current time in the specified format.
    *
@@ -87,25 +72,5 @@ public class SegmentPresenter {
     String test = sdf.format(currentTime);
     return currentTime;
   }
-
-  // All segments associated with the currently flight ID will be
-  // set in the public property called "segments" as a list.
-  private void getAllSegmentsForFlight(long flightId, Context context) {
-    FlightDbHelper dbHelper = new FlightDbHelper(context);
-    this.segments = dbHelper.getAllSegments(flightId, context);
-  }
-
-//    /**
-//     * Use this for logic for entire segment creation process
-//     * Get start time, create segment with time, update model
-//     * sets the returned segmentID in segmentInProgressID
-//     */
-//    public void handleSegmentStart() {
-//        Date startTime = this.getCurrentTime();
-//
-//       // int segmentID = startSegment(startTime);
-//       // setSegmentInProgressID(segmentID);
-//        return;
-//    }
 
 }

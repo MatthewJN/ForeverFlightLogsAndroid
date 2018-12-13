@@ -93,6 +93,11 @@ public class SegmentsAdapter extends ArrayAdapter<Segment> {
     return convertView;
   }
 
+  /**
+   * getStringFromDate: Gets a string representing the date.
+   * @param date A date
+   * @return A string representing the date.
+   */
   private String getStringFromDate(Date date) {
     SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
     if (date == null) {
@@ -102,6 +107,11 @@ public class SegmentsAdapter extends ArrayAdapter<Segment> {
     }
   }
 
+  /**
+   * getSegmentDuration: Used to get the duration of the segment.
+   * @param segment The segment to be inspected
+   * @return Number of seconds that the segment lasted.
+   */
   public long getSegmentDuration(Segment segment) {
     return segment.getEndDate().getTime() - segment.getStartDate().getTime();
   }

@@ -25,10 +25,11 @@ public class UserManager extends Observable {
   private static Object mLock = new Object();
   private static UserManager USER_MANAGER_INSTANCE = null;
 
-//    private UserManager(Context context) {
-//        this.context = context;
-//    }
-
+  /**
+   * getInstance: Gets an instance of UserManager
+   * @param aContext The context
+   * @return Returns the UserManager instance.
+   */
   public static UserManager getInstance(Context aContext) {
     context = aContext;
     synchronized (mLock) {
@@ -92,15 +93,7 @@ public class UserManager extends Observable {
           String auth = jsonObject.getString("auth");
           user.setAuth(auth);
 
-          //int userID = jsonObject.getInt("userID");
-          //user.setUserID(userID);
-
           getUserID(context);
-
-//                    Log.i("STATUS", String.valueOf(conn.getResponseCode()));
-//                    Log.i("MSG" , conn.getResponseMessage());
-//                    Log.i("RETURNED", reply);
-//                    Log.i("AUTHCODE", user.getAuth());
 
           conn.disconnect();
 
@@ -186,11 +179,19 @@ public class UserManager extends Observable {
     thread.start();
   }
 
+  /**
+   * getAuthCode Fetches the auth code from the model.
+   * @return The auth code as a string.
+   */
   public String getAuthCode() {
     User user = new User(context);
     return user.getAuth();
   }
 
+  /**
+   * getUserID Gets the user ID.
+   * @return The user ID as an int.
+   */
   public int getUserID() {
     User user = new User(context);
     return user.getUserID();

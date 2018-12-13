@@ -49,17 +49,16 @@ public class FlightPresenter {
     flights = flightDbHelper.getAllFlightsOfType(false, false, context);
   }
 
+  /**
+   * Non-Default Constructor
+   * @param hasSynced Do you want to initialise for flights that have synced? Pass null if you don't care.
+   * @param inProgress Do you want flights that are in progress? Pass null if you don't care.
+   * @param context The context.
+   */
   public FlightPresenter(Boolean hasSynced, Boolean inProgress, Context context) {
     FlightDbHelper flightDbHelper = new FlightDbHelper(context);
     flights = flightDbHelper.getAllFlightsOfType(hasSynced, inProgress, context);
   }
-
-//  /**
-//   * endFlight End the current flight.
-//   */
-//  public void endFlight() {
-//    syncData();
-//  }
 
   /**
    * getFlightID:
@@ -83,10 +82,5 @@ public class FlightPresenter {
       return new Date().getTime() - flight.getStartDate().getTime();
     }
   }
-
-//    private void getAllFlights(boolean synced, Context context) {
-//        FlightDbHelper dbHelper = new FlightDbHelper(context);
-//        this.flights =  dbHelper.getAllFlights(synced, context);
-//    }
 
 }

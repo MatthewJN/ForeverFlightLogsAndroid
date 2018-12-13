@@ -15,11 +15,19 @@ public class User {
     _context = context;
   }
 
+  /**
+   * getAuth Gets the authorisation code.
+   * @return The auth code in a string.
+   */
   public String getAuth() {
     SharedPreferences mPrefs = _context.getSharedPreferences("authPref", MODE_PRIVATE);
     return mPrefs.getString("AuthCode", "");
   }
 
+  /**
+   * setAuth: Sets the authorisation code and persists it.
+   * @param auth The auth string.
+   */
   public void setAuth(String auth) {
     SharedPreferences mPrefs = _context.getSharedPreferences("authPref", MODE_PRIVATE);
     SharedPreferences.Editor prefsEditor = mPrefs.edit();
@@ -27,11 +35,19 @@ public class User {
     prefsEditor.commit();
   }
 
+  /**
+   * getUserID Gets the user ID
+   * @return The user ID in an int.
+   */
   public int getUserID() {
     SharedPreferences mPrefs = _context.getSharedPreferences("userPref", MODE_PRIVATE);
     return mPrefs.getInt("UserID", -1);
   }
 
+  /**
+   * setUserID: Sets the user ID and persists it.
+   * @param userID The user ID int.
+   */
   public void setUserID(int userID) {
     SharedPreferences mPrefs = _context.getSharedPreferences("userPref", MODE_PRIVATE);
     SharedPreferences.Editor prefsEditor = mPrefs.edit();

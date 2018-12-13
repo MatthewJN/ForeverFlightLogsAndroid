@@ -59,6 +59,9 @@ public class EditSegmentActivity extends AppCompatActivity implements
     return segment.getEndDate().getTime() - segment.getStartDate().getTime();
   }
 
+  /**
+   * Sets the switches to the required positions.
+   */
   private void setSwitches() {
     // Get all of the switches
     pic = (Switch) findViewById(R.id.switch_PIC);
@@ -86,6 +89,11 @@ public class EditSegmentActivity extends AppCompatActivity implements
     night.setChecked(segmentPresenter.segment.getNight());
   }
 
+  /**
+   * onCheckedChanged: Checks for changes with the buttons and puts in a request to update the model.
+   * @param buttonView The button
+   * @param isChecked Is the button on or off?
+   */
   @Override
   public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
     switch (buttonView.getId()) {
@@ -125,6 +133,10 @@ public class EditSegmentActivity extends AppCompatActivity implements
     }
   }
 
+  /**
+   * onSaveButtonClicked: Finishes the segment.
+   * @param view The view
+   */
   public void onSaveButtonClicked(View view) {
     finish();
   }

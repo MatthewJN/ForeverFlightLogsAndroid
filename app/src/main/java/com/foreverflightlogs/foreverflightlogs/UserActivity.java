@@ -37,7 +37,8 @@ public class UserActivity extends AppCompatActivity implements Observer {
   }
 
   /**
-   * Called when the user taps the login button
+   * login: Called when the user taps login.
+   * @param view The view.
    */
   public void login(View view) {
     EditText editText = (EditText) findViewById(R.id.editText);
@@ -63,11 +64,19 @@ public class UserActivity extends AppCompatActivity implements Observer {
     }
   }
 
+  /**
+   * theIntent This is called if the login was succesfull and the activity is to move to main.
+   */
   private void theIntent() {
     Intent intent = new Intent(this, MainActivity.class);
     startActivity(intent);
   }
 
+  /**
+   * update: Used for the observer.
+   * @param o The observable object.
+   * @param arg The argument passed.
+   */
   @Override
   public void update(Observable o, Object arg) {
 

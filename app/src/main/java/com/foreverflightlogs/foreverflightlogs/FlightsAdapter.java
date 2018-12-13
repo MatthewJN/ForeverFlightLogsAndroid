@@ -91,6 +91,11 @@ public class FlightsAdapter extends ArrayAdapter<Flight> {
     return convertView;
   }
 
+  /**
+   * getStringFromDate: Pass in a date and get a string in return.
+   * @param date The Date
+   * @return The date represented as a String.
+   */
   private String getStringFromDate(Date date) {
     SimpleDateFormat sdf = new SimpleDateFormat("EEE, MMM d, yyyy");
     if (date == null) {
@@ -100,6 +105,11 @@ public class FlightsAdapter extends ArrayAdapter<Flight> {
     }
   }
 
+  /**
+   * getTimeStringFromDate: Pass in a date to get the time in a string.
+   * @param date The date.
+   * @return A string with the time.
+   */
   private String getTimeStringFromDate(Date date) {
     SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
     if (date == null) {
