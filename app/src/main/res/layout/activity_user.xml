@@ -57,8 +57,8 @@
   <Button
     android:id="@+id/btn_createAccount"
     android:textStyle="bold"
-    android:layout_width="210dp"
-    android:layout_height="65dp"
+    android:layout_width="212dp"
+    android:layout_height="49dp"
     android:layout_marginTop="8dp"
     android:layout_marginBottom="8dp"
     android:background="@color/white"
