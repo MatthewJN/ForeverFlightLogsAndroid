@@ -27,15 +27,12 @@ public class CreateAccountActivity extends AppCompatActivity implements Observer
     setContentView(R.layout.activity_create_account);
     createAccountPresenter = CreateAccountPresenter.getInstance(getApplicationContext());
     createAccountPresenter.addObserver(this);
-
   }
 
   /**
    * Take user to login screen For users who already have an account
    */
   public void onclickLogin(View view) {
-//        Intent intent = new Intent(this, UserActivity.class);
-//        startActivity(intent);
     finish();
   }
 
@@ -80,14 +77,11 @@ public class CreateAccountActivity extends AppCompatActivity implements Observer
 
     //if passwords don't match display an error
     if (password.equals(confirm) && isValid) {
-
       createAccountPresenter.createAccountOnAPI(phone, password, name, getApplicationContext());
     }
   }
 
   private void theIntent() {
-//        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-//        startActivity(intent);
     finish();
   }
 

@@ -13,6 +13,7 @@ import android.widget.TextView;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class SegmentsAdapter extends ArrayAdapter<Segment> {
 
@@ -50,7 +51,10 @@ public class SegmentsAdapter extends ArrayAdapter<Segment> {
     startDate.setText(getStringFromDate(segment.getStartDate()));
     endDate.setText(getStringFromDate(segment.getEndDate()));
 
-    String segmentDurationText = String.format("%ds", getSegmentDuration(segment) / 1000);
+    String segmentDurationText = String.format("%02d:%02d:%02d",
+        TimeUnit.MILLISECONDS.toHours(getSegmentDuration(segment)),
+        TimeUnit.MILLISECONDS.toMinutes(getSegmentDuration(segment)) - TimeUnit.MINUTES.toMinutes(TimeUnit.MILLISECONDS.toHours(getSegmentDuration(segment))),
+        TimeUnit.MILLISECONDS.toSeconds(getSegmentDuration(segment)) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(getSegmentDuration(segment))));
     duration.setText(segmentDurationText);
 
     if (!segment.getPilotInCommand()) {
@@ -95,6 +99,7 @@ public class SegmentsAdapter extends ArrayAdapter<Segment> {
 
   /**
    * getStringFromDate: Gets a string representing the date.
+   *
    * @param date A date
    * @return A string representing the date.
    */
@@ -109,6 +114,7 @@ public class SegmentsAdapter extends ArrayAdapter<Segment> {
 
   /**
    * getSegmentDuration: Used to get the duration of the segment.
+   *
    * @param segment The segment to be inspected
    * @return Number of seconds that the segment lasted.
    */
