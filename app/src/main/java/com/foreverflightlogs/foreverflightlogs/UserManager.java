@@ -64,12 +64,11 @@ public class UserManager extends Observable {
           conn.setDoInput(true);
 
           JSONObject jsonParam = new JSONObject();
-          jsonParam.put("phone", phoneNumber); // 5552000000
-          jsonParam.put("password", password); // test
+          jsonParam.put("phone", phoneNumber);
+          jsonParam.put("password", password);
 
           Log.i("JSON", jsonParam.toString());
           DataOutputStream os = new DataOutputStream(conn.getOutputStream());
-          //os.writeBytes(URLEncoder.encode(jsonParam.toString(), "UTF-8"));
           os.writeBytes(jsonParam.toString());
 
           os.flush();
