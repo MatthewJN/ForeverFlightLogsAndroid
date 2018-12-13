@@ -15,6 +15,12 @@ public class UserActivity extends AppCompatActivity {
 
         AirportPresenter airportPresenter = new AirportPresenter();
         airportPresenter.fetchAirports(getApplicationContext());
+
+        UserManager userManager = new UserManager(getApplicationContext());
+        if (userManager.getAuthCode() != "") {
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+        }
     }
 
     /** Called when the user taps the login button */
@@ -29,9 +35,6 @@ public class UserActivity extends AppCompatActivity {
         userManager.authWithAPI(username, password, getApplicationContext());
 
         Intent intent = new Intent(this, MainActivity.class);
-
-        //Toast.makeText(this, "Logging in...", Toast.LENGTH_SHORT).show();
-
         startActivity(intent);
     }
 
