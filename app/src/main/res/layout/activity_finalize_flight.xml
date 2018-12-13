@@ -100,14 +100,14 @@
     <EditText
         android:id="@+id/remarksText"
         android:layout_width="299dp"
-        android:layout_height="225dp"
-        android:layout_marginBottom="64dp"
+        android:layout_height="213dp"
+        android:layout_marginBottom="60dp"
         android:ems="10"
         android:gravity="top"
         android:inputType="textMultiLine"
         android:singleLine="false"
         app:layout_constraintBottom_toTopOf="@+id/button10"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintHorizontal_bias="0.505"
         app:layout_constraintStart_toStartOf="parent" />
 </android.support.constraint.ConstraintLayout>
