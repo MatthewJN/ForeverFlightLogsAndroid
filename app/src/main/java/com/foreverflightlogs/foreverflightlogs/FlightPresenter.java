@@ -6,7 +6,7 @@ import java.util.Date;
 import java.util.List;
 
 
-public class FlightPresenter implements Syncable {
+public class FlightPresenter {
 
 
   /**
@@ -54,26 +54,12 @@ public class FlightPresenter implements Syncable {
     flights = flightDbHelper.getAllFlightsOfType(hasSynced, inProgress, context);
   }
 
-  /**
-   * endFlight End the current flight.
-   */
-  public void endFlight() {
-    syncData();
-  }
-
-  /**
-   * syncData Synchronises the data with the ForeverFlightLog server. Typically called when a flight
-   * ends, but left public in case that fails and the app needs to try again at a later time.
-   *
-   * @return A boolean to indicate if the sync was successful.
-   */
-  @Override
-  public boolean syncData() {
-    // Needs to be handed out to a sync class I believe.
-    // That would be responsible for packaging up the data and if succeful, it can return true
-    // and then return true back to the user, if they are interested in knowing.
-    return false;
-  }
+//  /**
+//   * endFlight End the current flight.
+//   */
+//  public void endFlight() {
+//    syncData();
+//  }
 
   /**
    * getFlightID:
