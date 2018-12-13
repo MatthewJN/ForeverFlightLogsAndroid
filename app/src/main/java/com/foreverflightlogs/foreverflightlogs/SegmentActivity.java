@@ -75,6 +75,10 @@ public class SegmentActivity extends AppCompatActivity implements
     Timer(); //update timer value on screen
   }
 
+  /**
+   * setSwitches
+   * Used to set the start positions of the switches.
+   */
   public void setSwitches() {
     // Get all of the switches
     pic = (Switch) findViewById(R.id.switch_PIC);
@@ -104,14 +108,18 @@ public class SegmentActivity extends AppCompatActivity implements
 
   /**
    * onSaveInstanceState:
+   * @param saveInstanceState the state.
    */
-  //    @Override
   public void onSaveInstanceState(Bundle saveInstanceState) {
     super.onSaveInstanceState(saveInstanceState);
     saveInstanceState.putInt("seconds", seconds);
     saveInstanceState.putBoolean("startRun", startRun);
   }
 
+  /**
+   * onClickNewSegment: Used when a new segment needs creating
+   * @param view The view.
+   */
   public void onClickNewSegment(View view) {
     enableStartButton(true);
     enableEndButton(false);
@@ -125,29 +133,45 @@ public class SegmentActivity extends AppCompatActivity implements
     onClickReset(view);
   }
 
+  /**
+   * enableStartButton: Used to enable or disable the button.
+   * @param enable Enabled for true, disable for false.
+   */
   public void enableStartButton(boolean enable) {
     startBtn = (Button) findViewById(R.id.btn_start);
     startBtn.setEnabled(enable);
   }
 
+  /**
+   * endableEndButton: Used to enable or disable the button.
+   * @param enable Enabled for true, disable for false.
+   */
   public void enableEndButton(boolean enable) {
     startBtn = (Button) findViewById(R.id.btn_stop);
     startBtn.setEnabled(enable);
   }
 
+  /**
+   * endableNewSegmentButton: Used to enable or disable the button.
+   * @param enable Enabled for true, disable for false.
+   */
   public void enableNewSegmentButton(boolean enable) {
     startBtn = (Button) findViewById(R.id.btn_newSegment);
     startBtn.setEnabled(enable);
   }
 
+  /**
+   * endableEndFlightButton: Used to enable or disable the button.
+   * @param enable Enabled for true, disable for false.
+   */
   public void enableEndFlightButton(boolean enable) {
     startBtn = (Button) findViewById(R.id.btn_endFlight);
     startBtn.setEnabled(enable);
   }
 
   /**
-   * Process once start button is clicked After disabling start button and resetting timer move
-   * remaining process handling to presenter
+   * onClickStart: Process once start button is clicked After disabling start button and resetting timer move remaining process handling to presenter
+   * @param view The view
    */
   public void onClickStart(View view) {
     enableStartButton(false);

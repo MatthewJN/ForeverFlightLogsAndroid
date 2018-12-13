@@ -59,6 +59,10 @@ public class ListSegmentActivity extends AppCompatActivity {
     listView.setAdapter(adapter);
   }
 
+  /**
+   * addRemarksPressed: Adds remarks and moves to the next activity.
+   * @param view The view.
+   */
   public void addRemarksPressed(View view) {
     Intent intent = new Intent(this, FinalizeFlightActivity.class);
     intent.putExtra(FLIGHTID, flightID);

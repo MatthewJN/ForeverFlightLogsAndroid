@@ -56,6 +56,10 @@ public class MainActivity extends AppCompatActivity {
     }
   }
 
+  /**
+   * continueFlight: Continue flight button visible if needed.
+   * @param view The view.
+   */
   public void continueFlight(View view) {
     Intent intent = new Intent(MainActivity.this, ListFlightsActivity.class);
     intent.putExtra(FLIGHTID, inProgressFlightID);
@@ -63,29 +67,38 @@ public class MainActivity extends AppCompatActivity {
     Toast.makeText(this, "This flight is unfinished. ", Toast.LENGTH_LONG).show();
   }
 
+  /**
+   * createNewFlight: A button to create a new flight.
+   * @param view The view.
+   */
   public void createNewFlight(View view) {
     Intent myIntent = new Intent(MainActivity.this, FlightActivity.class);
     MainActivity.this.startActivity(myIntent);
   }
 
+  /**
+   * showAllFlights: A button to move to show all flights.
+   * @param view The view.
+   */
   public void showAllFlights(View view) {
     Intent myIntent = new Intent(MainActivity.this, ListFlightsActivity.class);
     MainActivity.this.startActivity(myIntent);
   }
 
+  /**
+   * isInternetOn: A method to check if the internet is available.
+   * @param context The context.
+   * @return True if the internet is available.
+   */
   public boolean isInternetOn(Context context) {
     ConnectivityManager cm = (ConnectivityManager) context
         .getSystemService(Context.CONNECTIVITY_SERVICE);
     NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
     if (activeNetwork != null && activeNetwork.isConnectedOrConnecting()) {
-      //           this.connection = true;
       return true;
     } else {
-      //           this.connection = false;
       return false;
     }
-//        this.setChanged();
-//        this.notifyObservers(connection);
   }
 
 }

@@ -258,6 +258,13 @@ public class FlightDbHelper extends SQLiteOpenHelper {
     return flight;
   }
 
+  /**
+   * getAllFlightsOfType: Gets the type of flight, ie, synced, not synced, in progress, or not in progress.
+   * @param synced Has the flight been synced?
+   * @param inProgress Is the flight still in progress?
+   * @param context Context
+   * @return A list of flights.
+   */
   public List<Flight> getAllFlightsOfType(Boolean synced, Boolean inProgress, Context context) {
     String query;
     if (synced == null || inProgress == null) {
@@ -275,10 +282,9 @@ public class FlightDbHelper extends SQLiteOpenHelper {
   }
 
   /**
-   * getAllFlights: Gets all of the flights in the database filtered by the sync column.
-   *
-   * @param synced Listing flights that are synced or not. Pass "null" for all flights.
-   * @param context The context of the activity.
+   * getAllFlights: Gets a list of all flights.
+   * @param query The query
+   * @param context The context
    * @return A list of flights.
    */
   private List<Flight> getAllFlights(String query, Context context) {
@@ -302,7 +308,6 @@ public class FlightDbHelper extends SQLiteOpenHelper {
       String remarks = "";
 
       if (!cursor.isNull(cursor.getColumnIndex(FlightContract.FlightEntry._ID))) {
-//                id = cursor.getColumnIndex(SegmentContract.SegmentEntry._ID);
         id = cursor.getLong(0);
       }
 
@@ -727,23 +732,10 @@ public class FlightDbHelper extends SQLiteOpenHelper {
         selectionArgs);
   }
 
-//    /**
-//     * deleteSegment:
-//     * Used to delete a specific segment.
-//     * @param segment The ID of the segment to be deleted.
-//     * @param context The context.
-//     */
-//    public void deleteSegment(Segment segment, Context context) {
-//        SQLiteDatabase db = getWritableDatabase();
-//
-//        String selection = FlightContract.FlightEntry._ID + " = ?";
-//        String[] selectionArgs = { String.format("%d", segment.getSegmentID()) };
-//
-//        db.delete(FlightContract.FlightEntry.TABLE_NAME,
-//                selection,
-//                selectionArgs);
-//    }
-
+  /**
+   * cleanUpSegments: Used to remove orphaned segments when someone closes the app mid-segment and doesn't return.
+   * @param context
+   */
   public void cleanUpSegments(Context context) {
     SQLiteDatabase db = getWritableDatabase();
 
@@ -755,6 +747,11 @@ public class FlightDbHelper extends SQLiteOpenHelper {
         selectionArgs);
   }
 
+  /**
+   * getStringFromDate: A convenience method to provide a date in the required string format.
+   * @param date A Date
+   * @return A string in the required format.
+   */
   private String getStringFromDate(Date date) {
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     if (date == null) {
@@ -764,6 +761,11 @@ public class FlightDbHelper extends SQLiteOpenHelper {
     }
   }
 
+  /**
+   * getDateFromString: Gets a Date object from a provided string
+   * @param date A Date in String format
+   * @return A Date object is returned.
+   */
   private static Date getDateFromString(String date) {
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     Date returnDate = new Date();

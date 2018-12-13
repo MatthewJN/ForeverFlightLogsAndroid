@@ -35,17 +35,10 @@ public class FinalizeFlightActivity extends AppCompatActivity {
 
   }
 
-//    /* Flight is completed, save it*/
-//    public void saveLog(int flightID) {
-//        //using flight id,
-//        // 1. add remarks entered by user, - flight.addRemarks();
-//        // 2. update flight with cross country - flight.setCrossCountry(true)
-//        // 3. update flight with solo flight - flight.setSoloFlight(true)
-//        // 3. store in local db
-//
-//        flightPresenter.flight.setEndDate(new Date());
-//    }
-
+  /**
+   * saveLogEntry: Where the flight is finished and saved, and synced.
+   * @param view The view.
+   */
   public void saveLogEntry(View view) {
     Log.d("saveLogEntry", "flightID = " + flightID);
     // Context context = getApplicationContext();

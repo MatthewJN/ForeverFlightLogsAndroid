@@ -20,15 +20,6 @@ public class Flight {
   private Context context;
   Segment[] segments;
 
-  public Segment[] getSegments() {
-    return segments;
-  }
-
-  public void setSegments(Segment[] segments) {
-    this.segments = segments;
-  }
-
-
   /**
    * Non-Default constructor which creates the flight and stores a context locally.
    *
@@ -125,6 +116,10 @@ public class Flight {
     return remarks;
   }
 
+  public Segment[] getSegments() {
+    return segments;
+  }
+
   // Setters
   public void setFlightID(long flightID) {
     this.flightID = flightID;
@@ -178,6 +173,10 @@ public class Flight {
   public void setRemarks(String remarks) {
     this.remarks = remarks;
     updateDatabase();
+  }
+
+  public void setSegments(Segment[] segments) {
+    this.segments = segments;
   }
 
   private void updateDatabase() {

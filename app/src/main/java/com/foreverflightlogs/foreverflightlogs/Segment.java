@@ -22,6 +22,20 @@ public class Segment {
     this.context = context;
   }
 
+  /**
+   * Non-Default Constructor
+   * @param segmentID The segment ID
+   * @param startDate The start date
+   * @param endDate The end date
+   * @param pilotInCommand Is the pilot in command
+   * @param dualHours Is this a dual hours segment
+   * @param simulatedInstruments Is this a simulated instruments segment
+   * @param visualFlight Is this a visual flight segment
+   * @param instrumentFlight Is this an instrument flight segment
+   * @param night Is this segment at night?
+   * @param isCompleted Is this segment completed?
+   * @param context The context
+   */
   public Segment(long segmentID,
       Date startDate,
       Date endDate,
