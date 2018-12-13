@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FinalizeFlightActivity">
+    tools:context=".FinalizeFlightActivity"
+    android:background="@drawable/background">
 
     <TextView
         android:id="@+id/label_crossCountry"
@@ -16,6 +17,9 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:text="@string/label_crossCountry"
+        android:textAllCaps="true"
+        android:textColor="@color/navy"
+        android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@+id/switch_crossCountry"
         app:layout_constraintHorizontal_bias="0.395"
         app:layout_constraintStart_toStartOf="parent"
@@ -31,6 +35,9 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:text="@string/label_solo"
+        android:textAllCaps="true"
+        android:textColor="@color/navy"
+        android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@+id/switch_solo"
         app:layout_constraintHorizontal_bias="0.395"
         app:layout_constraintStart_toStartOf="parent"
@@ -66,6 +73,8 @@
         android:layout_marginBottom="8dp"
         android:lineSpacingExtra="8sp"
         android:text="@string/label_remarks"
+        android:textAllCaps="true"
+        android:textColor="@color/navy"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/remarksText"
@@ -79,8 +88,10 @@
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
+        android:background="@color/white"
         android:onClick="saveLogEntry"
         android:text="@string/button_save_log"
+        android:textColor="@color/blue"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -89,13 +100,14 @@
     <EditText
         android:id="@+id/remarksText"
         android:layout_width="299dp"
-        android:layout_height="225dp"
-        android:layout_marginBottom="64dp"
+        android:layout_height="213dp"
+        android:layout_marginBottom="60dp"
         android:ems="10"
         android:gravity="top"
         android:inputType="textMultiLine"
+        android:singleLine="false"
         app:layout_constraintBottom_toTopOf="@+id/button10"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintHorizontal_bias="0.505"
         app:layout_constraintStart_toStartOf="parent" />
 </android.support.constraint.ConstraintLayout>

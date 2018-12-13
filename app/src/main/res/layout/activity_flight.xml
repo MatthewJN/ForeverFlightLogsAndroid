@@ -4,9 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FlightActivity">
+    tools:context=".FlightActivity"
+    android:background="@drawable/background">
 
     <AutoCompleteTextView
+<<<<<<< HEAD
       android:id="@+id/originText"
       android:layout_width="214dp"
       android:layout_height="wrap_content"
@@ -29,6 +31,30 @@
       android:textSize="14sp"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintTop_toBottomOf="@+id/originText"/>
+=======
+        android:id="@+id/originText"
+        android:layout_width="214dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:inputType="textCapCharacters"
+        android:textColor="@color/navy"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <AutoCompleteTextView
+        android:id="@+id/destinationText"
+        android:layout_width="214dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:inputType="textCapCharacters"
+        android:textColor="@color/navy"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/originText" />
+>>>>>>> UIColors
 
     <TextView
         android:id="@+id/textView3"
@@ -38,6 +64,7 @@
         android:layout_marginLeft="16dp"
         android:layout_marginTop="36dp"
         android:text="AIRCRAFT:"
+        android:textColor="@color/navy"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView5" />
@@ -50,6 +77,8 @@
         android:layout_marginLeft="16dp"
         android:layout_marginTop="36dp"
         android:text="DESTINATION:"
+        android:textAllCaps="false"
+        android:textColor="@color/navy"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
@@ -74,6 +103,8 @@
         android:layout_marginLeft="16dp"
         android:layout_marginTop="32dp"
         android:text="ORIGIN:"
+        android:textAllCaps="true"
+        android:textColor="@color/navy"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -87,16 +118,20 @@
         android:layout_marginRight="16dp"
         android:ems="10"
         android:inputType="textCapCharacters"
+        android:textColor="@color/navy"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/destinationText" />
 
     <Button
         android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="117dp"
+        android:layout_height="49dp"
         android:layout_marginTop="20dp"
+        android:background="@color/white"
         android:onClick="startFlight"
         android:text="@string/button_start_flight"
+        android:textColor="@color/blue"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/aircraftText" />

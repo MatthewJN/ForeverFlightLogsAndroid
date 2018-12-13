@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UserActivity">
+    tools:context=".UserActivity"
+    android:background="@drawable/background">
 
     <EditText
         android:id="@+id/editText"
@@ -13,7 +14,14 @@
         android:layout_marginTop="128dp"
         android:ems="10"
         android:hint="@string/username"
+<<<<<<< HEAD
         android:inputType="number"
+=======
+        android:inputType="textPersonName"
+        android:textAllCaps="true"
+        android:textColor="@color/navy"
+        android:textStyle="bold"
+>>>>>>> UIColors
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -25,18 +33,28 @@
         android:layout_marginTop="32dp"
         android:ems="10"
         android:hint="@string/password"
+<<<<<<< HEAD
         android:inputType="textPassword"
+=======
+        android:inputType="textPersonName"
+        android:textAllCaps="false"
+        android:textColor="@color/navy"
+        android:textStyle="bold"
+>>>>>>> UIColors
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editText" />
 
     <Button
         android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="133dp"
+        android:layout_height="49dp"
         android:layout_marginTop="64dp"
+        android:background="@color/white"
         android:onClick="login"
         android:text="@string/button_login"
+        android:textColor="@color/blue"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editText2" />
