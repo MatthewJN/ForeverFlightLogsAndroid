@@ -51,5 +51,6 @@
     <string name="label_flights_synced">Synced:</string>
     <string name="label_flights_inProgress">In Progress:</string>
     <string name="button_createAccount">Create Account</string>
+  <string name="logToken">Device Token</string>
 
 </resources>

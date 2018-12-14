@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "941176877368",
+    "firebase_url": "https://fir-test-ffdc1.firebaseio.com",
+    "project_id": "fir-test-ffdc1",
+    "storage_bucket": "fir-test-ffdc1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:941176877368:android:4a226e7fb97b3edd",
+        "android_client_info": {
+          "package_name": "com.foreverflightlogs.foreverflightlogs"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "941176877368-58utm8jiv405p9viogavb0g9a9h8fqqq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBX53VmQC3114Et0PIp5hxBrjvaQhnNYag"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
