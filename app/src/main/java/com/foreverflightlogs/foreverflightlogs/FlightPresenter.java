@@ -51,7 +51,9 @@ public class FlightPresenter {
 
   /**
    * Non-Default Constructor
-   * @param hasSynced Do you want to initialise for flights that have synced? Pass null if you don't care.
+   *
+   * @param hasSynced Do you want to initialise for flights that have synced? Pass null if you don't
+   * care.
    * @param inProgress Do you want flights that are in progress? Pass null if you don't care.
    * @param context The context.
    */

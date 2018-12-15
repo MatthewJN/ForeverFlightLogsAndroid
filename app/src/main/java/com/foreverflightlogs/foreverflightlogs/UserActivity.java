@@ -35,33 +35,36 @@ public class UserActivity extends AppCompatActivity implements Observer {
     loginButton = (Button) findViewById(R.id.button);
   }
 
-    /** Called when the user taps the login button */
-    public void login(View view) {
-      EditText editText = (EditText) findViewById(R.id.editText);
-      EditText editText2 = (EditText) findViewById(R.id.password);
+  /**
+   * Called when the user taps the login button
+   */
+  public void login(View view) {
+    EditText editText = (EditText) findViewById(R.id.editText);
+    EditText editText2 = (EditText) findViewById(R.id.password);
 
-      String username = editText.getText().toString();
-      String password = editText2.getText().toString();
+    String username = editText.getText().toString();
+    String password = editText2.getText().toString();
 
-      boolean isValid = true;
+    boolean isValid = true;
 
-      if (username.length() != 10) {
-        isValid = false;
-      }
-
-      if (password.length() == 0) {
-        isValid = false;
-      }
-      if (isValid) {
-        //userManager = new UserManager(getApplicationContext());
-        userManager.authWithAPI(username, password, getApplicationContext());
-        loginButton.setEnabled(false);
-      }
+    if (username.length() != 10) {
+      isValid = false;
     }
-    public void createAccount(View view) {
-        Intent intent = new Intent(this, CreateAccountActivity.class);
-        startActivity(intent);
+
+    if (password.length() == 0) {
+      isValid = false;
     }
+    if (isValid) {
+      //userManager = new UserManager(getApplicationContext());
+      userManager.authWithAPI(username, password, getApplicationContext());
+      loginButton.setEnabled(false);
+    }
+  }
+
+  public void createAccount(View view) {
+    Intent intent = new Intent(this, CreateAccountActivity.class);
+    startActivity(intent);
+  }
 
   /**
    * theIntent This is called if the login was succesfull and the activity is to move to main.
@@ -73,6 +76,7 @@ public class UserActivity extends AppCompatActivity implements Observer {
 
   /**
    * update: Used for the observer.
+   *
    * @param o The observable object.
    * @param arg The argument passed.
    */

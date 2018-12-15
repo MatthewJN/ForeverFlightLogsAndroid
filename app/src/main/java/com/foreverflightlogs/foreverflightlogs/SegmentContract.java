@@ -11,6 +11,7 @@ public final class SegmentContract {
    * The contract.
    */
   public static class SegmentEntry implements BaseColumns {
+
     public static final String TABLE_NAME = "segment";
     public static final String COLUMN_NAME_STARTDATE = "startDate";
     public static final String COLUMN_NAME_ENDDATE = "endDate";

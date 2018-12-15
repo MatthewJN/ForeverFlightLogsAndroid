@@ -27,6 +27,7 @@ public class UserManager extends Observable {
 
   /**
    * getInstance: Gets an instance of UserManager
+   *
    * @param aContext The context
    * @return Returns the UserManager instance.
    */
@@ -180,6 +181,7 @@ public class UserManager extends Observable {
 
   /**
    * getAuthCode Fetches the auth code from the model.
+   *
    * @return The auth code as a string.
    */
   public String getAuthCode() {
@@ -189,6 +191,7 @@ public class UserManager extends Observable {
 
   /**
    * getUserID Gets the user ID.
+   *
    * @return The user ID as an int.
    */
   public int getUserID() {

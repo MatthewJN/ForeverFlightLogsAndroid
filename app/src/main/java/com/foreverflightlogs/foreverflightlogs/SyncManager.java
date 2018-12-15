@@ -180,6 +180,7 @@ public class SyncManager {
 
   /**
    * getStringFromDate: Converts a date to a string.
+   *
    * @param date The date
    * @return A string for the date.
    */
@@ -194,6 +195,7 @@ public class SyncManager {
 
   /**
    * convertBooleanToString: Converts a boolean value to a string.
+   *
    * @param value The boolean value to convert.
    * @return A 1 or 0 in string format.
    */

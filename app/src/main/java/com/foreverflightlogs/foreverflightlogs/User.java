@@ -17,6 +17,7 @@ public class User {
 
   /**
    * getAuth Gets the authorisation code.
+   *
    * @return The auth code in a string.
    */
   public String getAuth() {
@@ -26,6 +27,7 @@ public class User {
 
   /**
    * setAuth: Sets the authorisation code and persists it.
+   *
    * @param auth The auth string.
    */
   public void setAuth(String auth) {
@@ -37,6 +39,7 @@ public class User {
 
   /**
    * getUserID Gets the user ID
+   *
    * @return The user ID in an int.
    */
   public int getUserID() {
@@ -46,6 +49,7 @@ public class User {
 
   /**
    * setUserID: Sets the user ID and persists it.
+   *
    * @param userID The user ID int.
    */
   public void setUserID(int userID) {

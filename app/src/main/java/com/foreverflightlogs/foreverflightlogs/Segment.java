@@ -24,6 +24,7 @@ public class Segment {
 
   /**
    * Non-Default Constructor
+   *
    * @param segmentID The segment ID
    * @param startDate The start date
    * @param endDate The end date

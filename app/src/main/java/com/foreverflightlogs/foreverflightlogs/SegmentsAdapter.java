@@ -53,8 +53,10 @@ public class SegmentsAdapter extends ArrayAdapter<Segment> {
 
     String segmentDurationText = String.format("%02d:%02d:%02d",
         TimeUnit.MILLISECONDS.toHours(getSegmentDuration(segment)),
-        TimeUnit.MILLISECONDS.toMinutes(getSegmentDuration(segment)) - TimeUnit.MINUTES.toMinutes(TimeUnit.MILLISECONDS.toHours(getSegmentDuration(segment))),
-        TimeUnit.MILLISECONDS.toSeconds(getSegmentDuration(segment)) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(getSegmentDuration(segment))));
+        TimeUnit.MILLISECONDS.toMinutes(getSegmentDuration(segment)) - TimeUnit.MINUTES
+            .toMinutes(TimeUnit.MILLISECONDS.toHours(getSegmentDuration(segment))),
+        TimeUnit.MILLISECONDS.toSeconds(getSegmentDuration(segment)) - TimeUnit.MINUTES
+            .toSeconds(TimeUnit.MILLISECONDS.toMinutes(getSegmentDuration(segment))));
     duration.setText(segmentDurationText);
 
     if (!segment.getPilotInCommand()) {

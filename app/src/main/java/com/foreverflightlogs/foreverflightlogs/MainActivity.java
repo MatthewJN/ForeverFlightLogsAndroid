@@ -58,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
 
   /**
    * continueFlight: Continue flight button visible if needed.
+   *
    * @param view The view.
    */
   public void continueFlight(View view) {
@@ -69,6 +70,7 @@ public class MainActivity extends AppCompatActivity {
 
   /**
    * createNewFlight: A button to create a new flight.
+   *
    * @param view The view.
    */
   public void createNewFlight(View view) {
@@ -78,6 +80,7 @@ public class MainActivity extends AppCompatActivity {
 
   /**
    * showAllFlights: A button to move to show all flights.
+   *
    * @param view The view.
    */
   public void showAllFlights(View view) {
@@ -87,6 +90,7 @@ public class MainActivity extends AppCompatActivity {
 
   /**
    * isInternetOn: A method to check if the internet is available.
+   *
    * @param context The context.
    * @return True if the internet is available.
    */

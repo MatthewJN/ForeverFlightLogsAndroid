@@ -31,7 +31,6 @@ public class JsonServerResponse {
     private long apiFlightID;
     private Segments segments;
 
-
     public Long getFlightID() {
       return flightID;
     }

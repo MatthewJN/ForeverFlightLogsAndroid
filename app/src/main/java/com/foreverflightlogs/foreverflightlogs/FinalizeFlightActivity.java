@@ -37,6 +37,7 @@ public class FinalizeFlightActivity extends AppCompatActivity {
 
   /**
    * saveLogEntry: Where the flight is finished and saved, and synced.
+   *
    * @param view The view.
    */
   public void saveLogEntry(View view) {

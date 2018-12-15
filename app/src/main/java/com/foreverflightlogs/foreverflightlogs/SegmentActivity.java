@@ -76,8 +76,7 @@ public class SegmentActivity extends AppCompatActivity implements
   }
 
   /**
-   * setSwitches
-   * Used to set the start positions of the switches.
+   * setSwitches Used to set the start positions of the switches.
    */
   public void setSwitches() {
     // Get all of the switches
@@ -108,6 +107,7 @@ public class SegmentActivity extends AppCompatActivity implements
 
   /**
    * onSaveInstanceState:
+   *
    * @param saveInstanceState the state.
    */
   public void onSaveInstanceState(Bundle saveInstanceState) {
@@ -118,6 +118,7 @@ public class SegmentActivity extends AppCompatActivity implements
 
   /**
    * onClickNewSegment: Used when a new segment needs creating
+   *
    * @param view The view.
    */
   public void onClickNewSegment(View view) {
@@ -135,6 +136,7 @@ public class SegmentActivity extends AppCompatActivity implements
 
   /**
    * enableStartButton: Used to enable or disable the button.
+   *
    * @param enable Enabled for true, disable for false.
    */
   public void enableStartButton(boolean enable) {
@@ -144,6 +146,7 @@ public class SegmentActivity extends AppCompatActivity implements
 
   /**
    * endableEndButton: Used to enable or disable the button.
+   *
    * @param enable Enabled for true, disable for false.
    */
   public void enableEndButton(boolean enable) {
@@ -153,6 +156,7 @@ public class SegmentActivity extends AppCompatActivity implements
 
   /**
    * endableNewSegmentButton: Used to enable or disable the button.
+   *
    * @param enable Enabled for true, disable for false.
    */
   public void enableNewSegmentButton(boolean enable) {
@@ -162,6 +166,7 @@ public class SegmentActivity extends AppCompatActivity implements
 
   /**
    * endableEndFlightButton: Used to enable or disable the button.
+   *
    * @param enable Enabled for true, disable for false.
    */
   public void enableEndFlightButton(boolean enable) {
@@ -170,7 +175,9 @@ public class SegmentActivity extends AppCompatActivity implements
   }
 
   /**
-   * onClickStart: Process once start button is clicked After disabling start button and resetting timer move remaining process handling to presenter
+   * onClickStart: Process once start button is clicked After disabling start button and resetting
+   * timer move remaining process handling to presenter
+   *
    * @param view The view
    */
   public void onClickStart(View view) {

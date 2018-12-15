@@ -93,6 +93,7 @@ public class FlightsAdapter extends ArrayAdapter<Flight> {
 
   /**
    * getStringFromDate: Pass in a date and get a string in return.
+   *
    * @param date The Date
    * @return The date represented as a String.
    */
@@ -107,6 +108,7 @@ public class FlightsAdapter extends ArrayAdapter<Flight> {
 
   /**
    * getTimeStringFromDate: Pass in a date to get the time in a string.
+   *
    * @param date The date.
    * @return A string with the time.
    */

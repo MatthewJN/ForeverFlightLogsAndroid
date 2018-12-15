@@ -259,7 +259,9 @@ public class FlightDbHelper extends SQLiteOpenHelper {
   }
 
   /**
-   * getAllFlightsOfType: Gets the type of flight, ie, synced, not synced, in progress, or not in progress.
+   * getAllFlightsOfType: Gets the type of flight, ie, synced, not synced, in progress, or not in
+   * progress.
+   *
    * @param synced Has the flight been synced?
    * @param inProgress Is the flight still in progress?
    * @param context Context
@@ -283,6 +285,7 @@ public class FlightDbHelper extends SQLiteOpenHelper {
 
   /**
    * getAllFlights: Gets a list of all flights.
+   *
    * @param query The query
    * @param context The context
    * @return A list of flights.
@@ -733,8 +736,8 @@ public class FlightDbHelper extends SQLiteOpenHelper {
   }
 
   /**
-   * cleanUpSegments: Used to remove orphaned segments when someone closes the app mid-segment and doesn't return.
-   * @param context
+   * cleanUpSegments: Used to remove orphaned segments when someone closes the app mid-segment and
+   * doesn't return.
    */
   public void cleanUpSegments(Context context) {
     SQLiteDatabase db = getWritableDatabase();
@@ -749,6 +752,7 @@ public class FlightDbHelper extends SQLiteOpenHelper {
 
   /**
    * getStringFromDate: A convenience method to provide a date in the required string format.
+   *
    * @param date A Date
    * @return A string in the required format.
    */
@@ -763,6 +767,7 @@ public class FlightDbHelper extends SQLiteOpenHelper {
 
   /**
    * getDateFromString: Gets a Date object from a provided string
+   *
    * @param date A Date in String format
    * @return A Date object is returned.
    */

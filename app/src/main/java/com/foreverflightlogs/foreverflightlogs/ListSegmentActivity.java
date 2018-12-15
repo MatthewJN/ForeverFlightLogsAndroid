@@ -61,6 +61,7 @@ public class ListSegmentActivity extends AppCompatActivity {
 
   /**
    * addRemarksPressed: Adds remarks and moves to the next activity.
+   *
    * @param view The view.
    */
   public void addRemarksPressed(View view) {

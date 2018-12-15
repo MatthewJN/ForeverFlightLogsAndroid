@@ -90,7 +90,9 @@ public class EditSegmentActivity extends AppCompatActivity implements
   }
 
   /**
-   * onCheckedChanged: Checks for changes with the buttons and puts in a request to update the model.
+   * onCheckedChanged: Checks for changes with the buttons and puts in a request to update the
+   * model.
+   *
    * @param buttonView The button
    * @param isChecked Is the button on or off?
    */
@@ -135,6 +137,7 @@ public class EditSegmentActivity extends AppCompatActivity implements
 
   /**
    * onSaveButtonClicked: Finishes the segment.
+   *
    * @param view The view
    */
   public void onSaveButtonClicked(View view) {
