@@ -24,7 +24,8 @@ public class FlightPresenter {
   /**
    * Non-Default Constructor:
    *
-   * Pass in a flightID to instantiate the FlightPresenter with the flight desired.
+   * Pass in a flightID to instantiate the FlightPresenter with the flight desired. Useful for when
+   * segments are needing to be added to a flight, or when details of the flight are needed.
    *
    * @param flightID The flightID assigned by the model.
    */
@@ -51,6 +52,8 @@ public class FlightPresenter {
 
   /**
    * Non-Default Constructor
+   *
+   * Used for when you need to get a list of flights that are synced or not, and in progress or not.
    *
    * @param hasSynced Do you want to initialise for flights that have synced? Pass null if you don't
    * care.

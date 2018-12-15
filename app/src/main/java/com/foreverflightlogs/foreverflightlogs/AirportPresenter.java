@@ -28,7 +28,8 @@ public class AirportPresenter {
   }
 
   /**
-   * fetchAirports: Gets all of the airports from a Gist JSON file
+   * fetchAirports: Gets all of the airports from a Gist JSON file. It then format them in to a
+   * Map with the airport code as the key and the airport name as the data.
    *
    * @param context The context
    */
@@ -94,10 +95,11 @@ public class AirportPresenter {
   }
 
   /**
-   * getAirports:
+   * getAirports: Used to fetch all of the airports from the model, and put them in a list
+   * to be typically used in an adapter.
    *
    * @param context The context
-   * @return A list of all airports.
+   * @return A list of all airports concatenated to airport code. Example: "SLC - Salt Lake...."
    */
   public List<String> getAirports(Context context) {
     AirportDbHelper airportDbHelper = new AirportDbHelper(context);

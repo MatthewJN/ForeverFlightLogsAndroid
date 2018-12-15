@@ -79,7 +79,8 @@ public class AirportDbHelper extends SQLiteOpenHelper {
   }
 
   /**
-   * insertAirports: Adds a Map of airports to the database.
+   * insertAirports: Adds a Map of airports to the database. Pass in a Map of airports in the format
+   * of 3 or 4 character airport code first, followed by the name of the airport as the data.
    *
    * @param airports A Map containing airports which includes airport code and name.
    * @param context The context

@@ -68,8 +68,6 @@ public class FlightActivity extends AppCompatActivity {
     // Pass the new flightID as an intent.
     Intent intent = new Intent(this, SegmentActivity.class);
     intent.putExtra(FLIGHTID, flightPresenter.getFlightID());
-    //test
-    Log.i("FLIGHTID", Long.toString(flightPresenter.getFlightID()));
     startActivity(intent);
   }
 

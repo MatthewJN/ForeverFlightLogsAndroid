@@ -61,6 +61,13 @@ public class UserActivity extends AppCompatActivity implements Observer {
     }
   }
 
+  /**
+   * createAccount:
+   *
+   * Used to create a new account.
+   *
+   * @param view The view.
+   */
   public void createAccount(View view) {
     Intent intent = new Intent(this, CreateAccountActivity.class);
     startActivity(intent);

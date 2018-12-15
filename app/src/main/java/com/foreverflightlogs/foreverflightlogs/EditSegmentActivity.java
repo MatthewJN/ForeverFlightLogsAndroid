@@ -51,9 +51,9 @@ public class EditSegmentActivity extends AppCompatActivity implements
   }
 
   /**
-   * getSegmentDuration:
+   * getSegmentDuration: Calculates the duration of the segment from start to end date.
    *
-   * @param segment The segment that the
+   * @param segment The segment that is being queried.
    */
   public long getSegmentDuration(Segment segment) {
     return segment.getEndDate().getTime() - segment.getStartDate().getTime();

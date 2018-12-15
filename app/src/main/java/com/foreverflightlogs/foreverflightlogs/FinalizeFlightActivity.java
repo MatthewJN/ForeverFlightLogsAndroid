@@ -67,17 +67,11 @@ public class FinalizeFlightActivity extends AppCompatActivity {
   public void onCheckedChanged(CompoundButton buttonView, boolean isChecked, long flightID) {
     switch (buttonView.getId()) {
       case R.id.switch_crossCountry:
-        //Toast.makeText(this, "pic has changed", Toast.LENGTH_SHORT).show();
         flightPresenter.flight.setCrosscountry(isChecked);
-        Log.i("crossCountrySwitch",
-            "onCheckedChange:cross: " + flightPresenter.flight.getCrosscountry());
         break;
       case R.id.switch_solo:
-        //Toast.makeText(this, "dualHours has changed", Toast.LENGTH_SHORT).show();
         flightPresenter.flight.setSolo(isChecked);
-        Log.i("soloSwitch", "onCheckedChange:solo: " + flightPresenter.flight.getSolo());
         break;
-
     }
   }
 }

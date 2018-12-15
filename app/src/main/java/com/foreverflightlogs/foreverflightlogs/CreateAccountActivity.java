@@ -36,6 +36,10 @@ public class CreateAccountActivity extends AppCompatActivity implements Observer
     finish();
   }
 
+  /**
+   * createNewAccount: Creates a new account on the server.
+   * @param view The view.
+   */
   public void createNewAccount(View view) {
     EditText editPhone = (EditText) findViewById(R.id.phone);
     EditText editName = (EditText) findViewById(R.id.name);
@@ -81,10 +85,22 @@ public class CreateAccountActivity extends AppCompatActivity implements Observer
     }
   }
 
+  /**
+   * theIntent
+   * Closes the activity when finished.
+   */
   private void theIntent() {
     finish();
   }
 
+  /**
+   * update: The observer... called when a message is passed out.
+   * In this case, it is used for checking if the message is from the CreateAccountPresenter
+   * and if so, depending on what the result is, it will either call theIntent method to
+   * close out the activity, or it will show a toast to explain that there has been a problem.
+   * @param o The object the nessage originated from.
+   * @param arg The argument passed back (either "200" or "401" depending on a success of failure).
+   */
   @Override
   public void update(Observable o, Object arg) {
 

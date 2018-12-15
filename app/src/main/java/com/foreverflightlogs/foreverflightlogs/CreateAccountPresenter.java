@@ -26,9 +26,11 @@ public class CreateAccountPresenter extends Observable {
   private String response;
   private boolean isAccountCreated = false;
 
-
-  // CreateAccountPresenter(Context context) { this.context = context;}
-  //turn this into a singleton
+  /**
+   * getInstance: This creates a singleton.
+   * @param aContext The context
+   * @return Returns an instance of "this".
+   */
   public static CreateAccountPresenter getInstance(Context aContext) {
     context = aContext;
     synchronized (mLock) {
@@ -39,6 +41,13 @@ public class CreateAccountPresenter extends Observable {
     }
   }
 
+  /**
+   * createAccountOnAPI: Used to add a new account on the API, server side.
+   * @param phone The phone number of the user registering.
+   * @param password The password they want to use.
+   * @param name Their name.
+   * @param context The context.
+   */
   public void createAccountOnAPI(final String phone, final String password, final String name,
       final Context context) {
 
@@ -61,9 +70,7 @@ public class CreateAccountPresenter extends Observable {
           jsonParam.put("password", password); // test
           jsonParam.put("name", name);
 
-          Log.i("JSONACCT", jsonParam.toString());
           DataOutputStream os = new DataOutputStream(conn.getOutputStream());
-          //os.writeBytes(URLEncoder.encode(jsonParam.toString(), "UTF-8"));
           os.writeBytes(jsonParam.toString());
 
           os.flush();
@@ -95,10 +102,6 @@ public class CreateAccountPresenter extends Observable {
             notifyObservers("200");
           }
 
-          Log.i("ACCTSTATUS", String.valueOf(conn.getResponseCode()));
-          Log.i("ACCTMSG", conn.getResponseMessage());
-          Log.i("ACCTRETURNED", reply);
-
           conn.disconnect();
 
         } catch (MalformedURLException e) {
@@ -112,7 +115,6 @@ public class CreateAccountPresenter extends Observable {
         } catch (JSONException e) {
           e.printStackTrace();
         }
-        //return "200";
       }
     });
 

@@ -20,6 +20,12 @@ import java.util.List;
 
 public class SyncManager {
 
+  /**
+   * sync:
+   * Called whenever desired through out the app. If there are flights available to be syncronised
+   * it will syncronise them. If not, it will not do anything.
+   * @param context The application context.
+   */
   public static void sync(final Context context) {
     //1. flightpresenter - call non default that accepts just context, not in progress, and not synced
     // FlightPresenter flightPresenter = new FlightPresenter(context, false,false);
@@ -98,6 +104,14 @@ public class SyncManager {
     thread.start();
   }
 
+  /**
+   * updateFlightsSynced:
+   *
+   * Used for updating the flights that have synced so that they are not re-syncronised.
+   *
+   * @param reply The reply from the server.
+   * @param context The context
+   */
   private static void updateFlightsSynced(String reply, Context context) {
     FlightPresenter flightPresenter;
     Gson gson = new GsonBuilder().create();
