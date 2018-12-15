@@ -32,18 +32,18 @@
         app:layout_constraintTop_toBottomOf="@+id/switch_simInstruments" />
 
     <TextView
-        android:id="@+id/label_PilotInCommand"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
-        android:layout_marginLeft="48dp"
-        android:layout_marginTop="32dp"
-        android:text="@string/label_PilotInCommand"
-        android:textAllCaps="true"
-        android:textColor="@color/navy"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView14" />
+      android:id="@+id/label_PilotInCommand"
+      android:textStyle="bold"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="34dp"
+      android:layout_marginStart="48dp"
+      android:layout_marginLeft="48dp"
+      android:text="@string/label_PilotInCommand"
+      android:textAllCaps="true"
+      android:textColor="@color/navy"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/textView12"/>
 
     <TextView
         android:id="@+id/label_dualHours"
@@ -132,14 +132,14 @@
         app:layout_constraintTop_toBottomOf="@+id/switch_visualFlight" />
 
     <Switch
-        android:id="@+id/switch_PIC"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="96dp"
-        android:layout_marginRight="96dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/endTime" />
+      android:id="@+id/switch_PIC"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="30dp"
+      android:layout_marginEnd="96dp"
+      android:layout_marginRight="96dp"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/duration"/>
 
     <Switch
         android:id="@+id/switch_simInstruments"
@@ -151,100 +151,37 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/switch_dualHours" />
 
-    <EditText
-        android:id="@+id/endTime"
-        android:layout_width="202dp"
-        android:layout_height="47dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="26dp"
-        android:layout_marginRight="26dp"
-        android:ems="10"
-        android:hint="@string/endTime"
-        android:inputType="textPersonName|datetime"
-        android:textColor="@color/navy"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/startTime" />
-
-    <EditText
-        android:id="@+id/startTime"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:ems="10"
-        android:hint="@string/startTime"
-        android:inputType="textPersonName|datetime"
-        android:textColor="@color/navy"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/duration" />
-
-    <ImageView
-        android:id="@+id/closeActivity"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@android:drawable/btn_dialog" />
+    <TextView
+      android:id="@+id/textView12"
+      android:textStyle="bold"
+      android:layout_width="84dp"
+      android:layout_height="21dp"
+      android:layout_marginTop="62dp"
+      android:layout_marginStart="48dp"
+      android:layout_marginLeft="48dp"
+      android:text="Duration"
+      android:textAllCaps="true"
+      android:textColor="@color/navy"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent"/>
 
     <TextView
-        android:id="@+id/textView12"
-        android:layout_width="84dp"
-        android:layout_height="21dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginTop="16dp"
-        android:text="Duration"
-        android:textAllCaps="true"
-        android:textColor="@color/navy"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/closeActivity" />
-
-    <TextView
-        android:id="@+id/textView13"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginTop="32dp"
-        android:text="Start Time"
-        android:textAllCaps="true"
-        android:textColor="@color/navy"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView12" />
-
-    <TextView
-        android:id="@+id/textView14"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginTop="32dp"
-        android:text="End Time"
-        android:textAllCaps="true"
-        android:textColor="@color/navy"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView13" />
-
-    <EditText
-        android:id="@+id/duration"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:ems="10"
-        android:hint="@string/duration"
-        android:inputType="textPersonName|numberDecimal"
-        android:textColor="@color/navy"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+      android:id="@+id/duration"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="58dp"
+      android:layout_marginStart="160dp"
+      android:layout_marginEnd="16dp"
+      android:layout_marginLeft="160dp"
+      android:layout_marginRight="16dp"
+      android:ems="10"
+      android:hint="@string/duration"
+      android:inputType="textPersonName|numberDecimal"
+      android:textColor="@android:color/black"
+      android:textSize="18sp"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toEndOf="@+id/textView12"
+      app:layout_constraintTop_toTopOf="parent"/>
 
     <Button
         android:id="@+id/button_saveSegment"
